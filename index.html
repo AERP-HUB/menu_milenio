@@ -201,6 +201,36 @@
       transform: translate(-50%, -50%)
     }
 
+
+    /* ===== Quiz / mayoreo / frecuencia ===== */
+    #qz{position:fixed;inset:0;z-index:75;display:none;align-items:center;justify-content:center;padding:1rem}
+    #qz.on{display:flex}
+    .qzd{position:relative;width:min(26rem,100%);max-height:100%;overflow:auto;border-radius:24px;padding:1.4rem;background:var(--surf);color:var(--ink);border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45);animation:qzin .35s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes qzin{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+    .qzdots{display:flex;gap:.35rem;justify-content:center;margin-bottom:.9rem}
+    .qzdots i{height:5px;width:2rem;border-radius:9px;background:var(--line)}
+    .qzdots i.on{background:var(--gold)}
+    .wbar{height:.7rem;border-radius:99px;background:var(--line);overflow:hidden}
+    .wbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--goldt));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+    .wbar.ok i{background:linear-gradient(90deg,var(--leaf),#5BBF3A,var(--leaf));background-size:200% 100%;animation:wshine 1.6s linear infinite}
+    @keyframes wshine{to{background-position:-200% 0}}
+    .wbox.ok{animation:wpop .5s cubic-bezier(.2,.8,.2,1)}
+    @keyframes wpop{0%{transform:scale(.96)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
+    .qzhl{border-left:4px solid var(--gold)}
+    @media (prefers-reduced-motion:reduce){.wbar.ok i,.wbox.ok,.qzd{animation:none}.wbar i{transition:none}}
+
+    /* ===== Reseñas ===== */
+    #rv{position:fixed;inset:0;z-index:76;display:none;align-items:center;justify-content:center;padding:1rem}
+    #rv.on{display:flex}
+    .star{font-size:1.9rem;line-height:1;min-width:2.75rem;min-height:2.75rem;color:var(--line);transition:transform .15s,color .15s}
+    .star.on{color:var(--gold)}
+    .star:active{transform:scale(1.25)}
+    .stars{color:var(--gold);letter-spacing:.1em;white-space:nowrap}
+    .stars i{font-style:normal;color:var(--line)}
+    .rbar{height:.5rem;border-radius:99px;background:var(--line);overflow:hidden}
+    .rbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--goldt));border-radius:99px;transition:width .6s}
+    .rcard{animation:qzin .4s both}
+    @media (prefers-reduced-motion:reduce){.rcard{animation:none}}
     .gopt {
       min-height: 3rem;
       text-align: left;
@@ -687,7 +717,6 @@
 </head>
 
 <body>
-  <!-- Íconos vectoriales reutilizables: <svg class="w-12 h-12"><use href="#i-cup"/></svg>. Usan los colores de la marca (dorado #D9A23F y café #24100B; en modo oscuro el café pasa a crema para seguir viéndose) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-cup" viewBox="0 0 120 120">
       <g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -741,7 +770,7 @@
       </a>
       <nav class="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-wider" aria-label="Principal">
         <a href="#inicio" class="hover:text-gold">Inicio</a><a href="#origen" class="hover:text-gold">Origen</a><a
-          href="#tienda" class="hover:text-gold">Tienda</a><a href="#contacto" class="hover:text-gold">Contacto</a>
+          href="#tienda" class="hover:text-gold">Tienda</a><a href="#reseñas" class="hover:text-gold">Reseñas</a><a href="#contacto" class="hover:text-gold">Contacto</a>
       </nav>
       <div class="flex items-center gap-2">
         <button id="cartBtn" class="relative w-11 h-11 rounded-full bg-gold text-esp text-xl grid place-items-center"
@@ -759,42 +788,58 @@
     </nav>
   </header>
 
-  <section id="inicio" class="relative overflow-hidden bg-esp text-[#F6EBDD]"
-    style="background-image:radial-gradient(60rem 30rem at 85% 20%,rgba(217,162,63,.22),transparent),radial-gradient(40rem 30rem at -10% 90%,rgba(179,38,43,.22),transparent)">
-    <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 md:gap-14 items-center">
-      <div class="text-left justify-self-start w-full">
-        <p class="font-serif uppercase tracking-[.3em] text-gold text-xs sm:text-sm">Café arábiga · Jaltenango, Chiapas
-        </p>
-        <h1 class="font-head font-extrabold uppercase leading-[.98] tracking-tight mt-4 hero-t">Café 100% <span
-            class="text-gold">chiapaneco</span></h1>
-        <p class="mt-5 text-lg text-[#E6D6C6] max-w-md">Productores de café con un aroma que nos distingue y una gran
-          tradición. Del cafetal a tu taza, con envíos a todo México.</p>
-        <div class="mt-7 flex flex-wrap justify-start gap-3"><a href="#tienda" class="btn btn-gold">Ver productos</a><a
-            id="heroWa" href="#" class="btn btn-line">Pedir por WhatsApp</a></div>
-        <dl class="mt-9 grid grid-cols-3 gap-3 w-full max-w-md text-center">
-          <div class="rounded-2xl border border-white/15 p-3">
-            <dt class="text-gold font-extrabold text-xl">900+</dt>
-            <dd class="text-xs text-[#E6D6C6]">msnm de altura</dd>
+  <section id="inicio" class="relative overflow-hidden bg-esp text-[#F6EBDD]" style="background-image:radial-gradient(60rem 30rem at 85% 20%,rgba(217,162,63,.22),transparent),radial-gradient(40rem 30rem at -10% 90%,rgba(179,38,43,.22),transparent)">
+      <div class="max-w-6xl mx-auto px-4 py-6 md:py-20 grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+        
+        <!-- Columna Izquierda: Textos y Botones -->
+        <div class="text-left justify-self-start w-full">
+          <p class="font-serif uppercase tracking-[.3em] text-gold text-xs sm:text-sm">Café arábiga · Jaltenango, Chiapas</p>
+          <h1 class="font-head font-extrabold uppercase leading-[.98] tracking-tight mt-4 hero-t">
+            Café 100% <span class="text-gold">chiapaneco</span>
+          </h1>
+          <p class="mt-5 text-lg text-[#E6D6C6] max-w-md">
+            Productores de café con un aroma que nos distingue y una gran tradición. Del cafetal a tu taza, con envíos a todo México.
+          </p>
+          
+          <!-- Botones de Navegación Directa -->
+          <div class="mt-5 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+            <a href="#tienda" class="px-3.5 py-2 rounded-full bg-gold text-esp font-extrabold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 shadow-md">
+              🛒 Ver Tienda
+            </a>
+            <a href="#origen" class="px-3 py-2 rounded-full border border-white/20 text-[#F6EBDD] font-bold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 hover:border-gold">
+              ☕ Origen
+            </a>
+            <a href="#contacto" class="px-3 py-2 rounded-full border border-white/20 text-[#F6EBDD] font-bold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 hover:border-gold">
+              📍 Ubicación
+            </a>
           </div>
-          <div class="rounded-2xl border border-white/15 p-3">
-            <dt class="text-gold font-extrabold text-xl">5 kg</dt>
-            <dd class="text-xs text-[#E6D6C6]">precio mayoreo</dd>
-          </div>
-          <div class="rounded-2xl border border-white/15 p-3">
-            <dt class="text-gold font-extrabold text-xl">MX</dt>
-            <dd class="text-xs text-[#E6D6C6]">envíos a todo el país</dd>
-          </div>
-        </dl>
-      </div>
-      <div class="relative flex justify-center md:justify-end w-full">
-        <div class="absolute inset-6 rounded-[2rem] bg-gold/30 blur-3xl" aria-hidden="true"></div>
-        <div id="heroFrame"
-          class="relative w-full max-w-md md:max-w-none rounded-[2rem] p-2 sm:p-3 bg-gradient-to-br from-gold/70 via-white/10 to-gold/30 ring-1 ring-gold/50 shadow-[0_30px_80px_-20px_rgba(217,162,63,.55)]"
-          style="aspect-ratio:4/5">
-          <div id="heroBag" class="relative w-full h-full overflow-hidden rounded-3xl bg-[#1B0E0A]"></div>
+
+          <!-- Datos / Métricas -->
+          <dl class="mt-9 grid grid-cols-3 gap-3 w-full max-w-md text-center">
+            <div class="rounded-2xl border border-white/15 p-3">
+              <dt class="text-gold font-extrabold text-xl">900+</dt>
+              <dd class="text-xs text-[#E6D6C6]">msnm de altura</dd>
+            </div>
+            <div class="rounded-2xl border border-white/15 p-3">
+              <dt class="text-gold font-extrabold text-xl">5 kg</dt>
+              <dd class="text-xs text-[#E6D6C6]">precio mayoreo</dd>
+            </div>
+            <div class="rounded-2xl border border-white/15 p-3">
+              <dt class="text-gold font-extrabold text-xl">MX</dt>
+              <dd class="text-xs text-[#E6D6C6]">envíos a todo el país</dd>
+            </div>
+          </dl>
         </div>
+
+        <!-- Columna Derecha: Imagen Hero -->
+        <div class="relative flex justify-center md:justify-end w-full">
+          <div class="absolute inset-6 rounded-[2rem] bg-gold/30 blur-3xl" aria-hidden="true"></div>
+          <div id="heroFrame" class="relative w-full max-w-md md:max-w-none rounded-[2rem] p-2 sm:p-3 bg-gradient-to-br from-gold/70 via-white/10 to-gold/30 ring-1 ring-gold/50 shadow-[0_30px_80px_-20px_rgba(217,162,63,.55)]" style="aspect-ratio:4/5">
+            <div id="heroBag" class="relative w-full h-full overflow-hidden rounded-3xl bg-[#1B0E0A]"></div>
+          </div>
+        </div>
+
       </div>
-    </div>
   </section>
 
   <section id="origen" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-16 md:py-24">
@@ -844,6 +889,7 @@
         <h2 class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Elige tu calidad</h2>
         <p class="mt-4 text-mute">Mayoreo a partir de 5 kg. Elige el molido que prefieras y agrégalo al carrito.</p>
       </div>
+      <div class="mt-8 max-w-xl mx-auto rv"><button type="button" data-act="qzopen" class="w-full rounded-2xl border border-gold bg-surf px-4 py-3 text-center font-bold hover:bg-esp hover:text-[#F6EBDD] transition-colors min-h-[3rem]">☕ ¿No sabes qué café elegir? <span class="text-goldt underline">Haz el test de 3 clics</span></button></div>
       <div id="grid" class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
       <div class="dv mt-12 max-w-md mx-auto" aria-hidden="true"><i></i><svg class="b" viewBox="0 0 40 60">
           <use href="#i-bean" />
@@ -852,8 +898,17 @@
         </svg><svg class="b" viewBox="0 0 40 60">
           <use href="#i-bean" />
         </svg><i></i></div>
-      <p class="mt-6 text-center text-xs text-mute">*Mayoreo a partir de 5 kilos. *No incluye costo de envío. *Consultar
-        términos y condiciones.</p>
+    </div>
+  </section>
+
+  <section id="reseñas" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-16 md:py-24" aria-labelledby="rvt">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="font-serif uppercase tracking-[.3em] text-goldt text-xs">Opiniones</p>
+      <h2 id="rvt" class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Lo que dicen de nuestro café</h2>
+    </div>
+    <div class="mt-10 grid gap-8 md:grid-cols-[minmax(0,20rem)_1fr] items-start">
+      <div id="rvSum" class="rounded-3xl bg-surf border border-line p-5"></div>
+      <div id="rvList" class="grid gap-4 sm:grid-cols-2" aria-live="polite"></div>
     </div>
   </section>
 
@@ -874,15 +929,12 @@
         <p class="mt-3 text-sm text-[#E6D6C6]">📦 Envíos a todo México</p>
       </div>
       <div>
-        <h3 class="font-extrabold uppercase tracking-wider text-gold text-sm">Contacto</h3>
         <div class="mt-3 flex flex-col gap-2 items-start">
-          <a class="btn btn-gold" href="https://www.instagram.com/cafemilenioficial" target="_blank"
-            rel="noopener">Instagram @cafemilenioficial</a>
-          <a class="btn btn-line" href="https://www.facebook.com/CafeMilenioOficial" target="_blank"
-            rel="noopener">Facebook Café Milenio</a>
-          <a id="footWa" class="btn btn-line" href="#" target="_blank" rel="noopener">WhatsApp +52 961 603 7111</a>
-          <p class="text-sm text-[#E6D6C6] mt-2">📞 <a href="tel:+529921100559" class="underline">992 110 0559</a><br>✉️
-            <a href="mailto:jaltenangomilenio@gmail.com" class="underline break-all">jaltenangomilenio@gmail.com</a></p>
+          <a class="btn btn-gold" href="https://www.instagram.com/cafemileniooficial/" target="_blank" rel="noopener noreferrer">INSTAGRAM @cafemileniooficial</a>
+          <a class="btn btn-line" href="https://www.facebook.com/CafeMilenioOficial" target="_blank" rel="noopener noreferrer">FACEBOOK CAFÉ MILENIO</a>
+          <a id="footWa" class="btn btn-line" href="https://wa.me/529616037111?text=Hola%20Caf%C3%A9%20Milenio,%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer">WHATSAPP +52 961 603 7111</a>
+          <p class="text-sm text-[#E6D6C6] mt-2">📞 <a href="tel:+529921100559" class="underline">992 110 0559</a><br>
+          ✉️ <a href="mailto:jaltenangomilenio@gmail.com" class="underline break-all">jaltenangomilenio@gmail.com</a></p>
         </div>
       </div>
     </div>
@@ -893,27 +945,37 @@
     <div class="tkback" data-act="tkclose"></div>
     <div class="tkd" id="tkd"></div>
   </div>
+  <div id="rv" role="dialog" aria-modal="true" aria-labelledby="rvh" aria-hidden="true">
+    <div class="tkback" data-act="rvclose"></div>
+    <div class="qzd" id="rvd"></div>
+  </div>
+  <div id="qz" role="dialog" aria-modal="true" aria-labelledby="qzt" aria-hidden="true">
+    <div class="tkback" data-act="qzclose"></div>
+    <div class="qzd" id="qzd"></div>
+  </div>
   <div id="cart" role="dialog" aria-modal="true" aria-labelledby="ct" aria-hidden="true">
     <div class="sc" data-act="close"></div>
     <aside class="pn" id="pn"></aside>
   </div>
 
   <script>
-    const WA = '529616037111', IG = 'https://www.instagram.com/cafemilenioficial';
+    const WA = '529616037111', IG = 'https://www.instagram.com/cafemileniooficial';
     const E = { pin: '\u{1F4CC}', user: '\u{1F464}', loc: '\u{1F4CD}', truck: '\u{1F69A}', card: '\u{1F4B3}', box: '\u{1F4E6}', money: '\u{1F4B0}', shop: '\u{1F3EA}', who: '\u{1F64B}', receipt: '\u{1F9FE}' };
     const PRODS = [
       { id: 'europea', name: 'Calidad Europea', img: 'img/cafe-europeas.jpg', men: 300, may: 250, tueste: 'Medio (205° a 210°)', nivel: 3, notas: ['🍫 Cacao', '🌰 Nuez'], acidez: 'Pronunciada', dulzor: 'Medio', bag: '#17110F', label: '#D9A23F' },
       { id: 'americana', name: 'Calidad Americana', img: 'img/cafe-americanas.jpg', men: 270, may: 220, tueste: 'Vianés (210° a 215°)', nivel: 4, notas: ['🍫 Chocolate amargo', '🍞 Pan tostado'], acidez: 'Media', dulzor: 'Bajo', bag: '#D6D6D6', label: '#E0B04A' },
       { id: 'nacional', name: 'Calidad Nacional', img: 'img/cafe-nacionals.jpg', men: 240, may: 180, tueste: 'Oscuro (220° a 225°)', nivel: 5, notas: ['🍂 Tabaco', '☕ Poca cafeína'], acidez: 'Baja', dulzor: 'Amargo', bag: '#A8252A', label: '#F0E3D0' }
     ];
-    const HERO_IMG = 'img/cafes-inicio.jpg'; // Foto principal del inicio. Si no existe, usa la bolsa de img/producto1.jpg
-    const HERO_FIT = 'contain';      // 'contain' = el marco se ajusta a tu foto, sin recortes (recomendado) · 'cover' = marco fijo 4:5, recorta los bordes
+    const HERO_IMG = 'img/cafes-inicio.jpg';
+    const HERO_FIT = 'contain';
     const GR = [['Grano entero', 'Grano', 'Para moler en casa'], ['Molido fino', 'Fino', 'Espresso / moka'], ['Molido medio', 'Medio', 'Cafetera de goteo'], ['Prensa francesa', 'Prensa', 'Molido grueso']];
     const STEPS = [['<img src="img/cafe-cultivo.jpg"', 'Cultivo', 'Cafetales de altura'], ['<img src="img/cafe-cereza.jpg">', 'Cosecha', 'Cereza madura a mano'], ['<img src="img/cafe-secado.jpg">', 'Beneficio', 'Lavado y secado'], ['<img src="img/cafe-tostado.jpg">', 'Tostado', 'Tres perfiles de tueste'], ['<img src="img/cafe-paquete.jpg">', 'Molido y empaque', 'Listo para tu taza']];
     const $ = s => document.querySelector(s), fmt = n => '$' + n.toLocaleString('es-MX', { maximumFractionDigits: 2 });
     const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     let cart = {}, ui = {}, err = '', last = 0;
-    const info = { nombre: '', destino: '', ent: 'envio', dir: '', pago: 'Efectivo', fecha: '', recoge: '' };
+    const info = { nombre: '', destino: '', ent: 'envio', dir: '', pago: 'Efectivo', fecha: '', recoge: '', frecuencia: 'unica' };
+    const FREQ = { '15': 'Cada 15 días', 'mes': 'Cada mes' };
+    let quiz = { m: '', p: '' };
     const STORE = 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370';
     const MAPS = 'https://maps.app.goo.gl/XzFvWwX7WY4Km17h6';
     let pending = null;
@@ -930,22 +992,27 @@
 
     function renderStatic() {
       const hb = $('#heroBag'), fr = $('#heroFrame');
-      hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" class="absolute inset-0 w-full h-full object-${HERO_FIT}">`;
-      const him = hb.querySelector('img'), alt = [PRODS[0].img];
-      him.onerror = () => { const n = alt.shift(); if (n) { him.src = n; him.className = him.className.replace(/object-\w+/, 'object-contain'); } else him.remove(); };
-      him.onload = () => {
-        hb.firstElementChild.style.display = 'none';
-        if (HERO_FIT === 'cover' || !him.naturalWidth) return;
-        const r = him.naturalWidth / him.naturalHeight; // el marco toma la proporción real de la foto: sin recortes ni deformación
-        fr.style.aspectRatio = r; fr.style.width = `min(100%, ${(r * 78).toFixed(2)}vh)`;
-      };
+      if (hb) {
+        hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" class="absolute inset-0 w-full h-full object-${HERO_FIT}">`;
+        const him = hb.querySelector('img'), alt = [PRODS[0].img];
+        him.onerror = () => { const n = alt.shift(); if (n) { him.src = n; him.className = him.className.replace(/object-\w+/, 'object-contain'); } else him.remove(); };
+        him.onload = () => {
+          hb.firstElementChild.style.display = 'none';
+          if (HERO_FIT === 'cover' || !him.naturalWidth) return;
+          const r = him.naturalWidth / him.naturalHeight;
+          if (fr) { fr.style.aspectRatio = r; fr.style.width = `min(100%, ${(r * 78).toFixed(2)}vh)`; }
+        };
+      }
       const tiles = [['🌿', 'Cafetal', 'img/cafe_planta.jpg'], ['🍒', 'Cosecha', 'img/cafe-cosecha.jpg'], ['🔥', 'Tostado', 'img/cafe-tostado.jpg']];
-      $('#mosaic').innerHTML = tiles.map(([e, t, src], i) => `<figure class="relative aspect-[3/5] overflow-hidden rounded-3xl grid place-items-center ${i === 1 ? 'mt-8' : ''}" style="background:linear-gradient(160deg,#3F7A2A,#24100B)"><span class="text-4xl" aria-hidden="true">${e}</span><img src="${src}" alt="${t}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"><figcaption class="absolute bottom-0 inset-x-0 p-2 text-center text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-t from-black/70 to-transparent">${t}</figcaption></figure>`).join('');
-      $('#steps').innerHTML = STEPS.map(([e, t, d], i) => `<li class="rounded-3xl bg-surf border border-line p-4 text-center"><div class="text-3xl" aria-hidden="true">${e}</div><p class="text-xs text-goldt font-extrabold mt-1">PASO ${i + 1}</p><h3 class="font-extrabold uppercase text-sm">${t}</h3><p class="text-xs text-mute mt-1">${d}</p></li>`).join('');
+      if ($('#mosaic')) $('#mosaic').innerHTML = tiles.map(([e, t, src], i) => `<figure class="relative aspect-[3/5] overflow-hidden rounded-3xl grid place-items-center ${i === 1 ? 'mt-8' : ''}" style="background:linear-gradient(160deg,#3F7A2A,#24100B)"><span class="text-4xl" aria-hidden="true">${e}</span><img src="${src}" alt="${t}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"><figcaption class="absolute bottom-0 inset-x-0 p-2 text-center text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-t from-black/70 to-transparent">${t}</figcaption></figure>`).join('');
+      if ($('#steps')) $('#steps').innerHTML = STEPS.map(([e, t, d], i) => `<li class="rounded-3xl bg-surf border border-line p-4 text-center"><div class="text-3xl" aria-hidden="true">${e}</div><p class="text-xs text-goldt font-extrabold mt-1">PASO ${i + 1}</p><h3 class="font-extrabold uppercase text-sm">${t}</h3><p class="text-xs text-mute mt-1">${d}</p></li>`).join('');
       const wa = `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent('Hola, quiero información sobre el café de Café Milenio')}`;
-      $('#heroWa').href = wa; $('#heroWa').target = '_blank'; $('#footWa').href = wa; $('#yr').textContent = new Date().getFullYear();
+      if ($('#heroWa')) { $('#heroWa').href = wa; $('#heroWa').target = '_blank'; }
+      if ($('#footWa')) { $('#footWa').href = wa; $('#footWa').target = '_blank'; }
+      if ($('#yr')) $('#yr').textContent = new Date().getFullYear();
     }
     function renderGrid() {
+      if (!$('#grid')) return;
       $('#grid').innerHTML = PRODS.map(p => {
         const s = ui[p.id], tot = kgOf(p.id) + 0, kgEff = tot + s.kg, may = kgEff >= 5, u = unit(p, kgEff), d = p.men - p.may;
         return `<article class="rounded-3xl bg-surf border border-line shadow-lg overflow-hidden flex flex-col">
@@ -956,18 +1023,28 @@
       <div><div class="flex justify-between text-sm"><b>Tueste</b><span class="text-mute">${p.tueste}</span></div><div class="rtrack" role="img" aria-label="Nivel de tueste ${p.nivel} de 5"><i style="left:${(p.nivel - .5) * 20}%"></i></div><div class="flex justify-between text-[11px] text-mute"><span>Claro</span><span>Medio</span><span>Oscuro</span></div></div>
       <p class="text-xs text-mute">Acidez <b class="text-ink">${p.acidez}</b> · Dulzor <b class="text-ink">${p.dulzor}</b> · ≈ ${fmt(u / 4)} por 250 g</p>
       <div><p class="text-xs font-bold text-mute mb-1">MOLIDO</p><div class="grid grid-cols-2 gap-2" role="group" aria-label="Tipo de molido">${GR.map(([n, sh, ds]) => `<button class="gopt" aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}"><b>${sh}</b><span>${ds}</span></button>`).join('')}</div></div>
-      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}"><p class="text-sm font-bold">${may ? '✓ Precio de mayoreo aplicado' : `Faltan ${+(5 - kgEff).toFixed(1)} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg` : `Pasa de ${fmt(p.men)} a ${fmt(p.may)} por kg`}</p><div class="vbar mt-2"><i style="width:${Math.min(100, kgEff / 5 * 100)}%"></i></div></div>
+      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}"><p class="text-sm font-bold">${may ? '✓ Precio de mayoreo aplicado' : `Faltan ${+(5 - kgEff).toFixed(1)} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg` : `Pasa de ${fmt(p.men)} a${fmt(p.may)} por kg`}</p><div class="vbar mt-2"><i style="width:${Math.min(100, kgEff / 5 * 100)}%"></i></div></div>
       <div class="flex items-center gap-2 mt-auto pt-1"><button class="q" data-act="kdec" data-id="${p.id}" aria-label="Menos café">−</button><span class="w-16 text-center font-extrabold">${s.kg} kg</span><button class="q" data-act="kinc" data-id="${p.id}" aria-label="Más café">+</button><span class="ml-auto font-extrabold text-lg">${fmt(s.kg * u)}</span></div>
       <button class="btn btn-gold w-full" data-act="add" data-id="${p.id}">Agregar al carrito</button>
     </div></article>`;
       }).join('');
     }
+    const WHOLE = 5;
+    function wholesaleBar() {
+      const kg = Math.max(0, ...PRODS.map(p => kgOf(p.id))), ok = kg >= WHOLE, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(1);
+      return `<div class="wbox${ok ? ' ok' : ''} rounded-2xl border ${ok ? 'border-leaf' : 'border-line'} bg-surf p-3 mt-4" role="status"><div class="wbar${ok ? ' ok' : ''}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>
+  <p class="text-sm mt-2 ${ok ? 'font-bold text-leaf' : ''}">${ok ? '🎉 ¡Felicidades! Desbloqueaste tarifa de Mayoreo en tu pedido. Ahorro aplicado.' : `¡Estás a solo <b>${left} kg</b> de desbloquear precio de Mayoreo y ahorrar en tu compra!`}</p></div>`;
+    }
     function renderCart() {
+      if (!$('#pn')) return;
       const L = lines(), n = L.length, c = $('#count');
-      c.textContent = n; c.classList.toggle('zero', !n); if (n !== last && n) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } last = n;
+      if (c) {
+        c.textContent = n; c.classList.toggle('zero', !n); if (n !== last && n) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } last = n;
+      }
       const opt = (arr, act, cur) => arr.map(([v, t]) => `<button class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('');
       $('#pn').innerHTML = `<div class="flex justify-between items-center mb-4"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">Tu carrito</h2><button class="q" data-act="close" aria-label="Cerrar carrito">✕</button></div>` + (n ? `
-  <ul class="divide-y divide-line">${L.map(x => `<li class="py-3 flex gap-3 justify-between"><div class="min-w-0"><p class="font-bold">Café ${x.p.name}</p><p class="text-xs text-mute">${x.l.g} · ${x.l.kg} kg × ${fmt(x.u)} ${kgOf(x.l.id) >= 5 ? '(mayoreo)' : '(menudeo)'}</p><div class="mt-2 flex gap-2 items-center"><button class="q" data-act="cdec" data-k="${x.k}" aria-label="Quitar medio kilo">−</button><button class="q" data-act="cinc" data-k="${x.k}" aria-label="Agregar medio kilo">+</button><button class="text-xs underline text-mute ml-2 min-h-[2.75rem]" data-act="del" data-k="${x.k}">Quitar</button></div></div><p class="font-extrabold">${fmt(x.sub)}</p></li>`).join('')}</ul>
+  <ul class="divide-y divide-line">${L.map(x => `<li class="py-3 flex gap-3 justify-between"><div class="min-w-0"><p class="font-bold">Café ${x.p.name}</p><p class="text-xs text-mute">${x.l.g} ·${x.l.kg} kg × ${fmt(x.u)}${kgOf(x.l.id) >= 5 ? '(mayoreo)' : '(menudeo)'}</p><div class="mt-2 flex gap-2 items-center"><button class="q" data-act="cdec" data-k="${x.k}" aria-label="Quitar medio kilo">−</button><button class="q" data-act="cinc" data-k="${x.k}" aria-label="Agregar medio kilo">+</button><button class="text-xs underline text-mute ml-2 min-h-[2.75rem]" data-act="del" data-k="${x.k}">Quitar</button></div></div><p class="font-extrabold">${fmt(x.sub)}</p></li>`).join('')}</ul>
+  ${wholesaleBar()}
   <div class="flex justify-between items-baseline mt-3 pt-3 border-t-2 border-gold"><span class="font-bold">Total estimado</span><span class="text-2xl font-extrabold">${fmt(total())} MXN</span></div>
   <h3 class="font-extrabold uppercase text-sm mt-6 text-goldt">Datos de entrega</h3>
   <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-nombre">Nombre *</label><input id="i-nombre" class="in" data-f="nombre" autocomplete="name" value="${esc(info.nombre)}">
@@ -978,12 +1055,87 @@
   <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-fecha">Fecha y hora estimada de recolección *</label><input id="i-fecha" type="datetime-local" class="in" data-f="fecha" min="${new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16)}" value="${esc(info.fecha)}">
   <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-recoge">¿Quién recoge? (opcional)</label><input id="i-recoge" class="in" data-f="recoge" placeholder="Solo si es otra persona" value="${esc(info.recoge)}">`}
   <p class="text-xs font-bold text-mute mt-3 mb-1">Forma de pago estimada</p><div class="grid grid-cols-3 gap-2">${opt([['Efectivo', 'Efectivo'], ['Transferencia', 'Transf.'], ['Tarjeta', 'Tarjeta']], 'pago', info.pago)}</div>
+  <p class="text-xs font-bold text-mute mt-3 mb-1">¿Con qué frecuencia compras café? (opcional)</p><div class="grid grid-cols-1 gap-2">${opt([['unica', 'Compra única'], ['15', 'Recordarme reordenar cada 15 días'], ['mes', 'Recordarme reordenar cada mes']], 'freq', info.frecuencia)}</div>
   ${err ? `<p role="alert" class="mt-3 text-sm font-bold text-cherry">${err}</p>` : ''}
   <button class="btn btn-gold w-full mt-5" data-act="send">Enviar pedido por WhatsApp</button><p class="text-xs text-mute mt-3">Mayoreo desde 5 kg por calidad. El costo de envío se confirma por WhatsApp.</p>`
         : `<p class="text-mute">Tu carrito está vacío. Elige una calidad en la tienda y agrégala.</p><a href="#tienda" class="btn btn-gold mt-5" data-act="close">Ir a la tienda</a>`);
     }
+    const QM = [['espresso', '☕ Espresso / Moka'], ['goteo', '💧 Cafetera de goteo'], ['prensa', '🫖 Prensa Francesa'], ['olla', '🍯 Café de Olla']];
+    const QP = [['balance', '🍫 Balanceado con notas a chocolate y cacao'], ['intenso', '🔥 Intenso y tostado'], ['ligero', '🌿 Opciones ligeras con baja cafeína']];
+    function quizResult() {
+      const { m, p } = quiz; let id = 'europea', g = 'Molido medio';
+      if (m === 'olla' || p === 'ligero') { id = 'nacional'; g = 'Molido medio'; }
+      else {
+        id = p === 'intenso' ? 'americana' : 'europea';
+        g = m === 'espresso' ? 'Molido fino' : m === 'prensa' ? 'Prensa francesa' : 'Molido medio';
+      }
+      return { id, g };
+    }
+    function renderQuiz() {
+      const q = $('#qzd'); if (!q) return; const step = !quiz.m ? 1 : !quiz.p ? 2 : 3;
+      const dots = `<div class="qzdots" aria-hidden="true">${[1, 2, 3].map(n => `<i class="${n <= step ? 'on' : ''}"></i>`).join('')}</div>`;
+      const x = `<button class="q absolute top-3 right-3" data-act="qzclose" aria-label="Cerrar test">✕</button>`;
+      const opts = (arr, act, cur) => `<div class="grid gap-2 mt-4">${arr.map(([v, t]) => `<button class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('')}</div>`;
+      if (step === 1) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 1 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Cómo preparas tu café?</h2>` + opts(QM, 'qm', quiz.m);
+      else if (step === 2) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 2 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Qué perfil de sabor buscas?</h2>` + opts(QP, 'qp', quiz.p) + `<button class="text-xs underline text-mute mt-3 min-h-[2.75rem]" data-act="qzback">← Volver</button>`;
+      else {
+        const r = quizResult(), pr = byId(r.id), kg = 1;
+        q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Tu café ideal</p><h2 id="qzt" class="font-head font-extrabold text-2xl text-center mt-1">Café ${pr.name}</h2>
+  <div class="relative mx-auto mt-3 w-32 h-40">${artImg(pr, 'object-contain')}</div>
+  <div class="qzhl rounded-xl bg-surf p-3 mt-4 text-sm"><p><b>Tueste:</b> ${pr.tueste}</p><p><b>Notas:</b> ${pr.notas.join(' · ')}</p><p><b>Molido recomendado:</b> ${r.g}</p><p><b>Precio:</b> ${fmt(pr.men)}/kg (mayoreo ${fmt(pr.may)} desde 5 kg)</p></div>
+  <button class="btn btn-gold w-full mt-4" data-act="qzadd">Agregar automáticamente al carrito</button><button class="text-xs underline text-mute mt-2 min-h-[2.75rem] w-full" data-act="qzreset">Repetir test</button>`;
+      }
+      q.querySelector('.gopt, .btn')?.focus();
+    }
+    const openQuiz = () => { quiz = { m: '', p: '' }; renderQuiz(); $('#qz').classList.add('on'); $('#qz').setAttribute('aria-hidden', 'false'); };
+    const closeQuiz = () => { $('#qz')?.classList.remove('on'); $('#qz')?.setAttribute('aria-hidden', 'true'); };
+    /* ===== Reseñas ===== */
+    const SEED = [
+      { n: 'María G.', s: 5, p: 'Calidad Europea', t: 'El aroma al abrir la bolsa es increíble, con notas a cacao. Lo preparo en cafetera de goteo y sale perfecto.', seed: 1 },
+      { n: 'Carlos R.', s: 5, p: 'Calidad Americana', t: 'Intenso y con buen cuerpo para espresso. El envío llegó rápido y bien empacado.', seed: 1 },
+      { n: 'Lupita M.', s: 4, p: 'Calidad Nacional', t: 'Ideal para café de olla, suave y con poca cafeína. Mi familia lo disfruta mucho.', seed: 1 },
+      { n: 'Jorge H.', s: 5, p: 'Experiencia General', t: 'Atención muy amable por WhatsApp y café 100% chiapaneco. Ya hice mi segundo pedido.', seed: 1 }
+    ];
+    let reviews = [], rv = { s: 0, done: null, err: '' };
+    try { reviews = JSON.parse(localStorage.getItem('milenio-reviews') || '[]'); if (!Array.isArray(reviews)) reviews = []; } catch (e) { reviews = []; }
+    const allRev = () => [...reviews, ...SEED];
+    const starsH = n => `<span class="stars" role="img" aria-label="${n} de 5 estrellas">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
+    function renderReviews() {
+      const L = allRev(), N = L.length, avg = L.reduce((a, r) => a + r.s, 0) / N;
+      if ($('#rvSum')) $('#rvSum').innerHTML = `<p class="text-center"><span class="text-5xl font-extrabold">${avg.toFixed(1)}</span><span class="text-mute"> / 5.0</span></p>
+  <p class="text-center text-xl mt-1">${starsH(Math.round(avg))}</p><p class="text-center text-sm text-mute mt-1">Basado en ${N} opiniones de amantes del café chiapaneco</p>
+  <div class="mt-4 grid gap-2">${[5, 4, 3, 2, 1].map(n => { const c = L.filter(r => r.s === n).length; return `<div class="flex items-center gap-2 text-xs"><span class="w-12 shrink-0 font-bold">${n} ★</span><div class="rbar flex-1"><i style="width:${c / N * 100}%"></i></div><span class="w-6 text-right text-mute">${c}</span></div>`; }).join('')}</div>
+  <button class="btn btn-gold w-full mt-5" data-act="rvopen">⭐ Dejar mi opinión</button>`;
+      if ($('#rvList')) $('#rvList').innerHTML = L.slice(0, 8).map(r => `<article class="rcard rounded-3xl bg-surf border border-line p-4 flex flex-col gap-2"><div class="flex items-center justify-between gap-2"><b class="truncate">${esc(r.n)}</b>${starsH(r.s)}</div><p class="text-xs font-bold text-goldt">☕ ${esc(r.p)}</p><p class="text-sm">“${esc(r.t)}”</p>${r.seed ? '<p class="text-[11px] text-mute mt-auto">Reseña de ejemplo</p>' : '<p class="text-[11px] text-mute mt-auto">Tu opinión</p>'}</article>`).join('');
+    }
+    function renderRvForm() {
+      const q = $('#rvd'); if (!q) return; const x = `<button class="q absolute top-3 right-3" data-act="rvclose" aria-label="Cerrar">✕</button>`;
+      if (rv.done) {
+        const r = rv.done, msg = `\u{2B50} *NUEVA RESEÑA - CAFÉ MILENIO*\n\n\u{1F464} *Cliente:* ${r.n}\n\u{2B50} *Calificación:* ${r.s}/5\n\u{2615} *Producto:* ${r.p}\n\u{1F4AC} *Comentario:* ${r.t}`;
+        q.innerHTML = x + `<div class="text-center"><p class="text-5xl" aria-hidden="true">🎉</p><h2 id="rvh" class="font-head font-extrabold text-xl mt-2">¡Gracias por tu opinión, ${esc(r.n)}!</h2><p class="text-sm text-mute mt-1">Tu reseña ya aparece en la lista.</p></div>
+  <a class="btn btn-gold w-full mt-4" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(msg)}">Enviar mi comentario directamente por WhatsApp al productor</a>
+  <button class="text-xs underline text-mute mt-2 min-h-[2.75rem] w-full" data-act="rvclose">No, gracias</button>`;
+        return;
+      }
+      q.innerHTML = x + `<h2 id="rvh" class="font-head font-extrabold text-xl text-center">Escribir reseña</h2>
+  <p class="text-xs font-bold text-mute mt-4 mb-1">Tu calificación *</p><div class="flex justify-center" role="group" aria-label="Calificación">${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star ${n <= rv.s ? 'on' : ''}" data-act="rvstar" data-v="${n}" aria-label="${n} estrella${n > 1 ? 's' : ''}" aria-pressed="${n === rv.s}">★</button>`).join('')}</div>
+  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-n">Tu nombre *</label><input id="rv-n" class="in" maxlength="40" autocomplete="name">
+  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-p">¿Qué producto compraste?</label><select id="rv-p" class="in"><option>Calidad Europea</option><option>Calidad Americana</option><option>Calidad Nacional</option><option>Experiencia General</option></select>
+  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-t">Cuéntanos tu experiencia con el aroma, sabor o servicio *</label><textarea id="rv-t" class="in" rows="4" maxlength="400"></textarea>
+  ${rv.err ? `<p role="alert" class="mt-2 text-sm font-bold text-cherry">${rv.err}</p>` : ''}
+  <button class="btn btn-gold w-full mt-4" data-act="rvpub">Publicar Reseña</button>`;
+    }
+    const openRv = () => { rv = { s: 0, done: null, err: '' }; renderRvForm(); $('#rv').classList.add('on'); $('#rv').setAttribute('aria-hidden', 'false'); };
+    const closeRv = () => { $('#rv')?.classList.remove('on'); $('#rv')?.setAttribute('aria-hidden', 'true'); };
+    function pubRv() {
+      const n = $('#rv-n').value.trim(), t = $('#rv-t').value.trim(), p = $('#rv-p').value;
+      if (!rv.s || !n || !t) { rv.err = !rv.s ? 'Elige tu calificación.' : !n ? 'Escribe tu nombre.' : 'Cuéntanos tu experiencia.'; const keep = [n, t, p]; renderRvForm(); $('#rv-n').value = keep[0]; $('#rv-t').value = keep[1]; $('#rv-p').value = keep[2]; return; }
+      const r = { n, s: rv.s, p, t, d: Date.now() }; reviews.unshift(r);
+      try { localStorage.setItem('milenio-reviews', JSON.stringify(reviews)); } catch (e) { }
+      rv.done = r; renderReviews(); renderRvForm();
+    }
     function toast(t) { document.querySelectorAll('.toast').forEach(x => x.remove()); const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = '✓ ' + t; document.body.append(d); setTimeout(() => d.remove(), 2300); }
-    function setCart(open) { const c = $('#cart'); c.classList.toggle('on', open); c.setAttribute('aria-hidden', !open); if (open) { renderCart(); $('#pn').querySelector('.q')?.focus(); } }
+    function setCart(open) { const c = $('#cart'); if (!c) return; c.classList.toggle('on', open); c.setAttribute('aria-hidden', !open); if (open) { renderCart(); $('#pn').querySelector('.q')?.focus(); } }
     const fdate = v => new Date(v).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
     function orderData() {
       const ent = info.ent === 'envio', folio = 'MIL-' + Date.now().toString(36).toUpperCase().slice(-6);
@@ -991,24 +1143,26 @@
       if (ent) { rows.push(['Destino', info.destino.trim(), E.loc], ['Entrega', `Envío a ${info.dir.trim()} (Costo por confirmar)`, E.truck]); }
       else { rows.push(['Sucursal', STORE, E.shop], ['Entrega', `Recolección en tienda · ${fdate(info.fecha)}`, E.truck]); if (info.recoge.trim()) rows.push(['Recoge', info.recoge.trim(), E.who]); }
       rows.push(['Pago', info.pago, E.card]);
+      const freq = FREQ[info.frecuencia] || '';
       const items = lines().map(x => ({ txt: `${x.l.kg}kg Café ${x.p.name}, ${x.l.g} (${kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo'}: ${fmt(x.sub)})`, nm: `${x.l.kg}kg Café ${x.p.name} · ${x.l.g}`, sub: x.sub }));
-      return { rows, items, folio, total: total(), fecha: fdate(Date.now()) };
+      return { rows, items, freq, folio, total: total(), fecha: fdate(Date.now()) };
     }
-    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '\u2022 ' + i.txt).join('\n') + `\n\n---\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN`;
+    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '\u2022 ' + i.txt).join('\n') + `\n\n---\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN` + (d.freq ? `\n\n\u{1F504} *FRECUENCIA DE RECOMPRA:* Desea recordatorio automático [${d.freq}]` : '');
     function showTicket(d) {
       pending = d; d.url = `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(buildMsg(d))}`;
       let n = 0; const i = () => `style="--i:${n++}"`;
+      if (!$('#tkd')) return;
       $('#tkd').innerHTML = `<div class="paper"><button class="tkx" data-act="tkclose" aria-label="Cerrar">✕</button>
   <div class="text-center"><div class="okw" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 52 52" width="64" height="64"><circle cx="26" cy="26" r="24" fill="#22C55E"/><path class="chk" d="M14 27l8 8 16-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40"/></svg></div>
   <h2 id="tkt" class="text-xl font-extrabold">Confirma tu cotización</h2><p class="text-xs" style="color:#7B6A5F">Café Milenio · ${esc(d.fecha)}</p></div><div class="dash"></div>
   ${d.rows.map(([l, v, e]) => `<div class="rw" ${i()}><span class="l">${e} ${l}</span><span>${esc(v)}</span></div>`).join('')}<div class="dash"></div>
-  ${d.items.map(it => `<div class="rw" ${i()}><span>${esc(it.nm)}</span><span class="amt">${fmt(it.sub)}</span></div>`).join('')}<div class="dash"></div>
+  ${d.items.map(it => `<div class="rw" ${i()}><span>${esc(it.nm)}</span><span class="amt">${fmt(it.sub)}</span></div>`).join('')}${d.freq ? `<div class="rw" ${i()}><span class="l">\u{1F504} Recompra</span><span>${esc(d.freq)}</span></div>` : ''}<div class="dash"></div>
   <div class="rw" ${i()} style="font-size:1.1rem;font-weight:800"><span class="l" style="color:inherit">TOTAL ESTIMADO</span><span class="amt">${fmt(d.total)} MXN</span></div>
   <button class="go mt-4" data-act="tkgo">Confirmar y Abrir WhatsApp</button><button class="tkb" data-act="tksave">Guardar comprobante</button><button class="tkb" data-act="tkclose">Editar datos</button></div><div class="zig" aria-hidden="true"></div>`;
-      $('#tk').classList.add('on'); $('#tkd').querySelector('.go').focus();
+      if ($('#tk')) $('#tk').classList.add('on'); $('#tkd').querySelector('.go')?.focus();
     }
-    const closeTicket = () => $('#tk').classList.remove('on');
-    function paint(x, d, W, draw) { // dibuja el comprobante en un canvas (para guardarlo como imagen)
+    const closeTicket = () => $('#tk')?.classList.remove('on');
+    function paint(x, d, W, draw) {
       const pad = 28, mono = '"Courier New", monospace'; let y = pad;
       const wrap = (t, max) => { const o = []; let cur = ''; String(t).split(' ').forEach(w => { const nx = cur ? cur + ' ' + w : w; if (x.measureText(nx).width > max && cur) { o.push(cur); cur = w; } else cur = nx; }); o.push(cur); return o; };
       const dash = () => { y += 8; if (draw) { x.setLineDash([6, 4]); x.strokeStyle = '#BFB3A3'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(pad, y); x.lineTo(W - pad, y); x.stroke(); x.setLineDash([]); } y += 16; };
@@ -1018,6 +1172,7 @@
       ctr('Comprobante de cotización', `bold 20px ${mono}`, '#2B1D1A'); ctr('Café Milenio · ' + d.fecha, `12px ${mono}`, '#7B6A5F'); dash();
       d.rows.forEach(([l, v]) => row(l, v, false, 13)); dash();
       d.items.forEach(it => { x.font = `13px ${mono}`; const am = fmt(it.sub), aw = x.measureText(am).width + 14, ls = wrap(it.nm, W - 2 * pad - aw); if (draw) { x.fillStyle = '#2B1D1A'; x.textAlign = 'left'; ls.forEach((t, k) => x.fillText(t, pad, y + k * 19)); x.textAlign = 'right'; x.fillText(am, W - pad, y); } y += ls.length * 19 + 2; }); dash();
+      if (d.freq) row('Recompra', d.freq, false, 13);
       row('TOTAL', fmt(d.total) + ' MXN', true, 17); y += 6; dash();
       x.font = `11px ${mono}`; wrap('Documento informativo. El costo de envío se confirma por WhatsApp. Mayoreo desde 5 kg por calidad.', W - 2 * pad).forEach(t => { if (draw) { x.fillStyle = '#7B6A5F'; x.textAlign = 'center'; x.fillText(t, W / 2, y); } y += 16; });
       return y + pad - 8;
@@ -1038,25 +1193,45 @@
     }
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-act]'); if (!b) return;
+      const qa = b.dataset.act;
+      if (qa === 'rvopen') { openRv(); return; }
+      if (qa === 'rvclose') { closeRv(); return; }
+      if (qa === 'rvstar') { const keep = [$('#rv-n').value, $('#rv-t').value, $('#rv-p').value]; rv.s = +b.dataset.v; renderRvForm(); $('#rv-n').value = keep[0]; $('#rv-t').value = keep[1]; $('#rv-p').value = keep[2]; return; }
+      if (qa === 'rvpub') { pubRv(); return; }
+      if (qa === 'qzopen') { openQuiz(); return; }
+      if (qa === 'qzclose') { closeQuiz(); return; }
+      if (qa === 'qm') { quiz.m = b.dataset.v; renderQuiz(); return; }
+      if (qa === 'qp') { quiz.p = b.dataset.v; renderQuiz(); return; }
+      if (qa === 'qzback') { quiz.m = ''; renderQuiz(); return; }
+      if (qa === 'qzreset') { quiz = { m: '', p: '' }; renderQuiz(); return; }
+      if (qa === 'qzadd') {
+        const r = quizResult(), key = r.id + '|' + r.g; cart[key] = { id: r.id, g: r.g, kg: (cart[key]?.kg || 0) + 1 };
+        save(); closeQuiz(); renderGrid(); renderCart(); toast(`Café ${byId(r.id).name} (${r.g}) añadido`); setTimeout(() => setCart(true), 450); return;
+      }
       const a = b.dataset.act, id = b.dataset.id, k = b.dataset.k, s = ui[id];
       if (a === 'grind') s.g = b.dataset.g; else if (a === 'kinc') s.kg += .5; else if (a === 'kdec') s.kg = Math.max(.5, s.kg - .5);
       else if (a === 'add') { const key = id + '|' + s.g; cart[key] = { id, g: s.g, kg: (cart[key]?.kg || 0) + s.kg }; s.kg = 1; save(); toast(`${cart[key].kg}kg Café ${byId(id).name} añadido`); renderCart(); }
       else if (a === 'cinc' || a === 'cdec') { cart[k].kg += a === 'cinc' ? .5 : -.5; if (cart[k].kg <= 0) delete cart[k]; save(); }
       else if (a === 'del') { delete cart[k]; save(); }
-      else if (a === 'ent') { info.ent = b.dataset.v; err = ''; } else if (a === 'pago') info.pago = b.dataset.v;
+      else if (a === 'ent') { info.ent = b.dataset.v; err = ''; } else if (a === 'pago') info.pago = b.dataset.v; else if (a === 'freq') info.frecuencia = b.dataset.v;
       else if (a === 'send') { send(); return; }
       else if (a === 'tkgo') { window.open(pending.url, '_blank'); closeTicket(); return; }
       else if (a === 'tksave') { saveTicket(); return; }
-      else if (a === 'tkclose') { closeTicket(); $('#pn').querySelector('[data-f="nombre"]')?.focus(); return; }
+      else if (a === 'tkclose') { closeTicket(); $('#pn')?.querySelector('[data-f="nombre"]')?.focus(); return; }
       else if (a === 'close') { setCart(false); return; }
       renderGrid(); renderCart();
     });
-    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { info[f] = e.target.value; err = ''; $('#pn').querySelector('[role=alert]')?.remove(); } });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('#tk').classList.contains('on')) closeTicket(); else setCart(false); } });
-    $('#cartBtn').onclick = () => setCart(true);
-    $('#menuBtn').onclick = () => { const m = $('#mnav'), o = m.classList.toggle('hidden'); $('#menuBtn').setAttribute('aria-expanded', !o); };
-    $('#mnav').onclick = e => { if (e.target.closest('a')) { $('#mnav').classList.add('hidden'); $('#menuBtn').setAttribute('aria-expanded', 'false'); } };
-    renderStatic(); renderGrid(); renderCart();
+    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); } });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('#rv')?.classList.contains('on')) closeRv(); else if ($('#qz')?.classList.contains('on')) closeQuiz(); else if ($('#tk')?.classList.contains('on')) closeTicket(); else setCart(false); } });
+    if ($('#cartBtn')) $('#cartBtn').onclick = () => setCart(true);
+    if ($('#menuBtn')) $('#menuBtn').onclick = () => { const m = $('#mnav'), o = m.classList.toggle('hidden'); $('#menuBtn').setAttribute('aria-expanded', !o); };
+    if ($('#mnav')) $('#mnav').onclick = e => { if (e.target.closest('a')) { $('#mnav').classList.add('hidden'); $('#menuBtn').setAttribute('aria-expanded', 'false'); } };
+    
+    renderStatic(); 
+    renderGrid(); 
+    renderCart();
+    renderReviews();
+    
     const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .12 }) : null;
     document.querySelectorAll('.rv').forEach(el => io ? io.observe(el) : el.classList.add('in'));
   </script>
