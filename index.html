@@ -8,7 +8,7 @@
   <meta name="description"
     content="Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { bg: 'var(--bg)', surf: 'var(--surf)', ink: 'var(--ink)', mute: 'var(--mute)', line: 'var(--line)', gold: 'var(--gold)', goldt: 'var(--goldt)', bean: 'var(--bean)', cherry: 'var(--cherry)', leaf: 'var(--leaf)', esp: '#24100B' }, fontFamily: { head: ['"Open Sans"', 'system-ui', 'sans-serif'], serif: ['"Playfair Display"', 'Georgia', 'serif'], script: ['"Great Vibes"', 'cursive'] } } } }</script>
+  <script>tailwind.config = { theme: { extend: { colors: { bg: 'var(--bg)', surf: 'rgb(var(--surf-rgb) / <alpha-value>)', ink: 'var(--ink)', mute: 'var(--mute)', line: 'var(--line)', gold: 'rgb(var(--gold-rgb) / <alpha-value>)', goldt: 'var(--goldt)', bean: 'var(--bean)', cherry: 'var(--cherry)', leaf: 'var(--leaf)', esp: '#24100B' }, fontFamily: { head: ['"Open Sans"', 'system-ui', 'sans-serif'], serif: ['"Playfair Display"', 'Georgia', 'serif'], script: ['"Great Vibes"', 'cursive'] } } } }</script>
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&family=Playfair+Display:wght@600&family=Great+Vibes&display=swap"
     rel="stylesheet">
@@ -18,6 +18,8 @@
       --texd: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='%23F6EBDD' stroke='%23F6EBDD'><g transform='translate(22 26) rotate(25) scale(1)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(98 18) rotate(-40) scale(0.8)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(138 70) rotate(70) scale(1)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(60 82) rotate(-15) scale(1.1)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(18 124) rotate(110) scale(0.85)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(104 132) rotate(10) scale(1)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g><g transform='translate(76 148) rotate(-60) scale(0.7)'><ellipse rx='6' ry='9.5' stroke='none' fill-opacity='0.03'/><path d='M0-8c-4 4 4 7 0 10s4 6 0 8' fill='none' stroke-opacity='0.045' stroke-width='1.5' stroke-linecap='round'/></g></g></svg>");
       --bg: #F4EFE6;
       --surf: #fff;
+      --surf-rgb: 255 255 255;
+      --gold-rgb: 217 162 63;
       --ink: #24100B;
       --mute: #6B5A52;
       --line: rgba(36, 16, 11, .14);
@@ -36,6 +38,7 @@
         --tex: var(--texd);
         --bg: #150A07;
         --surf: #22110C;
+        --surf-rgb: 34 17 12;
         --ink: #F6EBDD;
         --mute: #C2AFA3;
         --line: rgba(255, 235, 210, .14);
@@ -49,6 +52,7 @@
       --tex: var(--texd);
       --bg: #150A07;
       --surf: #22110C;
+      --surf-rgb: 34 17 12;
       --ink: #F6EBDD;
       --mute: #C2AFA3;
       --line: rgba(255, 235, 210, .14);
@@ -220,6 +224,32 @@
     @media (prefers-reduced-motion:reduce){.wbar.ok i,.wbox.ok,.qzd{animation:none}.wbar i{transition:none}}
 
     /* ===== Reseñas ===== */
+    .cstep{border:1px solid var(--line);border-radius:20px;padding:1rem;margin-top:.75rem;background:var(--surf)}
+    .cnum{display:inline-grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:99px;background:var(--gold);color:#24100B;font-size:.72rem}
+    .csend{position:sticky;bottom:calc(-1.25rem - env(safe-area-inset-bottom,0px));margin:1rem -1.25rem calc(-1.25rem - env(safe-area-inset-bottom,0px));padding:.85rem 1.25rem calc(.85rem + env(safe-area-inset-bottom,0px));color:#F6EBDD;background:#180A07}
+    .csend .text-mute{color:#C2AFA3}
+    .csend .wmini{color:#E8B652}.csend .wmini.ok{color:#8FC46E}
+    .csend .wbar{background:rgba(246,235,221,.18)}
+    .pbox{margin-top:.75rem;border-radius:14px;padding:.7rem .8rem;background:color-mix(in srgb,var(--gold) 14%,transparent);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);animation:qzin .3s both}
+    .wmini{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;font-size:.72rem;font-weight:700;color:var(--goldt)}
+    .wmini .wbar{flex:1;height:.4rem}
+    .wmini span{white-space:nowrap}
+    .wmini.ok{color:var(--leaf)}.wmini.ok .wbar i{background:var(--leaf)}
+    /* teclado abierto: la barra deja de ser fija y no tapa lo que escribes */
+    #cart .pn.kb .csend{position:static;margin-top:1rem}
+    #cart .pn.kb .cform{padding-bottom:12rem}
+    .cq{width:2.25rem;height:2.25rem;font-size:1rem}
+    .wico{font-size:1.4rem;line-height:1}
+    .wbox.near .wbar i{animation:wnear 1.4s ease-in-out infinite}
+    @keyframes wnear{50%{filter:brightness(1.3)}}
+    .avt{display:inline-grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:99px;font-weight:800;font-size:.85rem;flex:none}
+    .vbadge{display:inline-block;font-size:.65rem;font-weight:800;color:var(--leaf)}
+    .rchip{border:1px solid var(--line);border-radius:99px;padding:.5rem .85rem;min-height:2.75rem;font-size:.8rem;font-weight:700}
+    .rchip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#24100B}
+    #rvList{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.75rem;scrollbar-width:none}
+    #rvList::-webkit-scrollbar{display:none}
+    #rvList .rcard{flex:0 0 85%;scroll-snap-align:center}
+    @media(min-width:768px){#rvList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}#rvList .rcard{flex:none}}
     #rv{position:fixed;inset:0;z-index:76;display:none;align-items:center;justify-content:center;padding:1rem}
     #rv.on{display:flex}
     .star{font-size:1.9rem;line-height:1;min-width:2.75rem;min-height:2.75rem;color:var(--line);transition:transform .15s,color .15s}
@@ -229,8 +259,15 @@
     .stars i{font-style:normal;color:var(--line)}
     .rbar{height:.5rem;border-radius:99px;background:var(--line);overflow:hidden}
     .rbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--goldt));border-radius:99px;transition:width .6s}
-    .rcard{animation:qzin .4s both}
+    .rcard{display:flex;flex-direction:column;border-radius:24px;border:1px solid var(--line);background:var(--surf);padding:1.1rem;animation:qzin .4s both}
     @media (prefers-reduced-motion:reduce){.rcard{animation:none}}
+    .gopt.pill{width:100%;min-width:0;min-height:2.5rem;border-radius:99px;padding:.4rem .5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s,transform .15s}
+    .pill b{font-size:.78rem}
+    .pill span{font-size:.62rem}
+    .pill:active{transform:scale(.96)}
+    .gopt.pill[aria-pressed=true]{background:var(--gold);color:#24100B;border-color:var(--gold);box-shadow:0 6px 16px -4px rgba(217,162,63,.7),inset 0 0 0 1px rgba(36,16,11,.15)}
+    .gopt.pill[aria-pressed=true] span,.gopt.pill[aria-pressed=true] b{color:#24100B}
+    .seg{display:flex;gap:3px}.seg i{flex:1;height:.4rem;border-radius:99px;background:rgba(246,235,221,.18)}.seg i.on{background:var(--gold)}
     .gopt {
       min-height: 3rem;
       text-align: left;
@@ -815,7 +852,7 @@
           </div>
 
           <!-- Datos / Métricas -->
-          <dl class="mt-9 grid grid-cols-3 gap-3 w-full max-w-md text-center">
+          <dl class="mt-5 grid grid-cols-3 gap-3 w-full max-w-md text-center">
             <div class="rounded-2xl border border-white/15 p-3">
               <dt class="text-gold font-extrabold text-xl">900+</dt>
               <dd class="text-xs text-[#E6D6C6]">msnm de altura</dd>
@@ -907,8 +944,8 @@
       <h2 id="rvt" class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Lo que dicen de nuestro café</h2>
     </div>
     <div class="mt-10 grid gap-8 md:grid-cols-[minmax(0,20rem)_1fr] items-start">
-      <div id="rvSum" class="rounded-3xl bg-surf border border-line p-5"></div>
-      <div id="rvList" class="grid gap-4 sm:grid-cols-2" aria-live="polite"></div>
+      <div id="rvSum" class="rounded-3xl bg-surf border border-line p-5 md:sticky md:top-24"></div>
+      <div id="rvList" class="min-w-0" aria-live="polite"></div>
     </div>
   </section>
 
@@ -957,7 +994,6 @@
     <div class="sc" data-act="close"></div>
     <aside class="pn" id="pn"></aside>
   </div>
-
   <script>
     const WA = '529616037111', IG = 'https://www.instagram.com/cafemileniooficial';
     const E = { pin: '\u{1F4CC}', user: '\u{1F464}', loc: '\u{1F4CD}', truck: '\u{1F69A}', card: '\u{1F4B3}', box: '\u{1F4E6}', money: '\u{1F4B0}', shop: '\u{1F3EA}', who: '\u{1F64B}', receipt: '\u{1F9FE}' };
@@ -968,12 +1004,28 @@
     ];
     const HERO_IMG = 'img/cafes-inicio.jpg';
     const HERO_FIT = 'cover';
+    const HERO_POS = 'center 35%'; // ajusta qué parte de la foto queda visible (ej. 'left center')
     const GR = [['Grano entero', 'Grano', 'Para moler en casa'], ['Molido fino', 'Fino', 'Espresso / moka'], ['Molido medio', 'Medio', 'Cafetera de goteo'], ['Prensa francesa', 'Prensa', 'Molido grueso']];
     const STEPS = [['<img src="img/cafe-cultivo.jpg"', 'Cultivo', 'Cafetales de altura'], ['<img src="img/cafe-cereza.jpg">', 'Cosecha', 'Cereza madura a mano'], ['<img src="img/cafe-secado.jpg">', 'Beneficio', 'Lavado y secado'], ['<img src="img/cafe-tostado.jpg">', 'Tostado', 'Tres perfiles de tueste'], ['<img src="img/cafe-paquete.jpg">', 'Molido y empaque', 'Listo para tu taza']];
     const $ = s => document.querySelector(s), fmt = n => '$' + n.toLocaleString('es-MX', { maximumFractionDigits: 2 });
     const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     let cart = {}, ui = {}, err = '', last = 0;
     const info = { nombre: '', destino: '', ent: 'envio', dir: '', pago: 'Efectivo', fecha: '', recoge: '', frecuencia: 'unica' };
+    // Datos bancarios (opcional): si llenas clabe, aparecen en el carrito y en el mensaje de WhatsApp.
+    const PAY = { banco: 'Banco', clabe: '00000000000', titular: '' };
+    // Links de pago en línea (déjalos vacíos si no los usas): crea tu link en Mercado Pago, Clip o Stripe y pégalo aquí.
+    // Link de cobro de Mercado Pago (Checkout Pro / enlace de pago). Pega aquí el tuyo; mientras diga "tu-link" el botón no se muestra a los clientes.
+    const MP_LINK = 'https://mpago.la/tu-link';
+    const MP_OK = !!MP_LINK && !/tu-link/.test(MP_LINK);
+    const DEV = /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname) || location.protocol === 'file:';
+    // Concepto SPEI: "MIL - NOMBRE" (sin acentos ni símbolos, máx. 40 caracteres, como exigen los bancos)
+    const concepto = () => 'MIL - ' + (info.nombre.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Z0-9 ]/g, '').replace(/\s+/g, ' ').slice(0, 30).trim() || '(TU NOMBRE)');
+    let curFolio = null, cloud = null;
+    const PAYINFO = {
+      Efectivo: ['💵', 'Pago en efectivo al momento de la entrega o al recoger en tienda física.'],
+      Transferencia: ['🏦', 'Pago por transferencia SPEI (BBVA / CLABE interbancaria). Los datos de cuenta y concepto se incluirán en tu comprobante de WhatsApp.'],
+      Tarjeta: ['💳', MP_OK ? 'Paga con tarjeta de débito o crédito de forma segura en Mercado Pago. Después envía tu pedido por WhatsApp.' : 'Aceptamos tarjetas de débito y crédito (Visa, Mastercard).']
+    };
     const FREQ = { '15': 'Cada 15 días', 'mes': 'Cada mes' };
     let quiz = { m: '', p: '' };
     const STORE = 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370';
@@ -993,7 +1045,7 @@
     function renderStatic() {
       const hb = $('#heroBag'), fr = $('#heroFrame');
       if (hb) {
-        hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" class="absolute inset-0 w-full h-full object-${HERO_FIT}">`;
+        hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" class="absolute inset-0 w-full h-full object-${HERO_FIT}" style="object-position:${HERO_POS}">`;
         const him = hb.querySelector('img'), alt = [PRODS[0].img];
         him.onerror = () => { const n = alt.shift(); if (n) { him.src = n; him.className = him.className.replace(/object-\w+/, 'object-contain'); } else him.remove(); };
         him.onload = () => {
@@ -1015,25 +1067,48 @@
       if (!$('#grid')) return;
       $('#grid').innerHTML = PRODS.map(p => {
         const s = ui[p.id], tot = kgOf(p.id) + 0, kgEff = tot + s.kg, may = kgEff >= 5, u = unit(p, kgEff), d = p.men - p.may;
-        return `<article class="rounded-3xl bg-surf border border-line shadow-lg overflow-hidden flex flex-col">
-    <div class="relative aspect-[4/5] grid place-items-center p-10" style="background:linear-gradient(180deg,#ECEAE7,#B9B3AC)"><div class="relative w-3/5 aspect-[4/5]">${bagSvg(p)}</div><img src="${p.img}" alt="Bolsa de café ${p.name}" loading="lazy" class="absolute inset-0 w-full h-full object-contain" onerror="this.remove()"><span class="absolute top-3 left-3 text-[11px] font-extrabold uppercase bg-esp text-gold rounded-full px-3 py-1">Café arábiga</span></div>
-    <div class="p-5 flex flex-col gap-3 grow">
-      <div class="flex justify-between items-start gap-3"><div><h3 class="font-head font-extrabold uppercase text-xl leading-tight">${p.name}</h3><p class="text-xs text-mute mt-1">📍 Nueva Palestina, Chiapas · ⛰️ 900–1000 msnm</p></div><div class="text-right shrink-0"><p class="font-extrabold text-2xl text-goldt">${fmt(u)}</p><p class="text-xs text-mute">por kg</p></div></div>
-      <div class="flex flex-wrap gap-1.5">${p.notas.map(n => `<span class="chip">${n}</span>`).join('')}</div>
-      <div><div class="flex justify-between text-sm"><b>Tueste</b><span class="text-mute">${p.tueste}</span></div><div class="rtrack" role="img" aria-label="Nivel de tueste ${p.nivel} de 5"><i style="left:${(p.nivel - .5) * 20}%"></i></div><div class="flex justify-between text-[11px] text-mute"><span>Claro</span><span>Medio</span><span>Oscuro</span></div></div>
-      <p class="text-xs text-mute">Acidez <b class="text-ink">${p.acidez}</b> · Dulzor <b class="text-ink">${p.dulzor}</b> · ≈ ${fmt(u / 4)} por 250 g</p>
-      <div><p class="text-xs font-bold text-mute mb-1">MOLIDO</p><div class="grid grid-cols-2 gap-2" role="group" aria-label="Tipo de molido">${GR.map(([n, sh, ds]) => `<button class="gopt" aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}"><b>${sh}</b><span>${ds}</span></button>`).join('')}</div></div>
-      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}"><p class="text-sm font-bold">${may ? '✓ Precio de mayoreo aplicado' : `Faltan ${+(5 - kgEff).toFixed(1)} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg` : `Pasa de ${fmt(p.men)} a${fmt(p.may)} por kg`}</p><div class="vbar mt-2"><i style="width:${Math.min(100, kgEff / 5 * 100)}%"></i></div></div>
-      <div class="flex items-center gap-2 mt-auto pt-1"><button class="q" data-act="kdec" data-id="${p.id}" aria-label="Menos café">−</button><span class="w-16 text-center font-extrabold">${s.kg} kg</span><button class="q" data-act="kinc" data-id="${p.id}" aria-label="Más café">+</button><span class="ml-auto font-extrabold text-lg">${fmt(s.kg * u)}</span></div>
-      <button class="btn btn-gold w-full" data-act="add" data-id="${p.id}">Agregar al carrito</button>
+        const tn = p.tueste.split('(')[0].trim(), seg = [1, 2, 3, 4, 5].map(n => `<i class="${n <= p.nivel ? 'on' : ''}"></i>`).join('');
+        return `<article class="rounded-3xl bg-surf/90 border border-line shadow-[0_20px_50px_-20px_rgba(36,16,11,.45)] overflow-hidden flex flex-col">
+    <div class="relative aspect-[4/5] grid place-items-center p-10" style="background:linear-gradient(180deg,#F3EFE9 0%,#D9CFC2 70%,#C9BBA8 100%)"><div class="relative w-3/5 aspect-[4/5]">${bagSvg(p)}</div><img src="${p.img}" alt="Bolsa de café ${p.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
+      <div class="absolute top-3 left-3 right-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-extrabold uppercase bg-gold text-esp rounded-full px-3 py-1 shadow">100% Arábiga</span><span class="text-[11px] font-bold bg-esp/85 text-[#F6EBDD] rounded-full px-3 py-1 backdrop-blur">🇲🇽 Hecho en México</span></div></div>
+    <div class="p-5 flex flex-col gap-4 grow">
+      <div class="flex justify-between items-start gap-3"><div class="min-w-0"><h3 class="font-head font-extrabold text-2xl leading-tight">${p.name}</h3><p class="text-xs text-mute mt-1">📍 Jaltenango, Chiapas</p></div><div class="text-right shrink-0"><p class="font-extrabold text-3xl text-goldt leading-none">${fmt(u)}</p><p class="text-xs text-mute mt-1">por kg${may ? ' · mayoreo' : ''}</p></div></div>
+      <p class="text-xs text-mute -mt-2">Menudeo <b class="text-ink">${fmt(p.men)}</b> · Mayoreo 5 kg+ <b class="text-ink">${fmt(p.may)}</b></p>
+      <div class="flex flex-wrap gap-1.5">${p.notas.map(n => `<span class="text-xs font-semibold rounded-full px-3 py-1 bg-gold/15 text-ink">${n}</span>`).join('')}</div>
+      <div class="rounded-2xl bg-esp text-[#F6EBDD] p-3.5"><div class="flex justify-between items-center text-sm"><b>🔥 Tueste ${tn}</b><span class="text-[11px] text-[#E6D6C6]">Nivel ${p.nivel}/5</span></div><div class="seg mt-2" role="img" aria-label="Nivel de tueste ${p.nivel} de 5">${seg}</div>
+        <div class="grid grid-cols-2 gap-2 mt-3 text-xs"><p class="text-[#E6D6C6]">Acidez<br><b class="text-[#F6EBDD] text-sm">${p.acidez}</b></p><p class="text-[#E6D6C6]">Dulzor<br><b class="text-[#F6EBDD] text-sm">${p.dulzor}</b></p></div></div>
+      <div><p class="text-xs font-bold text-mute mb-1.5">MOLIDO</p><div class="grid grid-cols-2 gap-2" role="group" aria-label="Tipo de molido">${GR.map(([n, sh, ds]) => `<button class="gopt pill" aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}"><b>${sh}</b><span>${ds}</span></button>`).join('')}</div></div>
+      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}"><p class="text-sm font-bold">${may ? '✓ Precio de mayoreo aplicado' : `Faltan ${+(5 - kgEff).toFixed(1)} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg` : `Ahorra ${fmt(d)} por kg al llegar a 5 kg (${fmt(p.men)} → ${fmt(p.may)})`}</p><div class="vbar mt-2"><i style="width:${Math.min(100, kgEff / 5 * 100)}%"></i></div></div>
+      <div class="flex items-center gap-2 mt-auto"><button class="q" data-act="kdec" data-id="${p.id}" aria-label="Menos café">−</button><span class="w-14 text-center font-extrabold">${s.kg} kg</span><button class="q" data-act="kinc" data-id="${p.id}" aria-label="Más café">+</button><span class="ml-auto text-right"><span class="block text-[10px] text-mute uppercase">Subtotal</span><span class="font-extrabold text-lg">${fmt(s.kg * u)}</span></span></div>
+      <button class="btn btn-gold w-full" data-act="add" data-id="${p.id}">🛒 Agregar al Carrito</button>
     </div></article>`;
       }).join('');
     }
     const WHOLE = 5;
     function wholesaleBar() {
-      const kg = Math.max(0, ...PRODS.map(p => kgOf(p.id))), ok = kg >= WHOLE, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(1);
-      return `<div class="wbox${ok ? ' ok' : ''} rounded-2xl border ${ok ? 'border-leaf' : 'border-line'} bg-surf p-3 mt-4" role="status"><div class="wbar${ok ? ' ok' : ''}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>
-  <p class="text-sm mt-2 ${ok ? 'font-bold text-leaf' : ''}">${ok ? '🎉 ¡Felicidades! Desbloqueaste tarifa de Mayoreo en tu pedido. Ahorro aplicado.' : `¡Estás a solo <b>${left} kg</b> de desbloquear precio de Mayoreo y ahorrar en tu compra!`}</p></div>`;
+      const best = PRODS.map(p => ({ p, kg: kgOf(p.id) })).sort((a, b) => b.kg - a.kg)[0], kg = best.kg, ok = kg >= WHOLE, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(1);
+      const saved = lines().reduce((a, x) => a + (kgOf(x.l.id) >= WHOLE ? (x.p.men - x.p.may) * x.l.kg : 0), 0), would = (best.p.men - best.p.may) * WHOLE;
+      const near = !ok && pct >= 60;
+      const marks = `<div class="relative h-4 mt-1 text-[10px] text-mute" aria-hidden="true"><span class="absolute left-0">0 kg</span><span class="absolute left-1/2 -translate-x-1/2">2.5</span><span class="absolute right-0 font-bold ${ok ? 'text-leaf' : 'text-goldt'}">5 kg · Mayoreo</span></div>`;
+      return `<div class="wbox${ok ? ' ok' : ''}${near ? ' near' : ''} rounded-2xl border ${ok ? 'border-leaf' : 'border-gold/60'} bg-surf p-3.5 mt-4" role="status">
+  <div class="flex items-center gap-2.5"><span class="wico" aria-hidden="true">${ok ? '🎉' : '🏷️'}</span><p class="text-sm leading-snug ${ok ? 'font-bold text-leaf' : ''}">${ok ? '¡Felicidades! Desbloqueaste tarifa de Mayoreo en tu pedido.' : `¡Estás a solo <b>${left} kg</b> de desbloquear precio de Mayoreo y ahorrar en tu compra!`}</p></div>
+  <div class="wbar mt-3${ok ? ' ok' : ''}" role="progressbar" aria-label="Avance hacia mayoreo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>${marks}
+  ${ok ? `<p class="text-xs mt-2 font-semibold text-leaf">Ahorro aplicado: ${fmt(saved)} MXN</p>` : `<div class="flex items-center justify-between gap-2 mt-2"><p class="text-xs text-mute">Ahorrarías ${fmt(would)} en 5 kg de ${best.p.name.replace('Calidad ', '')}</p><button class="text-xs font-extrabold rounded-full px-3 min-h-[2.5rem] bg-gold text-esp whitespace-nowrap" data-act="wfill" data-id="${best.p.id}">+${left} kg</button></div>`}</div>`;
+    }
+
+    //Pago con mercado pago: si no hay link, no se muestra el botón. Si hay link pero contiene "tu-link", tampoco se muestra.
+    function payBox() {
+      const [ic, tx] = PAYINFO[info.pago] || PAYINFO.Efectivo, tr = info.pago === 'Transferencia', tj = info.pago === 'Tarjeta';
+      const btn = 'mt-2 text-xs font-extrabold rounded-full px-3 min-h-[2.5rem] bg-gold text-esp';
+      return `<div class="pbox" role="status"><p class="text-sm"><span aria-hidden="true">${ic}</span> ${tx}</p>
+  ${tr ? `<div class="mt-2 rounded-xl bg-surf border border-line p-2.5 text-sm"><p><b>${esc(PAY.banco)}</b>${PAY.titular ? ' · ' + esc(PAY.titular) : ''}</p>${PAY.clabe ? `<p class="font-mono break-all mt-0.5">CLABE: ${esc(PAY.clabe)}</p><button class="${btn}" data-act="copyclabe">📋 Copiar CLABE</button>` : ''}
+  <p class="mt-2 text-xs text-mute">Concepto de la transferencia:</p><p id="pconcept" class="font-mono font-bold break-all">${esc(concepto())}</p><button class="${btn}" data-act="copyconcept">📋 Copiar Concepto</button></div>` : ''}
+  ${tj && MP_OK ? `<button class="btn btn-gold w-full mt-3" data-act="mp">💳 Pagar con Mercado Pago</button><p class="text-[11px] text-mute mt-1">Se abre el sitio seguro de Mercado Pago y se registra tu pedido.</p>` : ''}
+  ${tj && !MP_OK && DEV ? `<p class="mt-2 text-[11px] rounded-lg border border-dashed border-gold p-2">"Pagar con Mercado Pago".</p>` : ''}</div>`;  //Solo visible en pruebas: pega tu link real en <b>MP_LINK</b> para mostrar el botón--
+    }
+    function wholesaleMini() {
+      const best = Math.max(0, ...PRODS.map(p => kgOf(p.id))), ok = best >= WHOLE, left = +(WHOLE - best).toFixed(1);
+      return `<div class="wmini${ok ? ' ok' : ''}" aria-hidden="true"><div class="wbar"><i style="width:${Math.min(100, best / WHOLE * 100)}%"></i></div><span>${ok ? '✓ Mayoreo activo' : `Faltan ${left} kg para mayoreo`}</span></div>`;
     }
     function renderCart() {
       if (!$('#pn')) return;
@@ -1042,22 +1117,39 @@
         c.textContent = n; c.classList.toggle('zero', !n); if (n !== last && n) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } last = n;
       }
       const opt = (arr, act, cur) => arr.map(([v, t]) => `<button class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('');
-      $('#pn').innerHTML = `<div class="flex justify-between items-center mb-4"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">Tu carrito</h2><button class="q" data-act="close" aria-label="Cerrar carrito">✕</button></div>` + (n ? `
-  <ul class="divide-y divide-line">${L.map(x => `<li class="py-3 flex gap-3 justify-between"><div class="min-w-0"><p class="font-bold">Café ${x.p.name}</p><p class="text-xs text-mute">${x.l.g} ·${x.l.kg} kg × ${fmt(x.u)}${kgOf(x.l.id) >= 5 ? '(mayoreo)' : '(menudeo)'}</p><div class="mt-2 flex gap-2 items-center"><button class="q" data-act="cdec" data-k="${x.k}" aria-label="Quitar medio kilo">−</button><button class="q" data-act="cinc" data-k="${x.k}" aria-label="Agregar medio kilo">+</button><button class="text-xs underline text-mute ml-2 min-h-[2.75rem]" data-act="del" data-k="${x.k}">Quitar</button></div></div><p class="font-extrabold">${fmt(x.sub)}</p></li>`).join('')}</ul>
+      const step = (n, t) => `<h3 class="flex items-center gap-2 font-extrabold uppercase text-xs tracking-wider text-goldt"><span class="cnum">${n}</span>${t}</h3>`;
+      const FQ = [['unica', 'Compra única', 'Sin recordatorios'], ['15', 'Cada 15 días', 'Te recordamos reordenar'], ['mes', 'Cada mes', 'Te recordamos reordenar']];
+      const tkg = L.reduce((a, x) => a + x.l.kg, 0);
+      $('#pn').innerHTML = `<div class="flex justify-between items-center mb-3"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">Tu carrito${n ? ` <span class="text-sm font-semibold text-mute normal-case">· ${tkg} kg</span>` : ''}</h2><button class="q" data-act="close" aria-label="Cerrar carrito">✕</button></div>` + (n ? `
+  <ul class="divide-y divide-line">${L.map(x => `<li class="py-3 flex gap-3"><div class="w-12 h-14 shrink-0 rounded-xl bg-surf border border-line p-1" aria-hidden="true">${bagSvg(x.p)}</div><div class="min-w-0 grow"><div class="flex justify-between items-start gap-2"><p class="font-bold leading-tight">Café ${x.p.name.replace('Calidad ', '')}</p><p class="font-extrabold">${fmt(x.sub)}</p></div>
+    <p class="text-xs text-mute mt-1 flex flex-wrap items-center gap-x-2 gap-y-1"><span class="rounded-full px-2 py-0.5 bg-gold/15 text-ink font-semibold">${x.l.g}</span><span>${fmt(x.u)}/kg</span><span class="font-bold ${kgOf(x.l.id) >= 5 ? 'text-leaf' : 'text-goldt'}">${kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo'}</span></p>
+    <div class="mt-2 flex items-center gap-1.5"><button class="q cq" data-act="cdec" data-k="${x.k}" aria-label="Quitar medio kilo">−</button><span class="w-14 text-center font-extrabold text-sm">${x.l.kg} kg</span><button class="q cq" data-act="cinc" data-k="${x.k}" aria-label="Agregar medio kilo">+</button><button class="ml-auto text-xs underline text-mute min-h-[2.75rem] px-1" data-act="del" data-k="${x.k}" aria-label="Quitar ${x.p.name} del carrito">🗑 Quitar</button></div></div></li>`).join('')}</ul>
   ${wholesaleBar()}
-  <div class="flex justify-between items-baseline mt-3 pt-3 border-t-2 border-gold"><span class="font-bold">Total estimado</span><span class="text-2xl font-extrabold">${fmt(total())} MXN</span></div>
-  <h3 class="font-extrabold uppercase text-sm mt-6 text-goldt">Datos de entrega</h3>
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-nombre">Nombre *</label><input id="i-nombre" class="in" data-f="nombre" autocomplete="name" value="${esc(info.nombre)}">
-  <div class="grid grid-cols-2 gap-2 mt-3">${opt([['envio', 'Envío a domicilio'], ['recoger', 'Recoger en tienda']], 'ent', info.ent)}</div>
-  ${info.ent === 'envio' ? `<label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-destino">Municipio / Estado de destino *</label><input id="i-destino" class="in" data-f="destino" placeholder="Ej. Tuxtla Gutiérrez, Chiapas" value="${esc(info.destino)}">
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-dir">Dirección de entrega *</label><input id="i-dir" class="in" data-f="dir" autocomplete="street-address" placeholder="Calle, número, colonia, C.P." value="${esc(info.dir)}">`
-          : `<div class="rounded-2xl border border-line bg-surf p-3 mt-3 text-sm"><p class="font-bold">🏪 Recoge en nuestra tienda</p><p class="text-mute">${STORE}</p><a class="underline text-goldt font-semibold" href="${MAPS}" target="_blank" rel="noopener">Ver en el mapa</a></div>
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-fecha">Fecha y hora estimada de recolección *</label><input id="i-fecha" type="datetime-local" class="in" data-f="fecha" min="${new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16)}" value="${esc(info.fecha)}">
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-recoge">¿Quién recoge? (opcional)</label><input id="i-recoge" class="in" data-f="recoge" placeholder="Solo si es otra persona" value="${esc(info.recoge)}">`}
-  <p class="text-xs font-bold text-mute mt-3 mb-1">Forma de pago estimada</p><div class="grid grid-cols-3 gap-2">${opt([['Efectivo', 'Efectivo'], ['Transferencia', 'Transf.'], ['Tarjeta', 'Tarjeta']], 'pago', info.pago)}</div>
-  <p class="text-xs font-bold text-mute mt-3 mb-1">¿Con qué frecuencia compras café? (opcional)</p><div class="grid grid-cols-1 gap-2">${opt([['unica', 'Compra única'], ['15', 'Recordarme reordenar cada 15 días'], ['mes', 'Recordarme reordenar cada mes']], 'freq', info.frecuencia)}</div>
-  ${err ? `<p role="alert" class="mt-3 text-sm font-bold text-cherry">${err}</p>` : ''}
-  <button class="btn btn-gold w-full mt-5" data-act="send">Enviar pedido por WhatsApp</button><p class="text-xs text-mute mt-3">Mayoreo desde 5 kg por calidad. El costo de envío se confirma por WhatsApp.</p>`
+  <div class="cform pb-36">
+  <section class="cstep">${step(1, 'Tus datos')}
+    <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-nombre">Nombre *</label><input id="i-nombre" class="in" data-f="nombre" autocomplete="name" value="${esc(info.nombre)}"></section>
+  <section class="cstep">${step(2, 'Método de entrega')}
+    <div class="grid grid-cols-2 gap-2 mt-3">${opt([['envio', '🚚 Envío a domicilio'], ['recoger', '🏪 Recoger en tienda']], 'ent', info.ent)}</div>
+    ${info.ent === 'envio' ? `<label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-destino">Municipio / Estado de destino *</label><input id="i-destino" class="in" data-f="destino" placeholder="Ej. Tuxtla Gutiérrez, Chiapas" value="${esc(info.destino)}">
+    <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-dir">Dirección de entrega *</label><input id="i-dir" class="in" data-f="dir" autocomplete="street-address" placeholder="Calle, número, colonia, C.P." value="${esc(info.dir)}">`
+          : `<div class="rounded-2xl border border-line bg-bg p-3 mt-3 text-sm"><p class="font-bold">🏪 Recoge en nuestra tienda</p><p class="text-mute">${STORE}</p><a class="underline text-goldt font-semibold" href="${MAPS}" target="_blank" rel="noopener">Ver en el mapa</a>
+      <div class="mt-3 pt-3 border-t border-line"><p class="font-bold">🕒 Horario de atención</p><p class="text-mute">Lunes a Sábado: 7:00 a. m. – 6:00 p. m.</p><p class="text-mute">Domingo: <b class="text-cherry">CERRADO</b></p></div></div>
+    <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-fecha">Fecha y hora estimada de recolección *</label><input id="i-fecha" type="datetime-local" class="in" data-f="fecha" min="${new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16)}" value="${esc(info.fecha)}">
+    <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-recoge">¿Quién recoge? (opcional)</label><input id="i-recoge" class="in" data-f="recoge" placeholder="Solo si es otra persona" value="${esc(info.recoge)}">`}</section>
+  <section class="cstep">${step(3, 'Forma de pago estimada')}
+    <div class="grid grid-cols-3 gap-2 mt-3">${opt([['Efectivo', '💵 Efectivo'], ['Transferencia', '🏦 Transf.'], ['Tarjeta', '💳 Tarjeta']], 'pago', info.pago)}</div>${payBox()}</section>
+  <section class="cstep">${step(4, 'Recompra (opcional)')}
+    <p class="text-xs text-mute mt-2">¿Con qué frecuencia compras café?</p><div class="grid gap-2 mt-2">${FQ.map(([v, t, d]) => `<button class="gopt" aria-pressed="${info.frecuencia === v}" data-act="freq" data-v="${v}"><b>${v === 'unica' ? '' : '🔄 '}${t}</b><span>${d}</span></button>`).join('')}</div></section>
+  </div>
+  <div class="csend bg-[#180A07] border-t-2 border-gold/50 shadow-[0_-15px_30px_rgba(0,0,0,0.7)]">
+    ${err ? `<p role="alert" class="mb-2 text-sm font-bold text-cherry">${err}</p>` : ''}
+    ${wholesaleMini()}
+    <div class="flex justify-between items-baseline"><span class="font-bold text-sm">Total estimado</span><span class="text-2xl font-extrabold">${fmt(total())} <span class="text-xs font-bold text-mute">MXN</span></span></div>
+    <button class="btn btn-gold w-full mt-2" data-act="send">Revisar y enviar por WhatsApp</button>
+    <p class="mt-2 text-center text-xs font-bold text-leaf">🔒 Compra 100% segura por WhatsApp</p>
+    <ul class="mt-2 grid grid-cols-3 gap-1 text-[10px] leading-tight text-mute text-center"><li>🧾<br>Revisas tu comprobante antes de enviar</li><li>🔒<br>Sin pago en línea</li><li>📦<br>Envíos a todo México</li></ul>
+    <p class="text-[11px] text-mute mt-2 text-center">Mayoreo desde 5 kg por calidad. El costo de envío se confirma por WhatsApp.</p>
+  </div>`
         : `<p class="text-mute">Tu carrito está vacío. Elige una calidad en la tienda y agrégala.</p><a href="#tienda" class="btn btn-gold mt-5" data-act="close">Ir a la tienda</a>`);
     }
     const QM = [['espresso', '☕ Espresso / Moka'], ['goteo', '💧 Cafetera de goteo'], ['prensa', '🫖 Prensa Francesa'], ['olla', '🍯 Café de Olla']];
@@ -1095,59 +1187,111 @@
       { n: 'Carlos R.', s: 5, p: 'Calidad Americana', t: 'Intenso y con buen cuerpo para espresso. El envío llegó rápido y bien empacado.', seed: 1 },
       { n: 'Lupita M.', s: 4, p: 'Calidad Nacional', t: 'Ideal para café de olla, suave y con poca cafeína. Mi familia lo disfruta mucho.', seed: 1 },
       { n: 'Jorge H.', s: 5, p: 'Experiencia General', t: 'Atención muy amable por WhatsApp y café 100% chiapaneco. Ya hice mi segundo pedido.', seed: 1 }
-    ];
-    let reviews = [], rv = { s: 0, done: null, err: '' };
+    ]; // Para reseñas reales agrega v: true (muestra la insignia "Compra verificada") y quita seed: 1
+    let reviews = [], cloudRev = null, rv = { s: 0, n: '', p: 'Experiencia General', t: '', done: null, err: '', blob: null, prev: '', busy: false };
     try { reviews = JSON.parse(localStorage.getItem('milenio-reviews') || '[]'); if (!Array.isArray(reviews)) reviews = []; } catch (e) { reviews = []; }
-    const allRev = () => [...reviews, ...SEED];
+    const allRev = () => (cloudRev && cloudRev.length ? cloudRev : [...reviews, ...SEED]);
+    const okUrl = u => /^https:\/\/firebasestorage\.googleapis\.com\//.test(u || '');
+    // Puente con Firebase (el módulo ES del final llama a onCloudReady cuando carga)
+    window.onCloudReady = c => { cloud = c; flushOrders(); c.listenReviews(list => { cloudRev = list; renderReviews(); }, () => { cloudRev = null; renderReviews(); }); };
+    if (window.__cloud) window.onCloudReady(window.__cloud);
     const starsH = n => `<span class="stars" role="img" aria-label="${n} de 5 estrellas">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
+    const AV = [['#D9A23F', '#24100B'], ['#7A3E22', '#F6EBDD'], ['#3F7A2A', '#F6EBDD'], ['#B3262B', '#F6EBDD'], ['#24100B', '#D9A23F']];
+    const avatar = n => { let h = 0; for (const ch of n) h = (h * 31 + ch.charCodeAt(0)) >>> 0; const [bg, fg] = AV[h % AV.length], ini = n.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase(); return `<span class="avt" style="background:${bg};color:${fg}" aria-hidden="true">${esc(ini)}</span>`; };
+    const RVLBL = ['', 'Muy malo', 'Regular', 'Bueno', 'Muy bueno', 'Excelente'];
     function renderReviews() {
       const L = allRev(), N = L.length, avg = L.reduce((a, r) => a + r.s, 0) / N;
-      if ($('#rvSum')) $('#rvSum').innerHTML = `<p class="text-center"><span class="text-5xl font-extrabold">${avg.toFixed(1)}</span><span class="text-mute"> / 5.0</span></p>
-  <p class="text-center text-xl mt-1">${starsH(Math.round(avg))}</p><p class="text-center text-sm text-mute mt-1">Basado en ${N} opiniones de amantes del café chiapaneco</p>
-  <div class="mt-4 grid gap-2">${[5, 4, 3, 2, 1].map(n => { const c = L.filter(r => r.s === n).length; return `<div class="flex items-center gap-2 text-xs"><span class="w-12 shrink-0 font-bold">${n} ★</span><div class="rbar flex-1"><i style="width:${c / N * 100}%"></i></div><span class="w-6 text-right text-mute">${c}</span></div>`; }).join('')}</div>
+      if ($('#rvSum')) $('#rvSum').innerHTML = `<div class="flex items-center gap-4"><span class="text-5xl font-extrabold leading-none">${avg.toFixed(1)}</span><div><p class="text-lg leading-none">${starsH(Math.round(avg))}</p><p class="text-xs text-mute mt-1">de 5.0 · ${N} opiniones</p></div></div>
+  <p class="text-xs text-mute mt-2">De amantes del café chiapaneco</p>
+  <div class="mt-4 grid gap-1.5">${[5, 4, 3, 2, 1].map(n => { const c = L.filter(r => r.s === n).length; return `<div class="flex items-center gap-2 text-xs"><span class="w-8 shrink-0 font-semibold">${n} ★</span><div class="rbar flex-1"><i style="width:${c / N * 100}%"></i></div><span class="w-5 text-right text-mute">${c}</span></div>`; }).join('')}</div>
   <button class="btn btn-gold w-full mt-5" data-act="rvopen">⭐ Dejar mi opinión</button>`;
-      if ($('#rvList')) $('#rvList').innerHTML = L.slice(0, 8).map(r => `<article class="rcard rounded-3xl bg-surf border border-line p-4 flex flex-col gap-2"><div class="flex items-center justify-between gap-2"><b class="truncate">${esc(r.n)}</b>${starsH(r.s)}</div><p class="text-xs font-bold text-goldt">☕ ${esc(r.p)}</p><p class="text-sm">“${esc(r.t)}”</p>${r.seed ? '<p class="text-[11px] text-mute mt-auto">Reseña de ejemplo</p>' : '<p class="text-[11px] text-mute mt-auto">Tu opinión</p>'}</article>`).join('');
+      if ($('#rvList')) $('#rvList').innerHTML = L.slice(0, 12).map(r => `<article class="rcard"><div class="flex items-center gap-3">${avatar(r.n)}<div class="min-w-0 grow"><b class="block truncate leading-tight">${esc(r.n)}</b>${r.v ? '<span class="vbadge">✓ Compra verificada</span>' : r.seed ? '<span class="text-[11px] text-mute">Reseña de ejemplo</span>' : r.cloud ? `<span class="text-[11px] text-mute">${new Date(r.d).toLocaleDateString('es-MX', { dateStyle: 'medium' })}</span>` : '<span class="text-[11px] text-mute">Tu reseña</span>'}</div>${starsH(r.s)}</div>
+    <p class="text-sm leading-relaxed mt-3">“${esc(r.t)}”</p>${r.foto && okUrl(r.foto) ? `<img src="${esc(r.foto)}" alt="Foto de la reseña de ${esc(r.n)}" loading="lazy" class="mt-3 rounded-2xl w-full aspect-[4/3] object-cover" onerror="this.remove()">` : ''}<p class="mt-auto pt-3"><span class="text-[11px] font-bold rounded-full px-2.5 py-1 bg-gold/15 text-ink">☕ ${esc(r.p)}</span></p></article>`).join('');
     }
     function renderRvForm() {
       const q = $('#rvd'); if (!q) return; const x = `<button class="q absolute top-3 right-3" data-act="rvclose" aria-label="Cerrar">✕</button>`;
       if (rv.done) {
         const r = rv.done, msg = `\u{2B50} *NUEVA RESEÑA - CAFÉ MILENIO*\n\n\u{1F464} *Cliente:* ${r.n}\n\u{2B50} *Calificación:* ${r.s}/5\n\u{2615} *Producto:* ${r.p}\n\u{1F4AC} *Comentario:* ${r.t}`;
-        q.innerHTML = x + `<div class="text-center"><p class="text-5xl" aria-hidden="true">🎉</p><h2 id="rvh" class="font-head font-extrabold text-xl mt-2">¡Gracias por tu opinión, ${esc(r.n)}!</h2><p class="text-sm text-mute mt-1">Tu reseña ya aparece en la lista.</p></div>
+        q.innerHTML = x + `<div class="text-center"><p class="text-5xl" aria-hidden="true">🎉</p><h2 id="rvh" class="font-head font-extrabold text-xl mt-2">¡Gracias por tu opinión, ${esc(r.n)}!</h2><p class="text-sm text-mute mt-1">${rv.local ? 'No pudimos conectar con la nube: tu reseña se guardó solo en este dispositivo.' : 'Tu reseña ya aparece en la lista para todos.'}</p><p class="mt-2">${starsH(r.s)}</p></div>
   <a class="btn btn-gold w-full mt-4" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(msg)}">Enviar mi comentario directamente por WhatsApp al productor</a>
   <button class="text-xs underline text-mute mt-2 min-h-[2.75rem] w-full" data-act="rvclose">No, gracias</button>`;
         return;
       }
-      q.innerHTML = x + `<h2 id="rvh" class="font-head font-extrabold text-xl text-center">Escribir reseña</h2>
-  <p class="text-xs font-bold text-mute mt-4 mb-1">Tu calificación *</p><div class="flex justify-center" role="group" aria-label="Calificación">${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star ${n <= rv.s ? 'on' : ''}" data-act="rvstar" data-v="${n}" aria-label="${n} estrella${n > 1 ? 's' : ''}" aria-pressed="${n === rv.s}">★</button>`).join('')}</div>
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-n">Tu nombre *</label><input id="rv-n" class="in" maxlength="40" autocomplete="name">
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-p">¿Qué producto compraste?</label><select id="rv-p" class="in"><option>Calidad Europea</option><option>Calidad Americana</option><option>Calidad Nacional</option><option>Experiencia General</option></select>
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-t">Cuéntanos tu experiencia con el aroma, sabor o servicio *</label><textarea id="rv-t" class="in" rows="4" maxlength="400"></textarea>
+      q.innerHTML = x + `<h2 id="rvh" class="font-head font-extrabold text-xl text-center">Escribir reseña</h2><p class="text-xs text-mute text-center mt-1">Tu opinión ayuda a otros a elegir su café</p>
+  <div class="flex justify-center mt-3" role="group" aria-label="Calificación">${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star ${n <= rv.s ? 'on' : ''}" data-act="rvstar" data-v="${n}" aria-label="${n} estrella${n > 1 ? 's' : ''}" aria-pressed="${n === rv.s}">★</button>`).join('')}</div>
+  <p class="text-center text-sm font-bold text-goldt h-5" aria-live="polite">${RVLBL[rv.s]}</p>
+  <label class="block text-xs font-bold text-mute mt-2 mb-1" for="rv-n">Tu nombre *</label><input id="rv-n" class="in" maxlength="40" autocomplete="name" data-rv="n" value="${esc(rv.n)}">
+  <p class="text-xs font-bold text-mute mt-3 mb-1">¿Qué producto compraste?</p><div class="flex flex-wrap gap-2" role="group">${['Calidad Europea', 'Calidad Americana', 'Calidad Nacional', 'Experiencia General'].map(v => `<button type="button" class="rchip" aria-pressed="${rv.p === v}" data-act="rvprod" data-v="${v}">${v.replace('Calidad ', '')}</button>`).join('')}</div>
+  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-t">Cuéntanos tu experiencia con el aroma, sabor o servicio *</label><textarea id="rv-t" class="in" rows="4" maxlength="400" data-rv="t" placeholder="Ej. El aroma es increíble y llegó en 3 días…">${esc(rv.t)}</textarea><p class="text-[11px] text-mute text-right"><span id="rv-c">${rv.t.length}</span>/400</p>
+  <label class="block text-xs font-bold text-mute mt-2 mb-1" for="rv-foto">Foto de tu café (opcional)</label><input type="file" id="rv-foto" accept="image/*" class="in text-sm">
+  <div id="rv-prev">${rv.prev ? `<div class="relative mt-2"><img src="${rv.prev}" alt="Vista previa de tu foto" class="rounded-xl w-full max-h-44 object-cover"><button type="button" class="absolute top-2 right-2 text-xs font-bold rounded-full px-3 min-h-[2.25rem] bg-esp text-[#F6EBDD]" data-act="rvnofoto">Quitar foto</button></div>` : ''}</div>
   ${rv.err ? `<p role="alert" class="mt-2 text-sm font-bold text-cherry">${rv.err}</p>` : ''}
-  <button class="btn btn-gold w-full mt-4" data-act="rvpub">Publicar Reseña</button>`;
+  <button class="btn btn-gold w-full mt-3" data-act="rvpub" ${rv.busy ? 'disabled' : ''}>${rv.busy ? 'Publicando…' : 'Publicar Reseña'}</button>`;
     }
-    const openRv = () => { rv = { s: 0, done: null, err: '' }; renderRvForm(); $('#rv').classList.add('on'); $('#rv').setAttribute('aria-hidden', 'false'); };
+    const clearFoto = () => { if (rv.prev) URL.revokeObjectURL(rv.prev); rv.blob = null; rv.prev = ''; };
+    const openRv = () => { clearFoto(); rv = { s: 0, n: '', p: 'Experiencia General', t: '', done: null, err: '', blob: null, prev: '', busy: false, local: false }; renderRvForm(); $('#rv').classList.add('on'); $('#rv').setAttribute('aria-hidden', 'false'); };
     const closeRv = () => { $('#rv')?.classList.remove('on'); $('#rv')?.setAttribute('aria-hidden', 'true'); };
-    function pubRv() {
-      const n = $('#rv-n').value.trim(), t = $('#rv-t').value.trim(), p = $('#rv-p').value;
-      if (!rv.s || !n || !t) { rv.err = !rv.s ? 'Elige tu calificación.' : !n ? 'Escribe tu nombre.' : 'Cuéntanos tu experiencia.'; const keep = [n, t, p]; renderRvForm(); $('#rv-n').value = keep[0]; $('#rv-t').value = keep[1]; $('#rv-p').value = keep[2]; return; }
-      const r = { n, s: rv.s, p, t, d: Date.now() }; reviews.unshift(r);
-      try { localStorage.setItem('milenio-reviews', JSON.stringify(reviews)); } catch (e) { }
-      rv.done = r; renderReviews(); renderRvForm();
+    // Reduce la foto a máx. 1280 px y la convierte a JPEG antes de subirla
+    function shrink(file) {
+      return new Promise((ok, no) => {
+        const u = URL.createObjectURL(file), im = new Image();
+        im.onload = () => { const k = Math.min(1, 1280 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u); c.toBlob(b => b ? ok(b) : no(new Error('blob')), 'image/jpeg', .82); };
+        im.onerror = () => { URL.revokeObjectURL(u); no(new Error('img')); }; im.src = u;
+      });
+    }
+    document.addEventListener('change', async e => {
+      if (e.target.id !== 'rv-foto') return; const f = e.target.files && e.target.files[0]; if (!f) return;
+      if (!/^image\//.test(f.type) || f.size > 5e6) { rv.err = 'Elige una imagen de menos de 5 MB.'; renderRvForm(); return; }
+      try { const b = await shrink(f); clearFoto(); rv.blob = b; rv.prev = URL.createObjectURL(b); rv.err = ''; } catch (x) { rv.err = 'No se pudo leer esa imagen.'; }
+      renderRvForm();
+    });
+    async function pubRv() {
+      if (rv.busy) return; const n = rv.n.trim(), t = rv.t.trim();
+      if (!rv.s || !n || t.length < 10) { rv.err = !rv.s ? 'Elige tu calificación.' : !n ? 'Escribe tu nombre.' : 'Cuéntanos un poco más (mínimo 10 caracteres).'; renderRvForm(); return; }
+      let last = 0; try { last = +localStorage.getItem('milenio-rv-last') || 0; } catch (e) { }
+      if (Date.now() - last < 60000) { rv.err = 'Espera un minuto antes de publicar otra reseña.'; renderRvForm(); return; }
+      rv.busy = true; rv.err = ''; renderRvForm();
+      const r = { n, s: rv.s, p: rv.p, t, d: Date.now() };
+      try {
+        if (!cloud) throw new Error('offline');
+        let fotoURL = '';
+        if (rv.blob) { try { fotoURL = await cloud.uploadPhoto(rv.blob); } catch (e) { rv.busy = false; rv.err = 'No se pudo subir la foto. Quítala o inténtalo de nuevo.'; renderRvForm(); return; } }
+        await cloud.addReview({ nombre: n, estrellas: rv.s, producto: rv.p, comentario: t, fotoURL });
+        rv.local = false;
+      } catch (e) {
+        reviews.unshift(r); rv.local = true;
+        try { localStorage.setItem('milenio-reviews', JSON.stringify(reviews)); } catch (x) { }
+      }
+      try { localStorage.setItem('milenio-rv-last', String(Date.now())); } catch (e) { }
+      rv.busy = false; rv.done = r; clearFoto(); renderReviews(); renderRvForm();
+    }
+    document.addEventListener('input', e => { const f = e.target.dataset.rv; if (f) { rv[f] = e.target.value; if (f === 't' && $('#rv-c')) $('#rv-c').textContent = e.target.value.length; } });
+    // navigator.clipboard solo existe en HTTPS/localhost; en http (ej. 192.168.x.x) se usa execCommand como respaldo
+    async function copyText(t) {
+      try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(t); return true; } } catch (e) { }
+      try { const a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px'; document.body.append(a); a.select(); a.setSelectionRange(0, t.length); const ok = document.execCommand('copy'); a.remove(); return ok; } catch (e) { return false; }
     }
     function toast(t) { document.querySelectorAll('.toast').forEach(x => x.remove()); const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = '✓ ' + t; document.body.append(d); setTimeout(() => d.remove(), 2300); }
     function setCart(open) { const c = $('#cart'); if (!c) return; c.classList.toggle('on', open); c.setAttribute('aria-hidden', !open); if (open) { renderCart(); $('#pn').querySelector('.q')?.focus(); } }
     const fdate = v => new Date(v).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
     function orderData() {
-      const ent = info.ent === 'envio', folio = 'MIL-' + Date.now().toString(36).toUpperCase().slice(-6);
+      const ent = info.ent === 'envio', folio = curFolio || (curFolio = 'MIL-' + Date.now().toString(36).toUpperCase().slice(-6));
       const rows = [['Cliente', info.nombre.trim(), E.user], ['Folio', folio, E.receipt]];
       if (ent) { rows.push(['Destino', info.destino.trim(), E.loc], ['Entrega', `Envío a ${info.dir.trim()} (Costo por confirmar)`, E.truck]); }
       else { rows.push(['Sucursal', STORE, E.shop], ['Entrega', `Recolección en tienda · ${fdate(info.fecha)}`, E.truck]); if (info.recoge.trim()) rows.push(['Recoge', info.recoge.trim(), E.who]); }
       rows.push(['Pago', info.pago, E.card]);
-      const freq = FREQ[info.frecuencia] || '';
+      const freq = FREQ[info.frecuencia] || '', pay = info.pago === 'Transferencia' && PAY.clabe ? `${PAY.banco}${PAY.titular ? ' · ' + PAY.titular : ''} · CLABE ${PAY.clabe} · Concepto: ${concepto()}` : '';
       const items = lines().map(x => ({ txt: `${x.l.kg}kg Café ${x.p.name}, ${x.l.g} (${kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo'}: ${fmt(x.sub)})`, nm: `${x.l.kg}kg Café ${x.p.name} · ${x.l.g}`, sub: x.sub }));
-      return { rows, items, freq, folio, total: total(), fecha: fdate(Date.now()) };
+      const L = lines(), kgPorCalidad = {}; L.forEach(x => { kgPorCalidad[x.p.id] = +((kgPorCalidad[x.p.id] || 0) + x.l.kg).toFixed(1); });
+      const rec = {
+        folio, cliente: info.nombre.trim(), entrega: ent ? 'envio' : 'recoger', destino: ent ? info.destino.trim() : '', direccion: ent ? info.dir.trim() : '', sucursal: ent ? '' : STORE, fechaRecoleccion: ent ? '' : info.fecha, recoge: ent ? '' : info.recoge.trim(),
+        productos: L.map(x => ({ calidad: x.p.name, molido: x.l.g, kg: x.l.kg, precioKg: x.u, tarifa: kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo', subtotal: x.sub })),
+        totalKg: +L.reduce((a, x) => a + x.l.kg, 0).toFixed(1), kgPorCalidad, total: total(), pago: info.pago, concepto: info.pago === 'Transferencia' ? concepto() : '',
+        frecuencia: FREQ[info.frecuencia] || 'Compra única'
+      };
+      return { rows, items, freq, pay, rec, plink: info.pago === 'Tarjeta' && MP_OK ? MP_LINK : '', folio, total: total(), fecha: fdate(Date.now()) };
     }
-    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '\u2022 ' + i.txt).join('\n') + `\n\n---\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN` + (d.freq ? `\n\n\u{1F504} *FRECUENCIA DE RECOMPRA:* Desea recordatorio automático [${d.freq}]` : '');
+    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '\u2022 ' + i.txt).join('\n') + `\n\n---\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN` + (d.pay ? `\n\n\u{1F3E6} *DATOS PARA TRANSFERENCIA:* ${d.pay}` : '') + (d.plink ? `\n\n\u{1F4B3} *PAGO EN LÍNEA:* Mercado Pago ${d.plink}` : '') + (d.freq ? `\n\n\u{1F504} *FRECUENCIA DE RECOMPRA:* Desea recordatorio automático [${d.freq}]` : '');
     function showTicket(d) {
       pending = d; d.url = `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(buildMsg(d))}`;
       let n = 0; const i = () => `style="--i:${n++}"`;
@@ -1185,18 +1329,37 @@
         const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = f.name; document.body.append(a); a.click(); a.remove(); toast('Comprobante guardado');
       }, 'image/png');
     }
-    function send() {
+    function validForm() {
       const ent = info.ent === 'envio';
-      if (!info.nombre.trim()) err = 'Escribe tu nombre.'; else if (ent && !info.destino.trim()) err = 'Escribe el municipio y estado de destino.'; else if (ent && !info.dir.trim()) err = 'Escribe la dirección de entrega.'; else if (!ent && !info.fecha) err = 'Elige la fecha y hora estimada de recolección.'; else err = '';
-      if (err) { renderCart(); return; }
-      showTicket(orderData());
+      if (!info.nombre.trim()) err = 'Escribe tu nombre.'; else if (ent && !info.destino.trim()) err = 'Escribe el municipio y estado de destino.'; else if (ent && !info.dir.trim()) err = 'Escribe la dirección de entrega.'; else if (!ent && !info.fecha) err = 'Elige la fecha y hora estimada de recolección.';
+      else if (!ent && (new Date(info.fecha).getDay() === 0)) err = 'Los domingos estamos cerrados. Elige de lunes a sábado.';
+      else if (!ent && (new Date(info.fecha).getHours() < 7 || new Date(info.fecha).getHours() >= 18)) err = 'Horario de recolección: 7:00 a. m. – 6:00 p. m.';
+      else err = '';
+      return !err;
     }
+    function send() { if (!validForm()) { renderCart(); return; } showTicket(orderData()); }
+    // ---- Pedidos en Firestore (con cola local si no hay conexión)
+    const PQ = 'milenio-pedidos-pend', created = new Set();
+    const pqGet = () => { try { return JSON.parse(localStorage.getItem(PQ) || '[]'); } catch (e) { return []; } };
+    const pqSet = a => { try { localStorage.setItem(PQ, JSON.stringify(a)); } catch (e) { } };
+    async function saveOrder(d, estado) {
+      const it = { folio: d.folio, rec: d.rec, estado };
+      try { if (!cloud) throw 0; await cloud.saveOrder(it.folio, it.rec, estado, created.has(it.folio)); created.add(it.folio); }
+      catch (e) { const q = pqGet().filter(x => !(x.folio === it.folio && x.estado === estado)); q.push(it); pqSet(q.slice(-20)); }
+    }
+    async function flushOrders() { if (!cloud) return; const q = pqGet(), rest = []; for (const it of q) { try { await cloud.saveOrder(it.folio, it.rec, it.estado, created.has(it.folio)); created.add(it.folio); } catch (e) { rest.push(it); } } pqSet(rest); }
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-act]'); if (!b) return;
       const qa = b.dataset.act;
+      if (qa === 'copyclabe') { copyText(PAY.clabe).then(ok => toast(ok ? 'CLABE copiada: ' + PAY.clabe : 'No se pudo copiar; mantén presionada la CLABE')); return; }
+      if (qa === 'copyconcept') { copyText(concepto()).then(ok => toast(ok ? 'Concepto copiado: ' + concepto() : 'No se pudo copiar; mantén presionado el concepto')); return; }
+      if (qa === 'mp') { if (!validForm()) { renderCart(); return; } const d = orderData(); window.open(MP_LINK, '_blank', 'noopener'); saveOrder(d, 'pago_en_linea_iniciado'); toast('Pedido registrado. Completa tu pago en Mercado Pago'); return; }
+      if (qa === 'rvnofoto') { clearFoto(); renderRvForm(); return; }
       if (qa === 'rvopen') { openRv(); return; }
       if (qa === 'rvclose') { closeRv(); return; }
-      if (qa === 'rvstar') { const keep = [$('#rv-n').value, $('#rv-t').value, $('#rv-p').value]; rv.s = +b.dataset.v; renderRvForm(); $('#rv-n').value = keep[0]; $('#rv-t').value = keep[1]; $('#rv-p').value = keep[2]; return; }
+      if (qa === 'rvstar') { rv.s = +b.dataset.v; rv.err = ''; renderRvForm(); return; }
+      if (qa === 'rvprod') { rv.p = b.dataset.v; renderRvForm(); return; }
+      if (qa === 'wfill') { const id = b.dataset.id, left = +(WHOLE - kgOf(id)).toFixed(1), ex = Object.keys(cart).find(k => cart[k].id === id), key = ex || id + '|' + ui[id].g; cart[key] = { id, g: cart[key]?.g || ui[id].g, kg: (cart[key]?.kg || 0) + left }; save(); toast(`+${left} kg de ${byId(id).name}: ¡Mayoreo desbloqueado!`); renderGrid(); renderCart(); return; }
       if (qa === 'rvpub') { pubRv(); return; }
       if (qa === 'qzopen') { openQuiz(); return; }
       if (qa === 'qzclose') { closeQuiz(); return; }
@@ -1215,13 +1378,23 @@
       else if (a === 'del') { delete cart[k]; save(); }
       else if (a === 'ent') { info.ent = b.dataset.v; err = ''; } else if (a === 'pago') info.pago = b.dataset.v; else if (a === 'freq') info.frecuencia = b.dataset.v;
       else if (a === 'send') { send(); return; }
-      else if (a === 'tkgo') { window.open(pending.url, '_blank'); closeTicket(); return; }
+      else if (a === 'tkgo') { window.open(pending.url, '_blank'); saveOrder(pending, 'enviado_whatsapp'); curFolio = null; closeTicket(); return; }
       else if (a === 'tksave') { saveTicket(); return; }
       else if (a === 'tkclose') { closeTicket(); $('#pn')?.querySelector('[data-f="nombre"]')?.focus(); return; }
       else if (a === 'close') { setCart(false); return; }
       renderGrid(); renderCart();
     });
-    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); } });
+    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); if (f === 'nombre' && $('#pconcept')) $('#pconcept').textContent = concepto(); } });
+    // Teclado móvil: centra el campo enfocado y suelta la barra fija mientras escribes
+    (() => {
+      const pn = $('#pn'); if (!pn) return; let t;
+      const isF = el => el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName);
+      pn.addEventListener('focusin', e => {
+        if (!isF(e.target)) return; clearTimeout(t); pn.classList.add('kb'); const el = e.target;
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 320);
+      });
+      pn.addEventListener('focusout', () => { t = setTimeout(() => { if (!isF(document.activeElement)) pn.classList.remove('kb'); }, 150); });
+    })();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('#rv')?.classList.contains('on')) closeRv(); else if ($('#qz')?.classList.contains('on')) closeQuiz(); else if ($('#tk')?.classList.contains('on')) closeTicket(); else setCart(false); } });
     if ($('#cartBtn')) $('#cartBtn').onclick = () => setCart(true);
     if ($('#menuBtn')) $('#menuBtn').onclick = () => { const m = $('#mnav'), o = m.classList.toggle('hidden'); $('#menuBtn').setAttribute('aria-expanded', !o); };
@@ -1234,6 +1407,79 @@
     
     const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .12 }) : null;
     document.querySelectorAll('.rv').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+  </script>
+<script type="module">
+    /* Firebase v10 (CDN). Reglas de seguridad recomendadas: ver comentarios al final de este bloque. */
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { initializeFirestore, collection, addDoc, setDoc, updateDoc, doc, query, orderBy, limit, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYdbyoIf5BpcK3WvOxF7bDYC2xXD9e9WY",
+      authDomain: "milenio-e698b.firebaseapp.com",
+      projectId: "milenio-e698b",
+      storageBucket: "milenio-e698b.firebasestorage.app",
+      messagingSenderId: "61760829097",
+      appId: "1:61760829097:web:2424f7718d7658850d1bb8",
+      measurementId: "G-YZL9JRY6HH"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
+    const storage = getStorage(app);
+
+    window.__cloud = {
+      listenReviews(ok, fail) {
+        const q = query(collection(db, 'resenas'), orderBy('fecha', 'desc'), limit(30));
+        return onSnapshot(q, snap => ok(snap.docs.map(d => {
+          const x = d.data({ serverTimestamps: 'estimate' });
+          return { id: d.id, n: String(x.nombre || ''), s: x.estrellas, p: String(x.producto || ''), t: String(x.comentario || ''), foto: String(x.fotoURL || ''), d: x.fecha && x.fecha.toMillis ? x.fecha.toMillis() : Date.now(), cloud: 1 };
+        }).filter(r => r.n && r.t && Number.isInteger(r.s) && r.s >= 1 && r.s <= 5)), fail);
+      },
+      async uploadPhoto(blob) {
+        const r = ref(storage, `resenas/${Date.now()}_foto.jpg`);
+        await uploadBytes(r, blob, { contentType: 'image/jpeg' });
+        return getDownloadURL(r);
+      },
+      async addReview(r) { await addDoc(collection(db, 'resenas'), { ...r, fecha: serverTimestamp() }); },
+      async saveOrder(folio, rec, estado, exists) {
+        const d = doc(db, 'pedidos', folio);
+        if (exists) await updateDoc(d, { estado, actualizado: serverTimestamp() });
+        else await setDoc(d, { ...rec, estado, fecha: serverTimestamp() });
+      }
+    };
+    if (window.onCloudReady) window.onCloudReady(window.__cloud);
+
+    /* ===== REGLAS (pégalas en la consola de Firebase) =====
+    Firestore → Reglas:
+      rules_version = '2';
+      service cloud.firestore { match /databases/{db}/documents {
+        match /resenas/{id} {
+          allow read: if true;
+          allow create: if request.resource.data.keys().hasOnly(['nombre','estrellas','producto','comentario','fotoURL','fecha'])
+            && request.resource.data.nombre is string && request.resource.data.nombre.size() > 0 && request.resource.data.nombre.size() <= 40
+            && request.resource.data.estrellas is int && request.resource.data.estrellas >= 1 && request.resource.data.estrellas <= 5
+            && request.resource.data.comentario is string && request.resource.data.comentario.size() >= 10 && request.resource.data.comentario.size() <= 400
+            && request.resource.data.producto in ['Calidad Europea','Calidad Americana','Calidad Nacional','Experiencia General']
+            && (request.resource.data.fotoURL == '' || request.resource.data.fotoURL.matches('https://firebasestorage.googleapis.com/.*'))
+            && request.resource.data.fecha == request.time;
+          allow update, delete: if false;
+        }
+        match /pedidos/{folio} {
+          allow create: if request.resource.data.folio == folio && request.resource.data.total is number && request.resource.data.total < 1000000;
+          allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado','actualizado']);
+          allow read, delete: if false;
+        }
+      } }
+    Storage → Reglas:
+      rules_version = '2';
+      service firebase.storage { match /b/{bucket}/o {
+        match /resenas/{file} {
+          allow read: if true;
+          allow create: if request.resource.size < 2 * 1024 * 1024 && request.resource.contentType.matches('image/.*');
+          allow update, delete: if false;
+        }
+      } }
+    ===== */
   </script>
 </body>
 
