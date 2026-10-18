@@ -1449,37 +1449,7 @@
     };
     if (window.onCloudReady) window.onCloudReady(window.__cloud);
 
-    /* ===== REGLAS (pégalas en la consola de Firebase) =====
-    Firestore → Reglas:
-      rules_version = '2';
-      service cloud.firestore { match /databases/{db}/documents {
-        match /resenas/{id} {
-          allow read: if true;
-          allow create: if request.resource.data.keys().hasOnly(['nombre','estrellas','producto','comentario','fotoURL','fecha'])
-            && request.resource.data.nombre is string && request.resource.data.nombre.size() > 0 && request.resource.data.nombre.size() <= 40
-            && request.resource.data.estrellas is int && request.resource.data.estrellas >= 1 && request.resource.data.estrellas <= 5
-            && request.resource.data.comentario is string && request.resource.data.comentario.size() >= 10 && request.resource.data.comentario.size() <= 400
-            && request.resource.data.producto in ['Calidad Europea','Calidad Americana','Calidad Nacional','Experiencia General']
-            && (request.resource.data.fotoURL == '' || request.resource.data.fotoURL.matches('https://firebasestorage.googleapis.com/.*'))
-            && request.resource.data.fecha == request.time;
-          allow update, delete: if false;
-        }
-        match /pedidos/{folio} {
-          allow create: if request.resource.data.folio == folio && request.resource.data.total is number && request.resource.data.total < 1000000;
-          allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado','actualizado']);
-          allow read, delete: if false;
-        }
-      } }
-    Storage → Reglas:
-      rules_version = '2';
-      service firebase.storage { match /b/{bucket}/o {
-        match /resenas/{file} {
-          allow read: if true;
-          allow create: if request.resource.size < 2 * 1024 * 1024 && request.resource.contentType.matches('image/.*');
-          allow update, delete: if false;
-        }
-      } }
-    ===== */
+    
   </script>
 </body>
 

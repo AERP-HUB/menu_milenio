@@ -3,14 +3,15 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <title>Café Milenio · Café de altura de Jaltenango, Chiapas</title>
   <meta name="description"
     content="Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { bg: 'var(--bg)', surf: 'rgb(var(--surf-rgb) / <alpha-value>)', ink: 'var(--ink)', mute: 'var(--mute)', line: 'var(--line)', gold: 'rgb(var(--gold-rgb) / <alpha-value>)', goldt: 'var(--goldt)', bean: 'var(--bean)', cherry: 'var(--cherry)', leaf: 'var(--leaf)', esp: '#24100B' }, fontFamily: { head: ['"Open Sans"', 'system-ui', 'sans-serif'], serif: ['"Playfair Display"', 'Georgia', 'serif'], script: ['"Great Vibes"', 'cursive'] } } } }</script>
+  <meta name="theme-color" content="#24100B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&family=Playfair+Display:wght@600&family=Great+Vibes&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600&family=Great+Vibes&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -228,6 +229,7 @@
     .cnum{display:inline-grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:99px;background:var(--gold);color:#24100B;font-size:.72rem}
     .csend{position:sticky;bottom:calc(-1.25rem - env(safe-area-inset-bottom,0px));margin:1rem -1.25rem calc(-1.25rem - env(safe-area-inset-bottom,0px));padding:.85rem 1.25rem calc(.85rem + env(safe-area-inset-bottom,0px));color:#F6EBDD;background:#180A07}
     .csend .text-mute{color:#C2AFA3}
+    .csend .text-leaf{color:#8FC46E}
     .csend .wmini{color:#E8B652}.csend .wmini.ok{color:#8FC46E}
     .csend .wbar{background:rgba(246,235,221,.18)}
     .pbox{margin-top:.75rem;border-radius:14px;padding:.7rem .8rem;background:color-mix(in srgb,var(--gold) 14%,transparent);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);animation:qzin .3s both}
@@ -261,6 +263,63 @@
     .rbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--goldt));border-radius:99px;transition:width .6s}
     .rcard{display:flex;flex-direction:column;border-radius:24px;border:1px solid var(--line);background:var(--surf);padding:1.1rem;animation:qzin .4s both}
     @media (prefers-reduced-motion:reduce){.rcard{animation:none}}
+
+    /* ===== Día de Muertos (apaga todo con THEME_MUERTOS = false) ===== */
+    :root{--cemp:#FF6700;--mor:#4A154B;--pp:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='30' viewBox='0 0 128 30'><path d='M0 1.5H128' stroke='%23D9A23F' stroke-width='1.5'/><path d='M2 2H30V23L26 28 22 23 18 28 14 23 10 28 6 23 2 28Z M16 8l4 4-4 4-4-4z M9 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0 M19.8 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0' fill='%23FF6700' fill-rule='evenodd'/><path d='M34 2H62V23L58 28 54 23 50 28 46 23 42 28 38 23 34 28Z M48 8l4 4-4 4-4-4z M41 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0 M51.8 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0' fill='%238E3A9E' fill-rule='evenodd'/><path d='M66 2H94V23L90 28 86 23 82 28 78 23 74 28 70 23 66 28Z M80 8l4 4-4 4-4-4z M73 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0 M83.8 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0' fill='%23D9A23F' fill-rule='evenodd'/><path d='M98 2H126V23L122 28 118 23 114 28 110 23 106 28 102 23 98 28Z M112 8l4 4-4 4-4-4z M105 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0 M115.8 17a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0' fill='%23E83E8C' fill-rule='evenodd'/></svg>") }
+    .nodm .dm{display:none!important}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes bob{50%{transform:translateY(-3px) rotate(4deg)}}
+    .pp{height:30px;background-image:var(--pp);background-repeat:repeat-x;background-size:128px 30px;transform-origin:top center;animation:ppWind 6.5s ease-in-out infinite;pointer-events:none;will-change:transform}
+    .pp-div .pp{animation-duration:8s;animation-delay:-3s}
+    /* brisa: la cenefa se inclina, se estira apenas y rebota en oleadas, como papel picado al aire */
+    @keyframes ppWind{0%{transform:skewX(-2deg) scaleY(1)}22%{transform:skewX(1deg) scaleY(.97) translateY(-.5px)}48%{transform:skewX(2.6deg) scaleY(1.02)}70%{transform:skewX(-.6deg) scaleY(.98) translateY(.5px)}100%{transform:skewX(-2deg) scaleY(1)}}
+    .pp-bar{background:#24100B;overflow:hidden}
+    .pp-div{overflow:hidden;margin:0 auto;max-width:72rem}
+    .pcard{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+    .pcard:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--cemp) 55%,transparent);box-shadow:0 26px 60px -22px rgba(255,103,0,.45)}
+    .btn-gold:hover{box-shadow:0 10px 28px -8px rgba(255,103,0,.6)}
+    .cta{min-height:3.4rem;font-size:1rem;background:linear-gradient(135deg,var(--gold) 0%,#FF8A1F 100%);box-shadow:0 12px 26px -10px rgba(255,103,0,.7)}
+    .cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+    .gopt.pill:hover:not([aria-pressed=true]){border-color:var(--cemp)}
+    .tag{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;border-radius:99px;padding:.3rem .7rem;border:1px solid var(--line);background:var(--surf)}
+    .tag.r{border-color:color-mix(in srgb,var(--cemp) 60%,transparent);color:var(--cemp)}
+    .tag.o{border-color:color-mix(in srgb,var(--gold) 70%,transparent)}
+    .trust{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+    @media(min-width:768px){.trust{grid-template-columns:repeat(4,1fr)}}
+    .trust li{display:flex;gap:.6rem;align-items:center;border:1px solid var(--line);border-radius:16px;padding:.7rem .8rem;background:var(--surf);font-size:.78rem;line-height:1.2}
+    .trust li b{display:block;font-size:.82rem}
+    .trust .ic{font-size:1.4rem;flex:none}
+    /* --- Luz de ofrenda: cada tarjeta late como una veladora (box-shadow cálido, solo 3 tarjetas) --- */
+    #grid .pcard{--glow:255,140,30;box-shadow:0 20px 50px -20px rgba(36,16,11,.45),0 0 18px -4px rgba(var(--glow),.38);animation:candle 4.2s ease-in-out infinite}
+    #grid .pcard:nth-child(2){animation-delay:-1.4s}
+    #grid .pcard:nth-child(3){animation-delay:-2.8s}
+    #grid .pcard:hover,#grid .pcard:focus-within{animation:candleHover 1.8s ease-in-out infinite}
+    @keyframes candle{0%,100%{box-shadow:0 20px 50px -20px rgba(36,16,11,.45),0 0 14px -4px rgba(var(--glow),.30),0 0 34px -10px rgba(var(--glow),.18)}
+      35%{box-shadow:0 20px 50px -20px rgba(36,16,11,.45),0 0 22px -3px rgba(var(--glow),.50),0 0 50px -8px rgba(var(--glow),.30)}
+      62%{box-shadow:0 20px 50px -20px rgba(36,16,11,.45),0 0 17px -4px rgba(var(--glow),.36),0 0 40px -10px rgba(var(--glow),.22)}}
+    @keyframes candleHover{0%,100%{box-shadow:0 26px 60px -22px rgba(255,103,0,.45),0 0 26px -2px rgba(var(--glow),.55),0 0 56px -6px rgba(var(--glow),.32)}
+      50%{box-shadow:0 26px 60px -22px rgba(255,103,0,.5),0 0 38px 0 rgba(var(--glow),.80),0 0 84px -2px rgba(var(--glow),.50)}}
+    /* --- Pétalos de cempasúchil: capa decorativa sobre el hero (se generan en JS, solo transform/opacity) --- */
+    .petals{position:absolute;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+    .petal{position:absolute;top:0;left:var(--x);width:var(--s);height:calc(var(--s)*1.45);border-radius:75% 0 75% 0;opacity:0;
+      background:linear-gradient(135deg,#FFB347 0%,#FF6700 62%,#D9560A 100%);box-shadow:inset -1px -1px 2px rgba(120,40,0,.35);
+      animation:petalFall var(--d) linear var(--dl) infinite;will-change:transform,opacity}
+    .petal:nth-child(3n){background:linear-gradient(135deg,#FFD27A 0%,#F5A623 70%,#D98E1E 100%);border-radius:0 75% 0 75%}
+    .petal:nth-child(4n){background:linear-gradient(135deg,#FF9A3C 0%,#E8590C 100%)}
+    .petals.off .petal{animation-play-state:paused}
+    @keyframes petalFall{0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(0deg) rotateY(0deg)}
+      8%{opacity:.9}
+      30%{transform:translate3d(var(--sw),calc(var(--fall)*.3),0) rotate(110deg) rotateY(60deg)}
+      55%{transform:translate3d(calc(var(--sw)*-.6),calc(var(--fall)*.58),0) rotate(230deg) rotateY(160deg)}
+      80%{opacity:.85;transform:translate3d(calc(var(--sw)*.8),calc(var(--fall)*.86),0) rotate(330deg) rotateY(250deg)}
+      100%{opacity:0;transform:translate3d(calc(var(--sw)*-.3),var(--fall),0) rotate(430deg) rotateY(340deg)}}
+    /* --- Micro-interacciones: calaveritas y flores reaccionan al pasar el cursor o tocarlas --- */
+    svg.ico{transition:transform .55s cubic-bezier(.3,1.5,.5,1),filter .35s;transform-origin:50% 55%;cursor:default}
+    svg.ico.mg:hover,.icow:hover svg.ico.mg,svg.ico.mg:active{transform:rotate(180deg) scale(1.22);filter:drop-shadow(0 0 7px rgba(255,150,40,.95)) brightness(1.18)}
+    svg.ico.sk:hover,.icow:hover svg.ico.sk,svg.ico.sk:active{animation:skullWobble .9s ease-in-out;transform:scale(1.2);filter:drop-shadow(0 0 7px rgba(255,214,120,.95)) brightness(1.25)}
+    @keyframes skullWobble{0%,100%{rotate:0deg}20%{rotate:-12deg}45%{rotate:10deg}70%{rotate:-6deg}}
+    @media (prefers-reduced-motion:reduce){.pp,#grid .pcard,#grid .pcard:hover,#grid .pcard:focus-within,svg.ico,svg.ico.sk:hover{animation:none}.petals{display:none}.pcard{transition:none}svg.ico{transition:none}}
+
     .gopt.pill{width:100%;min-width:0;min-height:2.5rem;border-radius:99px;padding:.4rem .5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s,transform .15s}
     .pill b{font-size:.78rem}
     .pill span{font-size:.62rem}
@@ -391,7 +450,9 @@
       font-size: .9rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
       animation: drop .4s cubic-bezier(.2, 1.2, .3, 1) both;
-      max-width: 92vw
+      width: max-content;
+      max-width: min(92vw, 24rem);
+      text-align: center
     }
 
     :root {
@@ -750,10 +811,53 @@
         transform: none
       }
     }
+    /* ===== v2.2: accesibilidad, menú móvil, tarjetas compactas, resumen, FAQ ===== */
+    html{scroll-padding-top:4.5rem}
+    .skip{position:absolute;left:.75rem;top:-5rem;z-index:100;background:var(--gold);color:#24100B;font-weight:800;padding:.75rem 1rem;border-radius:12px;transition:top .2s}
+    .skip:focus{top:.75rem}
+    body.lock{overflow:hidden}
+    #cart:not(.on){visibility:hidden;transition:visibility 0s .4s}
+    .wm{opacity:.035}
+    #mnav a{display:flex;align-items:center;min-height:3rem}
+    #mnav a[aria-current=true],#dnav a[aria-current=true]{color:var(--gold)}
+    .hd-logo{font-size:clamp(1.5rem,7vw,2.1rem)}
+    /* tarjeta de producto: compacta en móvil, vertical desde tablet */
+    .pcard .top{display:grid;grid-template-columns:clamp(8.25rem,30vw,12rem) 1fr}
+    .pcard .tile{position:relative;display:grid;place-items:center;aspect-ratio:1/1;padding:1rem;background:linear-gradient(180deg,#F3EFE9 0%,#D9CFC2 70%,#C9BBA8 100%)}
+    .pcard .tl{display:flex;flex-direction:column;justify-content:center;gap:.5rem;padding:.75rem .9rem;min-width:0}
+    @media(min-width:768px){.pcard .top{display:block}.pcard .tile{padding:2.5rem}.pcard .tl{flex-direction:row;justify-content:space-between;align-items:flex-start;gap:.75rem;padding:1.1rem 1.25rem 0}}
+    .pcard.flash{outline:3px solid var(--gold);outline-offset:3px}
+    .gopt.pill{min-height:2.75rem}
+    .pill b{font-size:.8rem}.pill span{font-size:.72rem}
+    .q{flex:none}
+    .cq{width:2.75rem;height:2.75rem;font-size:1.1rem}
+    .tag{font-size:.75rem}
+    .vbadge{font-size:.75rem}
+    @media(hover:none){.pcard:hover{transform:none;border-color:var(--line);box-shadow:0 20px 50px -20px rgba(36,16,11,.45)}.btn:hover{filter:none}}
+    /* carrito */
+    #cart .cap{position:sticky;top:-1.25rem;z-index:6;margin:-1.25rem -1.25rem .75rem;padding:1rem 1.25rem .6rem;background:var(--bg);border-bottom:1px solid var(--line)}
+    #cart .pn .cform{padding-bottom:1rem}
+    .csend .text-cherry{color:#FF9A8F}
+    .sumrow{display:flex;justify-content:space-between;gap:1rem;font-size:.9rem;padding:.25rem 0}
+    .sumrow.mute{color:var(--mute)}
+    .sumrow.neg{color:var(--leaf);font-weight:700}
+    .sumrow.big{font-size:1.15rem;font-weight:800;border-top:1px solid var(--line);margin-top:.4rem;padding-top:.6rem}
+    /* FAQ */
+    .faq{border:1px solid var(--line);border-radius:18px;background:var(--surf)}
+    .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:3.5rem;padding:.5rem 1.1rem;font-weight:700}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--goldt);font-weight:800;flex:none}
+    .faq[open] summary::after{content:"−"}
+    .faq .ans{padding:0 1.1rem 1.1rem;color:var(--mute);font-size:.92rem;line-height:1.6}
+    @media(max-width:360px){.trust li{padding:.6rem}}
   </style>
+  <style id="tw">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-6{inset:1.5rem}.inset-x-0{left:0;right:0}.-left-6{left:-1.5rem}.-right-6{right:-1.5rem}.bottom-0{bottom:0}.bottom-10{bottom:2.5rem}.bottom-24{bottom:6rem}.left-0{left:0}.left-2{left:.5rem}.right-0{right:0}.right-2{right:.5rem}.right-3{right:.75rem}.top-2{top:.5rem}.top-3{top:.75rem}.top-4{top:1rem}.top-6{top:1.5rem}.isolate{isolation:isolate}.z-40{z-index:40}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[3\/5\]{aspect-ratio:3/5}.aspect-\[4\/3\]{aspect-ratio:4/3}.aspect-\[4\/5\]{aspect-ratio:4/5}.aspect-square{aspect-ratio:1/1}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-4{height:1rem}.h-40{height:10rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-full{height:100%}.max-h-44{max-height:11rem}.max-h-\[30rem\]{max-height:30rem}.min-h-\[2\.25rem\]{min-height:2.25rem}.min-h-\[2\.75rem\]{min-height:2.75rem}.min-h-\[3rem\]{min-height:3rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-3\/5{width:60%}.w-32{width:8rem}.w-40{width:10rem}.w-44{width:11rem}.w-48{width:12rem}.w-5{width:1.25rem}.w-8{width:2rem}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[5\.5rem\]{min-width:5.5rem}.min-w-\[5rem\]{min-width:5rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.grow{flex-grow:1}.-rotate-6{--tw-rotate:-6deg}.-rotate-6,.rotate-6{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-6{--tw-rotate:6deg}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-10{gap:2.5rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-x-2{-moz-column-gap:.5rem;column-gap:.5rem}.gap-y-1{row-gap:.25rem}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-line>:not([hidden])~:not([hidden]){border-color:var(--line)}.justify-self-start{justify-self:start}.overflow-hidden,.truncate{overflow:hidden}.truncate{text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.break-all{word-break:break-all}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-dashed{border-style:dashed}.border-gold{--tw-border-opacity:1;border-color:rgb(var(--gold-rgb)/var(--tw-border-opacity,1))}.border-gold\/50{border-color:rgb(var(--gold-rgb)/.5)}.border-gold\/60{border-color:rgb(var(--gold-rgb)/.6)}.border-leaf{border-color:var(--leaf)}.border-line{border-color:var(--line)}.border-white\/10{border-color:hsla(0,0%,100%,.1)}.border-white\/15{border-color:hsla(0,0%,100%,.15)}.border-white\/25{border-color:hsla(0,0%,100%,.25)}.bg-\[\#180A07\]{--tw-bg-opacity:1;background-color:rgb(24 10 7/var(--tw-bg-opacity,1))}.bg-\[\#1B0E0A\]{--tw-bg-opacity:1;background-color:rgb(27 14 10/var(--tw-bg-opacity,1))}.bg-\[\#F4EFE6\]{--tw-bg-opacity:1;background-color:rgb(244 239 230/var(--tw-bg-opacity,1))}.bg-bg{background-color:var(--bg)}.bg-esp{--tw-bg-opacity:1;background-color:rgb(36 16 11/var(--tw-bg-opacity,1))}.bg-esp\/85{background-color:rgba(36,16,11,.85)}.bg-esp\/90{background-color:rgba(36,16,11,.9)}.bg-gold{--tw-bg-opacity:1;background-color:rgb(var(--gold-rgb)/var(--tw-bg-opacity,1))}.bg-gold\/15{background-color:rgb(var(--gold-rgb)/.15)}.bg-gold\/30{background-color:rgb(var(--gold-rgb)/.3)}.bg-surf{--tw-bg-opacity:1;background-color:rgb(var(--surf-rgb)/var(--tw-bg-opacity,1))}.bg-surf\/90{background-color:rgb(var(--surf-rgb)/.9)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top,var(--tw-gradient-stops))}.from-black\/70{--tw-gradient-from:rgba(0,0,0,.7) var(--tw-gradient-from-position);--tw-gradient-to:transparent var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-gold\/70{--tw-gradient-from:rgb(var(--gold-rgb)/0.7) var(--tw-gradient-from-position);--tw-gradient-to:rgb(var(--gold-rgb)/0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-white\/10{--tw-gradient-to:hsla(0,0%,100%,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),hsla(0,0%,100%,.1) var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-gold\/30{--tw-gradient-to:rgb(var(--gold-rgb)/0.3) var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.object-contain{-o-object-fit:contain;object-fit:contain}.object-cover{-o-object-fit:cover;object-fit:cover}.p-1{padding:.25rem}.p-10{padding:2.5rem}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-3\.5{padding:.875rem}.p-5{padding:1.25rem}.p-8{padding:2rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:.5rem}.pb-4{padding-bottom:1rem}.pb-8{padding-bottom:2rem}.pt-1{padding-top:.25rem}.pt-3{padding-top:.75rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-head{font-family:Open Sans,system-ui,sans-serif}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-script{font-family:Great Vibes,cursive}.font-serif{font-family:Playfair Display,Georgia,serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.normal-case{text-transform:none}.leading-\[\.98\]{line-height:.98}.leading-\[1\.02\]{line-height:1.02}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-\[\.25em\]{letter-spacing:.25em}.tracking-\[\.3em\]{letter-spacing:.3em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-\[\#E6D6C6\]{--tw-text-opacity:1;color:rgb(230 214 198/var(--tw-text-opacity,1))}.text-\[\#E6D6C6\]\/70{color:hsla(30,39%,84%,.7)}.text-\[\#F6EBDD\]{--tw-text-opacity:1;color:rgb(246 235 221/var(--tw-text-opacity,1))}.text-cherry{color:var(--cherry)}.text-esp{--tw-text-opacity:1;color:rgb(36 16 11/var(--tw-text-opacity,1))}.text-gold{--tw-text-opacity:1;color:rgb(var(--gold-rgb)/var(--tw-text-opacity,1))}.text-goldt{color:var(--goldt)}.text-ink{color:var(--ink)}.text-leaf{color:var(--leaf)}.text-mute{color:var(--mute)}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.underline{text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-\[0_-15px_30px_rgba\(0\2c 0\2c 0\2c 0\.7\)\]{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_-15px_30px_rgba\(0\2c 0\2c 0\2c 0\.7\)\]{--tw-shadow:0 -15px 30px rgba(0,0,0,.7);--tw-shadow-colored:0 -15px 30px var(--tw-shadow-color)}.shadow-\[0_20px_50px_-20px_rgba\(36\2c 16\2c 11\2c \.45\)\]{--tw-shadow:0 20px 50px -20px rgba(36,16,11,.45);--tw-shadow-colored:0 20px 50px -20px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_30px_80px_-20px_rgba\(217\2c 162\2c 63\2c \.55\)\]{--tw-shadow:0 30px 80px -20px rgba(217,162,63,.55);--tw-shadow-colored:0 30px 80px -20px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.outline{outline-style:solid}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring,.ring-1{box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-gold\/50{--tw-ring-color:rgb(var(--gold-rgb)/0.5)}.blur{--tw-blur:blur(8px)}.blur,.blur-3xl{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-3xl{--tw-blur:blur(64px)}.drop-shadow-2xl{--tw-drop-shadow:drop-shadow(0 25px 25px rgba(0,0,0,.15))}.drop-shadow-2xl,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-blur-md{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.ease-out{transition-timing-function:cubic-bezier(0,0,.2,1)}.hover\:bg-esp:hover{--tw-bg-opacity:1;background-color:rgb(36 16 11/var(--tw-bg-opacity,1))}.hover\:text-\[\#F6EBDD\]:hover{--tw-text-opacity:1;color:rgb(246 235 221/var(--tw-text-opacity,1))}.hover\:text-gold:hover{--tw-text-opacity:1;color:rgb(var(--gold-rgb)/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-3{left:.75rem}.sm\:right-3{right:.75rem}.sm\:top-3{top:.75rem}.sm\:mt-8{margin-top:2rem}.sm\:inline{display:inline}.sm\:h-11{height:2.75rem}.sm\:w-11{width:2.75rem}.sm\:w-60{width:15rem}.sm\:w-72{width:18rem}.sm\:w-80{width:20rem}.sm\:w-auto{width:auto}.sm\:flex-none{flex:none}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:gap-3{gap:.75rem}.sm\:p-14{padding:3.5rem}.sm\:p-3{padding:.75rem}.sm\:px-5{padding-left:1.25rem;padding-right:1.25rem}.sm\:pb-5{padding-bottom:1.25rem}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:768px){.md\:sticky{position:sticky}.md\:top-24{top:6rem}.md\:mt-12{margin-top:3rem}.md\:h-16{height:4rem}.md\:max-h-none{max-height:none}.md\:max-w-none{max-width:none}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:grid-cols-\[minmax\(0\2c 20rem\)_1fr\]{grid-template-columns:minmax(0,20rem) 1fr}.md\:justify-end{justify-content:flex-end}.md\:gap-14{gap:3.5rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:py-16{padding-top:4rem}.md\:pb-16,.md\:py-16{padding-bottom:4rem}.md\:text-right{text-align:right}}@media (min-width:1024px){.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}}@media (min-width:1100px){.min-\[1100px\]\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (min-width:1280px){.xl\:gap-7{gap:1.75rem}.xl\:text-2xl{font-size:1.5rem;line-height:2rem}.xl\:text-3xl{font-size:1.875rem;line-height:2.25rem}}</style>
 </head>
 
 <body>
+  <a href="#main" class="skip">Saltar al contenido</a>
+  <div id="live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript><p style="padding:1rem;background:#fff;color:#24100B;text-align:center">Esta tienda necesita JavaScript. Escríbenos por WhatsApp al +52 961 603 7111 para hacer tu pedido.</p></noscript>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-cup" viewBox="0 0 120 120">
       <g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -794,43 +898,57 @@
         <path d="M20 8c-9 9 9 15 0 22s9 13 0 22" style="stroke:var(--gold)" />
       </g>
     </symbol>
+    <symbol id="i-marigold" viewBox="0 0 100 100">
+      <g fill="#FF6700" stroke="#B34700" stroke-width="1"><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(0 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(30 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(60 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(90 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(120 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(150 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(180 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(210 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(240 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(270 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(300 50 50)"/><ellipse cx="50" cy="19" rx="9" ry="16" transform="rotate(330 50 50)"/></g><g fill="#FFA61A" stroke="#B34700" stroke-width=".8"><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(15 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(45 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(75 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(105 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(135 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(165 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(195 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(225 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(255 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(285 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(315 50 50)"/><ellipse cx="50" cy="27" rx="7" ry="11" transform="rotate(345 50 50)"/></g>
+      <circle cx="50" cy="50" r="9" fill="#4A154B"/><circle cx="50" cy="50" r="4" fill="#D9A23F"/>
+    </symbol>
+    <symbol id="i-skull" viewBox="0 0 100 110">
+      <path d="M50 6C27 6 12 22 12 44c0 13 6 22 14 28v16c0 4 3 7 7 7h34c4 0 7-3 7-7V72c8-6 14-15 14-28C88 22 73 6 50 6z" fill="#F6EBDD" stroke="#24100B" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="35" cy="46" r="14" fill="#FF6700" stroke="#24100B" stroke-width="2.5"/><circle cx="65" cy="46" r="14" fill="#FF6700" stroke="#24100B" stroke-width="2.5"/>
+      <circle cx="35" cy="46" r="7" fill="#4A154B"/><circle cx="65" cy="46" r="7" fill="#4A154B"/><circle cx="35" cy="46" r="2.2" fill="#D9A23F"/><circle cx="65" cy="46" r="2.2" fill="#D9A23F"/>
+      <path d="M50 60l-6 11h12z" fill="#24100B"/>
+      <path d="M28 82q22 12 44 0" fill="none" stroke="#24100B" stroke-width="3" stroke-linecap="round"/>
+      <path d="M38 85v9M46 87v9M54 87v9M62 85v9" stroke="#24100B" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="50" cy="17" r="4" fill="#D9A23F" stroke="#24100B" stroke-width="1.5"/><circle cx="36" cy="22" r="2.6" fill="#E83E8C"/><circle cx="64" cy="22" r="2.6" fill="#E83E8C"/>
+      <circle cx="22" cy="60" r="4" fill="#E83E8C" opacity=".8"/><circle cx="78" cy="60" r="4" fill="#E83E8C" opacity=".8"/>
+    </symbol>
   </svg>
 
-  <header class="sticky z-40 backdrop-blur-md bg-esp/85 text-[#F6EBDD] border-b border-white/10"
+  <header class="sticky z-40 backdrop-blur-md bg-esp/90 text-[#F6EBDD] border-b border-white/10"
     style="top:env(safe-area-inset-top,0px)">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-      <a href="#inicio" class="flex items-center gap-3 min-w-0">
-        <img src="img/cafe_mil.jpg" alt="Logo Café Milenio"
-          class="w-11 h-11 rounded-full object-cover bg-[#F4EFE6] shrink-0"
-          onerror="this.outerHTML='<span class=&quot;w-11 h-11 rounded-full bg-[#F4EFE6] grid place-items-center shrink-0&quot;>☕</span>'">
-        <span class="font-script leading-none whitespace-nowrap text-[clamp(1.6rem,7.5vw,2.1rem)]">Café Milenio</span>
+    <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
+      <a href="#inicio" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Café Milenio, ir al inicio">
+        <img src="img/cafe_mil.jpg" alt="" width="44" height="44"
+          class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover bg-[#F4EFE6] shrink-0"
+          onerror="this.outerHTML='<span class=&quot;w-10 h-10 rounded-full bg-[#F4EFE6] grid place-items-center shrink-0&quot;>☕</span>'">
+        <span class="font-script leading-none whitespace-nowrap hd-logo" aria-hidden="true">Café Milenio</span>
       </a>
-      <nav class="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-wider" aria-label="Principal">
-        <a href="#inicio" class="hover:text-gold">Inicio</a><a href="#origen" class="hover:text-gold">Origen</a><a
-          href="#tienda" class="hover:text-gold">Tienda</a><a href="#reseñas" class="hover:text-gold">Reseñas</a><a href="#contacto" class="hover:text-gold">Contacto</a>
+      <nav id="dnav" class="hidden lg:flex gap-5 xl:gap-7 font-semibold text-sm uppercase tracking-wider" aria-label="Principal">
+        <a href="#inicio" class="hover:text-gold py-2">Inicio</a><a href="#origen" class="hover:text-gold py-2">Origen</a><a href="#tienda" class="hover:text-gold py-2">Tienda</a><a href="#resenas" class="hover:text-gold py-2">Reseñas</a><a href="#preguntas" class="hover:text-gold py-2">Preguntas</a><a href="#contacto" class="hover:text-gold py-2">Contacto</a>
       </nav>
       <div class="flex items-center gap-2">
-        <button id="cartBtn" class="relative w-11 h-11 rounded-full bg-gold text-esp text-xl grid place-items-center"
-          aria-label="Abrir carrito">🛒<span id="count" class="badge zero">0</span></button>
-        <button id="menuBtn" class="md:hidden w-11 h-11 rounded-full border border-white/25 text-xl"
-          aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <button id="cartBtn" type="button" class="relative w-11 h-11 rounded-full bg-gold text-esp text-xl grid place-items-center"
+          aria-label="Abrir carrito" aria-haspopup="dialog"><span aria-hidden="true">🛒</span><span id="count" class="badge zero" aria-hidden="true">0</span></button>
+        <button id="menuBtn" type="button" class="lg:hidden w-11 h-11 rounded-full border border-white/25 text-xl"
+          aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">☰</button>
       </div>
     </div>
-    <nav id="mnav" class="hidden md:hidden px-4 pb-3 grid font-semibold uppercase tracking-wider text-sm"
-      aria-label="Móvil">
-      <a href="#inicio" class="py-3 border-t border-white/10">Inicio</a><a href="#origen"
-        class="py-3 border-t border-white/10">Origen</a><a href="#tienda"
-        class="py-3 border-t border-white/10">Tienda</a><a href="#contacto"
-        class="py-3 border-t border-white/10">Contacto</a>
+    <nav id="mnav" class="hidden lg:hidden px-4 pb-2 font-semibold uppercase tracking-wider text-sm" aria-label="Menú móvil">
+      <a href="#inicio" class="border-t border-white/10">Inicio</a><a href="#origen" class="border-t border-white/10">Origen</a><a href="#tienda" class="border-t border-white/10">Tienda</a><a href="#resenas" class="border-t border-white/10">Reseñas</a><a href="#preguntas" class="border-t border-white/10">Preguntas frecuentes</a><a href="#contacto" class="border-t border-white/10">Contacto</a>
     </nav>
   </header>
 
+  <main id="main">
+
+  <div class="dm pp-bar" aria-hidden="true"><div class="pp"></div></div>
+
   <section id="inicio" class="relative overflow-hidden bg-esp text-[#F6EBDD]" style="background-image:radial-gradient(60rem 30rem at 85% 20%,rgba(217,162,63,.22),transparent),radial-gradient(40rem 30rem at -10% 90%,rgba(179,38,43,.22),transparent)">
-      <div class="max-w-6xl mx-auto px-4 py-6 md:py-20 grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+      <div id="petals" class="dm petals" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto px-4 py-8 md:py-14 grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         
         <!-- Columna Izquierda: Textos y Botones -->
         <div class="text-left justify-self-start w-full">
-          <p class="font-serif uppercase tracking-[.3em] text-gold text-xs sm:text-sm">Café arábiga · Jaltenango, Chiapas</p>
+          <p class="icow font-serif uppercase tracking-[.3em] text-gold text-xs sm:text-sm flex items-center gap-2"><svg class="dm ico mg w-5 h-5 shrink-0" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-marigold"/></svg><span>Café arábiga · Jaltenango, Chiapas</span><svg class="dm ico sk w-5 h-6 shrink-0" viewBox="0 0 100 110" aria-hidden="true"><use href="#i-skull"/></svg></p>
           <h1 class="font-head font-extrabold uppercase leading-[.98] tracking-tight mt-4 hero-t">
             Café 100% <span class="text-gold">chiapaneco</span>
           </h1>
@@ -838,21 +956,15 @@
             Productores de café con un aroma que nos distingue y una gran tradición. Del cafetal a tu taza, con envíos a todo México.
           </p>
           
-          <!-- Botones de Navegación Directa -->
-          <div class="mt-5 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-            <a href="#tienda" class="px-3.5 py-2 rounded-full bg-gold text-esp font-extrabold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 shadow-md">
-              🛒 Ver Tienda
-            </a>
-            <a href="#origen" class="px-3 py-2 rounded-full border border-white/20 text-[#F6EBDD] font-bold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 hover:border-gold">
-              ☕ Origen
-            </a>
-            <a href="#contacto" class="px-3 py-2 rounded-full border border-white/20 text-[#F6EBDD] font-bold text-[11px] uppercase tracking-wider whitespace-nowrap shrink-0 hover:border-gold">
-              📍 Ubicación
-            </a>
+          <!-- Llamadas a la acción -->
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a href="#tienda" class="btn btn-gold cta px-7 w-full sm:w-auto"><span aria-hidden="true">🛒</span> Comprar café</a>
+            <a href="#origen" class="btn btn-line px-6 flex-1 sm:flex-none whitespace-nowrap">Conocer el origen</a>
+            <a href="#contacto" class="text-sm font-bold underline underline-offset-4 text-[#E6D6C6] hover:text-gold min-h-[2.75rem] inline-flex items-center"><span aria-hidden="true">📍&nbsp;</span>Ubicación</a>
           </div>
 
           <!-- Datos / Métricas -->
-          <dl class="mt-5 grid grid-cols-3 gap-3 w-full max-w-md text-center">
+          <dl class="mt-6 grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-md text-center">
             <div class="rounded-2xl border border-white/15 p-3">
               <dt class="text-gold font-extrabold text-xl">900+</dt>
               <dd class="text-xs text-[#E6D6C6]">msnm de altura</dd>
@@ -871,7 +983,7 @@
         <!-- Columna Derecha: Imagen Hero -->
         <div class="relative flex justify-center md:justify-end w-full">
           <div class="absolute inset-6 rounded-[2rem] bg-gold/30 blur-3xl" aria-hidden="true"></div>
-          <div id="heroFrame" class="relative w-full max-w-md md:max-w-none rounded-[2rem] p-2 sm:p-3 bg-gradient-to-br from-gold/70 via-white/10 to-gold/30 ring-1 ring-gold/50 shadow-[0_30px_80px_-20px_rgba(217,162,63,.55)]" style="aspect-ratio:4/5">
+          <div id="heroFrame" class="relative w-full max-w-md md:max-w-none rounded-[2rem] p-2 sm:p-3 bg-gradient-to-br from-gold/70 via-white/10 to-gold/30 ring-1 ring-gold/50 shadow-[0_30px_80px_-20px_rgba(217,162,63,.55)] max-h-[30rem] md:max-h-none" style="aspect-ratio:4/5">
             <div id="heroBag" class="relative w-full h-full overflow-hidden rounded-3xl bg-[#1B0E0A]"></div>
           </div>
         </div>
@@ -879,7 +991,9 @@
       </div>
   </section>
 
-  <section id="origen" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-16 md:py-24">
+  <div class="dm pp-div" aria-hidden="true"><div class="pp"></div></div>
+
+  <section id="origen" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-12 md:py-16">
     <svg class="wm w-44 sm:w-72 right-0 top-6 rotate-6" viewBox="0 0 120 130" aria-hidden="true">
       <use href="#i-grinder" />
     </svg>
@@ -897,10 +1011,10 @@
         <p class="mt-4 text-mute text-lg">Tostamos y molemos en casa. Un café versátil para espresso, capuchino, cold
           brew o prensa francesa.</p>
       </div>
-      <div class="grid grid-cols-3 gap-3 rv" id="mosaic"></div>
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 rv" id="mosaic"></div>
     </div>
-    <ol class="mt-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-3 rv" id="steps"></ol>
-    <div class="dv mt-14 md:mt-20" aria-hidden="true"><i></i><svg viewBox="0 0 120 130">
+    <ol class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 rv" id="steps" aria-label="Proceso del café"></ol>
+    <div class="dv mt-10 md:mt-12" aria-hidden="true"><i></i><svg viewBox="0 0 120 130">
         <use href="#i-grinder" />
       </svg><svg class="b" viewBox="0 0 40 60">
         <use href="#i-bean" />
@@ -909,7 +1023,7 @@
       </svg><i></i></div>
   </section>
 
-  <section id="tienda" class="relative isolate overflow-hidden py-16 md:py-24"
+  <section id="tienda" class="relative isolate overflow-hidden py-12 md:py-16"
     style="background:color-mix(in srgb,var(--gold) 10%,transparent)">
     <svg class="wm w-48 sm:w-80 -right-6 top-4 rotate-6" viewBox="0 0 120 120" aria-hidden="true">
       <use href="#i-cup" />
@@ -922,13 +1036,14 @@
         <svg class="mx-auto w-14 h-14 mb-2" viewBox="0 0 120 120" aria-hidden="true">
           <use href="#i-cup" />
         </svg>
-        <p class="font-serif uppercase tracking-[.3em] text-goldt text-xs">Tienda</p>
+        <p class="icow font-serif uppercase tracking-[.3em] text-goldt text-xs flex items-center justify-center gap-2"><svg class="dm ico mg w-5 h-5" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-marigold"/></svg>Tienda<svg class="dm ico sk w-5 h-6" viewBox="0 0 100 110" aria-hidden="true"><use href="#i-skull"/></svg></p>
         <h2 class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Elige tu calidad</h2>
-        <p class="mt-4 text-mute">Mayoreo a partir de 5 kg. Elige el molido que prefieras y agrégalo al carrito.</p>
+        <p class="mt-4 text-mute">Elige presentación y molido, y agrégalo al carrito. <b class="text-ink">Mayoreo desde 5 kg de una misma calidad</b> (suma todos sus molidos y presentaciones).</p>
       </div>
-      <div class="mt-8 max-w-xl mx-auto rv"><button type="button" data-act="qzopen" class="w-full rounded-2xl border border-gold bg-surf px-4 py-3 text-center font-bold hover:bg-esp hover:text-[#F6EBDD] transition-colors min-h-[3rem]">☕ ¿No sabes qué café elegir? <span class="text-goldt underline">Haz el test de 3 clics</span></button></div>
-      <div id="grid" class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
-      <div class="dv mt-12 max-w-md mx-auto" aria-hidden="true"><i></i><svg class="b" viewBox="0 0 40 60">
+      <div class="mt-6 max-w-xl mx-auto rv"><button type="button" data-act="qzopen" class="w-full rounded-2xl border border-gold bg-surf px-4 py-3 text-center font-bold hover:bg-esp hover:text-[#F6EBDD] transition-colors min-h-[3rem]">☕ ¿No sabes qué café elegir? <span class="text-goldt underline">Haz el test de 3 clics</span></button></div>
+      <ul id="trust" class="trust mt-6 max-w-5xl mx-auto" aria-label="Datos de compra"></ul>
+      <div id="grid" class="mt-8 grid gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3"></div>
+      <div class="dv mt-8 max-w-md mx-auto" aria-hidden="true"><i></i><svg class="b" viewBox="0 0 40 60">
           <use href="#i-bean" />
         </svg><svg class="b" viewBox="0 0 40 60" style="transform:rotate(25deg)">
           <use href="#i-bean" />
@@ -938,7 +1053,7 @@
     </div>
   </section>
 
-  <section id="reseñas" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-16 md:py-24" aria-labelledby="rvt">
+  <section id="resenas" class="relative isolate overflow-hidden max-w-6xl mx-auto px-4 py-12 md:py-16" aria-labelledby="rvt">
     <div class="text-center max-w-2xl mx-auto">
       <p class="font-serif uppercase tracking-[.3em] text-goldt text-xs">Opiniones</p>
       <h2 id="rvt" class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Lo que dicen de nuestro café</h2>
@@ -949,8 +1064,17 @@
     </div>
   </section>
 
+  <section id="preguntas" class="relative max-w-6xl mx-auto px-4 pb-12 md:pb-16" aria-labelledby="faqt">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="font-serif uppercase tracking-[.3em] text-goldt text-xs">Ayuda</p>
+      <h2 id="faqt" class="font-head font-extrabold uppercase tracking-tight leading-[1.02] mt-3 ttl">Preguntas frecuentes</h2>
+    </div>
+    <div id="faqList" class="mt-8 max-w-3xl mx-auto grid gap-3"></div>
+  </section>
+  </main>
+
   <footer id="contacto" class="bg-esp text-[#F6EBDD]">
-    <div class="bg-gold text-esp text-center text-xs sm:text-sm font-semibold py-3 px-4">Mayoreo a partir de 5 kilos ·
+    <div class="bg-gold text-esp text-center text-xs sm:text-sm font-semibold py-3 px-4">Mayoreo a partir de 5 kilos de una misma calidad ·
       No incluye costo de envío · Consultar términos y condiciones</div>
     <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
       <div>
@@ -996,6 +1120,9 @@
   </div>
   <script>
     const WA = '529616037111', IG = 'https://www.instagram.com/cafemileniooficial';
+    // Número de pedidos: 52 + 10 dígitos. Si queda un marcador de posición, los botones de pedido NO abren WhatsApp y avisan.
+    const WA_OK = /^52\d{10}$/.test(WA) && !/(0000000|1234567|XXXX)/i.test(WA);
+    const waUrl = t => `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(t)}`;
     const E = { pin: '\u{1F4CC}', user: '\u{1F464}', loc: '\u{1F4CD}', truck: '\u{1F69A}', card: '\u{1F4B3}', box: '\u{1F4E6}', money: '\u{1F4B0}', shop: '\u{1F3EA}', who: '\u{1F64B}', receipt: '\u{1F9FE}' };
     const PRODS = [
       { id: 'europea', name: 'Calidad Europea', img: 'img/cafe-europeas.jpg', men: 300, may: 250, tueste: 'Medio (205° a 210°)', nivel: 3, notas: ['🍫 Cacao', '🌰 Nuez'], acidez: 'Pronunciada', dulzor: 'Medio', bag: '#17110F', label: '#D9A23F' },
@@ -1005,14 +1132,15 @@
     const HERO_IMG = 'img/cafes-inicio.jpg';
     const HERO_FIT = 'cover';
     const HERO_POS = 'center 35%'; // ajusta qué parte de la foto queda visible (ej. 'left center')
-    const GR = [['Grano entero', 'Grano', 'Para moler en casa'], ['Molido fino', 'Fino', 'Espresso / moka'], ['Molido medio', 'Medio', 'Cafetera de goteo'], ['Prensa francesa', 'Prensa', 'Molido grueso']];
-    const STEPS = [['<img src="img/cafe-cultivo.jpg"', 'Cultivo', 'Cafetales de altura'], ['<img src="img/cafe-cereza.jpg">', 'Cosecha', 'Cereza madura a mano'], ['<img src="img/cafe-secado.jpg">', 'Beneficio', 'Lavado y secado'], ['<img src="img/cafe-tostado.jpg">', 'Tostado', 'Tres perfiles de tueste'], ['<img src="img/cafe-paquete.jpg">', 'Molido y empaque', 'Listo para tu taza']];
-    const $ = s => document.querySelector(s), fmt = n => '$' + n.toLocaleString('es-MX', { maximumFractionDigits: 2 });
+    const GR = [['Grano entero', 'Grano entero', 'Para moler en casa'], ['Molido fino', 'Espresso', 'Fino · espresso / moka'], ['Molido medio', 'Filtro / Goteo', 'Medio · cafetera de goteo'], ['Prensa francesa', 'Prensa francesa', 'Grueso']];
+    const STEPS = [['img/cafe-cultivo.jpg', 'Cultivo', 'Cafetales de altura'], ['img/cafe-cereza.jpg', 'Cosecha', 'Cereza madura a mano'], ['img/cafe-secado.jpg', 'Beneficio', 'Lavado y secado'], ['img/cafe-tostado.jpg', 'Tostado', 'Tres perfiles de tueste'], ['img/cafe-paquete.jpg', 'Molido y empaque', 'Listo para tu taza']];
+    const $ = s => document.querySelector(s), fmt = n => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
     const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     let cart = {}, ui = {}, err = '', last = 0;
     const info = { nombre: '', destino: '', ent: 'envio', dir: '', pago: 'Efectivo', fecha: '', recoge: '', frecuencia: 'unica' };
     // Datos bancarios (opcional): si llenas clabe, aparecen en el carrito y en el mensaje de WhatsApp.
     const PAY = { banco: 'Banco', clabe: '00000000000', titular: '' };
+    const PAY_OK = /^\d{18}$/.test(String(PAY.clabe).replace(/\s/g, '')); // solo se muestra una CLABE real de 18 dígitos
     // Links de pago en línea (déjalos vacíos si no los usas): crea tu link en Mercado Pago, Clip o Stripe y pégalo aquí.
     // Link de cobro de Mercado Pago (Checkout Pro / enlace de pago). Pega aquí el tuyo; mientras diga "tu-link" el botón no se muestra a los clientes.
     const MP_LINK = 'https://mpago.la/tu-link';
@@ -1023,7 +1151,7 @@
     let curFolio = null, cloud = null;
     const PAYINFO = {
       Efectivo: ['💵', 'Pago en efectivo al momento de la entrega o al recoger en tienda física.'],
-      Transferencia: ['🏦', 'Pago por transferencia SPEI (BBVA / CLABE interbancaria). Los datos de cuenta y concepto se incluirán en tu comprobante de WhatsApp.'],
+      Transferencia: ['🏦', PAY_OK ? 'Pago por transferencia SPEI (BBVA / CLABE interbancaria). Los datos de cuenta y concepto se incluirán en tu comprobante de WhatsApp.' : 'Pago por transferencia SPEI. Te confirmamos los datos de cuenta por WhatsApp.'],
       Tarjeta: ['💳', MP_OK ? 'Paga con tarjeta de débito o crédito de forma segura en Mercado Pago. Después envía tu pedido por WhatsApp.' : 'Aceptamos tarjetas de débito y crédito (Visa, Mastercard).']
     };
     const FREQ = { '15': 'Cada 15 días', 'mes': 'Cada mes' };
@@ -1031,21 +1159,54 @@
     const STORE = 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370';
     const MAPS = 'https://maps.app.goo.gl/XzFvWwX7WY4Km17h6';
     let pending = null;
-    try { cart = JSON.parse(localStorage.getItem('milenio-cart') || '{}'); } catch (e) { cart = {}; }
-    PRODS.forEach(p => ui[p.id] = { g: 'Grano entero', kg: 1 });
+    PRODS.forEach(p => ui[p.id] = { g: 'Grano entero', kg: 1, pr: 1 });
     const save = () => { try { localStorage.setItem('milenio-cart', JSON.stringify(cart)); } catch (e) { } };
     const byId = id => PRODS.find(p => p.id === id);
-    const kgOf = id => Object.values(cart).filter(l => l.id === id).reduce((a, l) => a + l.kg, 0);
-    const unit = (p, kg) => kg >= 5 ? p.may : p.men;
-    const lines = () => Object.entries(cart).map(([k, l]) => { const p = byId(l.id); return { k, l, p, u: unit(p, kgOf(l.id)), sub: l.kg * unit(p, kgOf(l.id)) }; });
-    const total = () => lines().reduce((a, x) => a + x.sub, 0);
+    const kgOf = id => +Object.values(cart).filter(l => l.id === id).reduce((a, l) => a + l.kg, 0).toFixed(2);
+    // ===== Configuración de temporada y confianza =====
+    const THEME_MUERTOS = true; // false = quita papel picado, pétalos, brillos de ofrenda e iconos de Día de Muertos
+    try { localStorage.removeItem('milenio-cupon'); } catch (e) { } // limpia el cupón que haya guardado una versión anterior
+    const PRES = [[.25, '250 g'], [.5, '500 g'], [1, '1 kg']];
+    const fmtKg = k => k < 1 ? Math.round(k * 1000) + ' g' : (+(+k).toFixed(2)) + ' kg';
+    const TRUST = [['🚚', 'Envíos a todo México', 'Costo de envío confirmado por WhatsApp'], ['💬', 'Pedido por WhatsApp', 'Revisas tu comprobante antes de enviar'], ['🌱', 'Del productor chiapaneco', 'De Jaltenango a tu taza'], ['☕', 'Tostado y molido', 'En Jaltenango, Chiapas']];
+    // ===== POLÍTICA COMERCIAL: única fuente de verdad (tarjetas, carrito, comprobante y WhatsApp usan calc()) =====
+    const POLICY = {
+      wholesaleKg: 5, // kg de UNA misma calidad (suma de todos sus molidos y presentaciones) para activar su precio de mayoreo
+      maxKgLine: 100 // tope por producto en el carrito; pedidos mayores se tratan por WhatsApp
+    };
+    const WHOLE = POLICY.wholesaleKg;
+    const C = x => Math.round(x * 100), P = c => c / 100; // los importes se calculan en centavos enteros (sin errores de punto flotante)
+    const unit = (p, kg) => kg >= WHOLE ? p.may : p.men;
+    const ckey = (id, g, pr) => `${id}|${g}|${pr || 0}`;
+    const gl = g => (GR.find(x => x[0] === g) || [g, g])[1];
+    const gd = g => { const x = GR.find(y => y[0] === g); return x ? `${x[1]} (${x[2].toLowerCase()})` : g; };
+    const isBagged = l => l.pr && Math.abs(l.kg / l.pr - Math.round(l.kg / l.pr)) < 1e-9;
+    const bags = l => isBagged(l) ? `${Math.round(l.kg / l.pr)} × ${fmtKg(l.pr)}` : fmtKg(l.kg);
+    const qty = l => isBagged(l) ? `${bags(l)} (${fmtKg(l.kg)})` : fmtKg(l.kg);
+    function calc() {
+      const kgq = {}; Object.values(cart).forEach(l => { kgq[l.id] = (kgq[l.id] || 0) + l.kg; });
+      const L = Object.entries(cart).map(([k, l]) => { const p = byId(l.id), wh = kgq[l.id] >= WHOLE, u = wh ? p.may : p.men; return { k, l, p, wh, u, subC: C(l.kg * u), refC: C(l.kg * p.men) }; });
+      const sum = f => L.reduce((a, x) => a + f(x), 0), refC = sum(x => x.refC), subC = sum(x => x.subC);
+      return { L, kg: +sum(x => x.l.kg).toFixed(2), refC, wholeC: refC - subC, subC, totalC: subC };
+    }
+    const lines = () => calc().L.map(x => ({ ...x, sub: P(x.subC) }));
+    const total = () => P(calc().subC), totalFinal = () => P(calc().totalC);
+    // Carrito guardado: se valida todo (el localStorage puede tener datos viejos o editados)
+    try {
+      const raw = JSON.parse(localStorage.getItem('milenio-cart') || '{}'); cart = {};
+      Object.values(raw || {}).forEach(l => {
+        if (!l || !byId(l.id)) return; let kg = Math.round((+l.kg) * 4) / 4; if (!(kg > 0)) return;
+        const g = GR.some(x => x[0] === l.g) ? l.g : 'Grano entero', pr = PRES.some(x => x[0] === l.pr) ? l.pr : 0, k = ckey(l.id, g, pr);
+        cart[k] = { id: l.id, g, pr, kg: Math.min(POLICY.maxKgLine, (cart[k]?.kg || 0) + kg) };
+      });
+    } catch (e) { cart = {}; }
     const bagSvg = p => `<svg viewBox="0 0 120 150" class="w-full h-full drop-shadow-2xl" aria-hidden="true"><path d="M22 22h76l8 118H14z" fill="${p.bag}"/><path d="M22 22h76l-4 14H26z" fill="#0004"/><rect x="30" y="56" width="60" height="60" rx="4" fill="${p.label}"/><rect x="34" y="60" width="52" height="52" rx="2" fill="none" stroke="${p.bag}" stroke-width="1.5"/><ellipse cx="60" cy="82" rx="10" ry="14" fill="${p.bag}" transform="rotate(25 60 82)"/><path d="M53 92c7-5 11-12 14-18" stroke="${p.label}" stroke-width="2.4" fill="none"/></svg>`;
     const artImg = (p, cls) => `${bagSvg(p)}<img src="${p.img}" alt="Bolsa de café ${p.name}" loading="lazy" class="absolute inset-0 w-full h-full ${cls}" onerror="this.remove()">`;
 
     function renderStatic() {
       const hb = $('#heroBag'), fr = $('#heroFrame');
       if (hb) {
-        hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" class="absolute inset-0 w-full h-full object-${HERO_FIT}" style="object-position:${HERO_POS}">`;
+        hb.innerHTML = `<div class="absolute inset-0 grid place-items-center p-10 sm:p-14">${bagSvg(PRODS[0])}</div><img src="${HERO_IMG}" alt="Café Milenio: bolsas de café, taza y molino" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-${HERO_FIT}" style="object-position:${HERO_POS}">`;
         const him = hb.querySelector('img'), alt = [PRODS[0].img];
         him.onerror = () => { const n = alt.shift(); if (n) { him.src = n; him.className = him.className.replace(/object-\w+/, 'object-contain'); } else him.remove(); };
         him.onload = () => {
@@ -1055,104 +1216,114 @@
           if (fr) { fr.style.aspectRatio = r; fr.style.width = `min(100%, ${(r * 78).toFixed(2)}vh)`; }
         };
       }
-      const tiles = [['🌿', 'Cafetal', 'img/cafe_planta.jpg'], ['🍒', 'Cosecha', 'img/cafe-cosecha.jpg'], ['🔥', 'Tostado', 'img/cafe-tostado.jpg']];
-      if ($('#mosaic')) $('#mosaic').innerHTML = tiles.map(([e, t, src], i) => `<figure class="relative aspect-[3/5] overflow-hidden rounded-3xl grid place-items-center ${i === 1 ? 'mt-8' : ''}" style="background:linear-gradient(160deg,#3F7A2A,#24100B)"><span class="text-4xl" aria-hidden="true">${e}</span><img src="${src}" alt="${t}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"><figcaption class="absolute bottom-0 inset-x-0 p-2 text-center text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-t from-black/70 to-transparent">${t}</figcaption></figure>`).join('');
-      if ($('#steps')) $('#steps').innerHTML = STEPS.map(([e, t, d], i) => `<li class="rounded-3xl bg-surf border border-line p-4 text-center"><div class="text-3xl" aria-hidden="true">${e}</div><p class="text-xs text-goldt font-extrabold mt-1">PASO ${i + 1}</p><h3 class="font-extrabold uppercase text-sm">${t}</h3><p class="text-xs text-mute mt-1">${d}</p></li>`).join('');
-      const wa = `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent('Hola, quiero información sobre el café de Café Milenio')}`;
+      const tiles = [['🌿', 'Cafetal', 'img/cafe_planta.jpg', 'Cafetal con cerezas de café'], ['🍒', 'Cosecha', 'img/cafe-cosecha.jpg', 'Granos de café en una mano'], ['🔥', 'Tostado', 'img/cafe-tostado.jpg', 'Tostadora con granos de café']];
+      if ($('#mosaic')) $('#mosaic').innerHTML = tiles.map(([e, t, src, alt], i) => `<figure class="relative aspect-[3/5] overflow-hidden rounded-3xl grid place-items-center ${i === 1 ? 'mt-6 sm:mt-8' : ''}" style="background:linear-gradient(160deg,#3F7A2A,#24100B)"><span class="text-4xl" aria-hidden="true">${e}</span><img src="${src}" alt="${alt}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"><figcaption class="absolute bottom-0 inset-x-0 p-2 text-center text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-t from-black/70 to-transparent">${t}</figcaption></figure>`).join('');
+      if ($('#steps')) $('#steps').innerHTML = STEPS.map(([src, t, d], i) => `<li class="rounded-3xl bg-surf border border-line p-3 text-center"><div class="relative aspect-square overflow-hidden rounded-2xl grid place-items-center" style="background:linear-gradient(160deg,#3F7A2A,#24100B)"><span class="text-3xl" aria-hidden="true">☕</span><img src="${src}" alt="${t}: ${d}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"></div><p class="text-xs text-goldt font-extrabold mt-2">PASO ${i + 1}</p><h3 class="font-extrabold uppercase text-sm">${t}</h3><p class="text-xs text-mute mt-1">${d}</p></li>`).join('');
+      const wa = waUrl('Hola, quiero información sobre el café de Café Milenio');
       if ($('#heroWa')) { $('#heroWa').href = wa; $('#heroWa').target = '_blank'; }
-      if ($('#footWa')) { $('#footWa').href = wa; $('#footWa').target = '_blank'; }
+      if ($('#footWa')) { if (WA_OK) { $('#footWa').href = wa; $('#footWa').target = '_blank'; } else $('#footWa').remove(); }
       if ($('#yr')) $('#yr').textContent = new Date().getFullYear();
     }
     function renderGrid() {
-      if (!$('#grid')) return;
-      $('#grid').innerHTML = PRODS.map(p => {
-        const s = ui[p.id], tot = kgOf(p.id) + 0, kgEff = tot + s.kg, may = kgEff >= 5, u = unit(p, kgEff), d = p.men - p.may;
-        const tn = p.tueste.split('(')[0].trim(), seg = [1, 2, 3, 4, 5].map(n => `<i class="${n <= p.nivel ? 'on' : ''}"></i>`).join('');
-        return `<article class="rounded-3xl bg-surf/90 border border-line shadow-[0_20px_50px_-20px_rgba(36,16,11,.45)] overflow-hidden flex flex-col">
-    <div class="relative aspect-[4/5] grid place-items-center p-10" style="background:linear-gradient(180deg,#F3EFE9 0%,#D9CFC2 70%,#C9BBA8 100%)"><div class="relative w-3/5 aspect-[4/5]">${bagSvg(p)}</div><img src="${p.img}" alt="Bolsa de café ${p.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
-      <div class="absolute top-3 left-3 right-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-extrabold uppercase bg-gold text-esp rounded-full px-3 py-1 shadow">100% Arábiga</span><span class="text-[11px] font-bold bg-esp/85 text-[#F6EBDD] rounded-full px-3 py-1 backdrop-blur">🇲🇽 Hecho en México</span></div></div>
-    <div class="p-5 flex flex-col gap-4 grow">
-      <div class="flex justify-between items-start gap-3"><div class="min-w-0"><h3 class="font-head font-extrabold text-2xl leading-tight">${p.name}</h3><p class="text-xs text-mute mt-1">📍 Jaltenango, Chiapas</p></div><div class="text-right shrink-0"><p class="font-extrabold text-3xl text-goldt leading-none">${fmt(u)}</p><p class="text-xs text-mute mt-1">por kg${may ? ' · mayoreo' : ''}</p></div></div>
-      <p class="text-xs text-mute -mt-2">Menudeo <b class="text-ink">${fmt(p.men)}</b> · Mayoreo 5 kg+ <b class="text-ink">${fmt(p.may)}</b></p>
-      <div class="flex flex-wrap gap-1.5">${p.notas.map(n => `<span class="text-xs font-semibold rounded-full px-3 py-1 bg-gold/15 text-ink">${n}</span>`).join('')}</div>
-      <div class="rounded-2xl bg-esp text-[#F6EBDD] p-3.5"><div class="flex justify-between items-center text-sm"><b>🔥 Tueste ${tn}</b><span class="text-[11px] text-[#E6D6C6]">Nivel ${p.nivel}/5</span></div><div class="seg mt-2" role="img" aria-label="Nivel de tueste ${p.nivel} de 5">${seg}</div>
+      const g = $('#grid'); if (!g) return;
+      g.innerHTML = PRODS.map(p => {
+        const s = ui[p.id], inCart = kgOf(p.id), kgEff = +(inCart + s.kg).toFixed(2), may = kgEff >= WHOLE, u = unit(p, kgEff), d = p.men - p.may, left = +(WHOLE - kgEff).toFixed(2);
+        const tn = p.tueste.split('(')[0].trim(), tmp = (p.tueste.match(/\((.*?)\)/) || [])[1] || '', seg = [1, 2, 3, 4, 5].map(n => `<i class="${n <= p.nivel ? 'on' : ''}"></i>`).join('');
+        return `<article id="card-${p.id}" class="pcard rounded-3xl bg-surf/90 border border-line shadow-[0_20px_50px_-20px_rgba(36,16,11,.45)] overflow-hidden flex flex-col" aria-labelledby="pt-${p.id}">
+    <div class="top">
+      <div class="tile"><div class="relative w-3/5 aspect-[4/5]">${bagSvg(p)}</div><img src="${p.img}" alt="Bolsa de café ${p.name}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
+        <div class="absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 flex flex-wrap gap-1.5"><span class="text-xs font-extrabold uppercase bg-gold text-esp rounded-full px-2.5 py-1 shadow">100% Arábiga</span><span class="hidden sm:inline text-xs font-bold bg-esp/85 text-[#F6EBDD] rounded-full px-3 py-1 backdrop-blur">🇲🇽 Hecho en México</span></div></div>
+      <div class="tl"><div class="min-w-0"><h3 id="pt-${p.id}" class="font-head font-extrabold text-xl xl:text-2xl leading-tight">${p.name}</h3><p class="text-xs text-mute mt-1">Café de altura · Chiapas</p></div><div class="shrink-0 md:text-right"><p class="font-extrabold text-2xl xl:text-3xl text-goldt leading-none">${fmt(u)}</p><p class="text-xs text-mute mt-1">por kg${may ? ' · mayoreo' : ''}</p></div></div>
+    </div>
+    <div class="px-4 pb-4 pt-1 sm:px-5 sm:pb-5 flex flex-col gap-4 grow">
+      <p class="text-xs text-mute">Menudeo <b class="text-ink">${fmt(p.men)}</b> · Mayoreo ${WHOLE} kg+ <b class="text-ink">${fmt(p.may)}</b></p>
+      <div class="flex flex-wrap gap-1.5" aria-label="Etiquetas del café"><span class="tag r">🔥 Tueste ${tn}</span><span class="tag o">📍 Origen: Jaltenango, Chiapas</span><span class="tag">⛰️ 900+ msnm</span></div>
+      <div><p class="text-xs font-bold text-mute mb-1.5">NOTAS DE CATA</p><div class="flex flex-wrap gap-1.5">${p.notas.map(n => `<span class="text-xs font-semibold rounded-full px-3 py-1 bg-gold/15 text-ink">${n}</span>`).join('')}</div></div>
+      <div class="rounded-2xl bg-esp text-[#F6EBDD] p-3.5"><div class="flex justify-between items-center text-sm gap-2"><b>Intensidad de tueste</b><span class="text-xs text-[#E6D6C6] text-right">Nivel ${p.nivel}/5${tmp ? ' · ' + tmp : ''}</span></div><div class="seg mt-2" role="img" aria-label="Nivel de tueste ${p.nivel} de 5">${seg}</div>
         <div class="grid grid-cols-2 gap-2 mt-3 text-xs"><p class="text-[#E6D6C6]">Acidez<br><b class="text-[#F6EBDD] text-sm">${p.acidez}</b></p><p class="text-[#E6D6C6]">Dulzor<br><b class="text-[#F6EBDD] text-sm">${p.dulzor}</b></p></div></div>
-      <div><p class="text-xs font-bold text-mute mb-1.5">MOLIDO</p><div class="grid grid-cols-2 gap-2" role="group" aria-label="Tipo de molido">${GR.map(([n, sh, ds]) => `<button class="gopt pill" aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}"><b>${sh}</b><span>${ds}</span></button>`).join('')}</div></div>
-      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}"><p class="text-sm font-bold">${may ? '✓ Precio de mayoreo aplicado' : `Faltan ${+(5 - kgEff).toFixed(1)} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg` : `Ahorra ${fmt(d)} por kg al llegar a 5 kg (${fmt(p.men)} → ${fmt(p.may)})`}</p><div class="vbar mt-2"><i style="width:${Math.min(100, kgEff / 5 * 100)}%"></i></div></div>
-      <div class="flex items-center gap-2 mt-auto"><button class="q" data-act="kdec" data-id="${p.id}" aria-label="Menos café">−</button><span class="w-14 text-center font-extrabold">${s.kg} kg</span><button class="q" data-act="kinc" data-id="${p.id}" aria-label="Más café">+</button><span class="ml-auto text-right"><span class="block text-[10px] text-mute uppercase">Subtotal</span><span class="font-extrabold text-lg">${fmt(s.kg * u)}</span></span></div>
-      <button class="btn btn-gold w-full" data-act="add" data-id="${p.id}">🛒 Agregar al Carrito</button>
+      <div><p class="text-xs font-bold text-mute mb-1.5" id="pr-${p.id}">PRESENTACIÓN</p><div class="grid grid-cols-3 gap-2" role="group" aria-labelledby="pr-${p.id}">${PRES.map(([v, t]) => `<button type="button" class="gopt pill" aria-pressed="${s.pr === v}" data-act="pres" data-id="${p.id}" data-v="${v}"><b>${t}</b></button>`).join('')}</div></div>
+      <div><p class="text-xs font-bold text-mute mb-1.5" id="gr-${p.id}">MOLIDO</p><div class="grid grid-cols-2 gap-2" role="group" aria-labelledby="gr-${p.id}">${GR.map(([n, sh, ds]) => `<button type="button" class="gopt pill" aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}"><b>${sh}</b><span>${ds}</span></button>`).join('')}</div></div>
+      <div class="rounded-2xl p-3 border ${may ? 'border-leaf' : 'border-dashed border-gold'}" role="status"><p class="text-sm font-bold">${may ? `✓ Precio de mayoreo aplicado (${fmt(p.may)}/kg)` : `Faltan ${left} kg para mayoreo`}</p><p class="text-xs text-mute">${may ? `Ahorras ${fmt(d)} por kg en esta calidad.${inCart && inCart < WHOLE ? ` Al agregar, también tus ${fmtKg(inCart)} del carrito pasan a mayoreo.` : ''}` : `Con ${WHOLE} kg de esta calidad (todos los molidos suman) pagas ${fmt(p.may)}/kg en lugar de ${fmt(p.men)}/kg: ahorras ${fmt(d)} por kg.`}${inCart ? ` Ya tienes ${fmtKg(inCart)} en el carrito.` : ''}</p><div class="vbar mt-2" aria-hidden="true"><i style="width:${Math.min(100, kgEff / WHOLE * 100)}%"></i></div></div>
+      <div class="flex items-center gap-2 mt-auto"><button type="button" class="q" data-act="kdec" data-id="${p.id}" aria-label="Quitar ${fmtKg(s.pr)}">−</button><span class="min-w-[5.5rem] text-center leading-tight"><b class="block">${bags({ kg: s.kg, pr: s.pr })}</b><span class="text-xs text-mute">${fmtKg(s.kg)}</span></span><button type="button" class="q" data-act="kinc" data-id="${p.id}" aria-label="Agregar ${fmtKg(s.pr)}">+</button><span class="ml-auto text-right"><span class="block text-xs text-mute uppercase">Subtotal</span><span class="font-extrabold text-lg">${fmt(P(C(s.kg * u)))}</span></span></div>
+      <button type="button" class="btn btn-gold cta w-full" data-act="add" data-id="${p.id}"><span aria-hidden="true">🛒</span> Agregar al Carrito</button>
     </div></article>`;
       }).join('');
     }
-    const WHOLE = 5;
-    function wholesaleBar() {
-      const best = PRODS.map(p => ({ p, kg: kgOf(p.id) })).sort((a, b) => b.kg - a.kg)[0], kg = best.kg, ok = kg >= WHOLE, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(1);
-      const saved = lines().reduce((a, x) => a + (kgOf(x.l.id) >= WHOLE ? (x.p.men - x.p.may) * x.l.kg : 0), 0), would = (best.p.men - best.p.may) * WHOLE;
-      const near = !ok && pct >= 60;
-      const marks = `<div class="relative h-4 mt-1 text-[10px] text-mute" aria-hidden="true"><span class="absolute left-0">0 kg</span><span class="absolute left-1/2 -translate-x-1/2">2.5</span><span class="absolute right-0 font-bold ${ok ? 'text-leaf' : 'text-goldt'}">5 kg · Mayoreo</span></div>`;
-      return `<div class="wbox${ok ? ' ok' : ''}${near ? ' near' : ''} rounded-2xl border ${ok ? 'border-leaf' : 'border-gold/60'} bg-surf p-3.5 mt-4" role="status">
-  <div class="flex items-center gap-2.5"><span class="wico" aria-hidden="true">${ok ? '🎉' : '🏷️'}</span><p class="text-sm leading-snug ${ok ? 'font-bold text-leaf' : ''}">${ok ? '¡Felicidades! Desbloqueaste tarifa de Mayoreo en tu pedido.' : `¡Estás a solo <b>${left} kg</b> de desbloquear precio de Mayoreo y ahorrar en tu compra!`}</p></div>
-  <div class="wbar mt-3${ok ? ' ok' : ''}" role="progressbar" aria-label="Avance hacia mayoreo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>${marks}
-  ${ok ? `<p class="text-xs mt-2 font-semibold text-leaf">Ahorro aplicado: ${fmt(saved)} MXN</p>` : `<div class="flex items-center justify-between gap-2 mt-2"><p class="text-xs text-mute">Ahorrarías ${fmt(would)} en 5 kg de ${best.p.name.replace('Calidad ', '')}</p><button class="text-xs font-extrabold rounded-full px-3 min-h-[2.5rem] bg-gold text-esp whitespace-nowrap" data-act="wfill" data-id="${best.p.id}">+${left} kg</button></div>`}</div>`;
+    // Barra de avance a mayoreo (por calidad: es la regla real) con el ahorro real calculado por calc()
+    function wholesaleBar(c) {
+      const inCart = PRODS.map(p => ({ p, kg: kgOf(p.id) })).filter(x => x.kg > 0), got = inCart.filter(x => x.kg >= WHOLE), prog = inCart.filter(x => x.kg < WHOLE).sort((a, b) => b.kg - a.kg)[0];
+      const nm = a => a.map(x => x.p.name.replace('Calidad ', '')).join(' y '), saved = c.wholeC ? `Ahorro por mayoreo aplicado: ${fmt(P(c.wholeC))} MXN` : '';
+      if (!prog) return `<div class="wbox ok rounded-2xl border border-leaf bg-surf p-3.5 mt-4" role="status"><div class="flex items-center gap-2.5"><span class="wico" aria-hidden="true">🎉</span><p class="text-sm leading-snug font-bold text-leaf">¡Mayoreo desbloqueado en ${nm(got)}!</p></div><div class="wbar ok mt-3" role="progressbar" aria-label="Mayoreo desbloqueado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i style="width:100%"></i></div><p class="text-xs mt-2 font-semibold text-leaf">${saved}</p></div>`;
+      const kg = prog.kg, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(2), would = (prog.p.men - prog.p.may) * WHOLE, near = pct >= 60;
+      return `<div class="wbox${near ? ' near' : ''} rounded-2xl border border-gold/60 bg-surf p-3.5 mt-4" role="status">
+  <div class="flex items-center gap-2.5"><span class="wico" aria-hidden="true">🏷️</span><p class="text-sm leading-snug">Estás a solo <b>${left} kg</b> de desbloquear mayoreo en Café ${prog.p.name.replace('Calidad ', '')}.</p></div>
+  <div class="wbar mt-3" role="progressbar" aria-label="Avance hacia mayoreo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>
+  <div class="relative h-4 mt-1 text-xs text-mute" aria-hidden="true"><span class="absolute left-0">0 kg</span><span class="absolute right-0 font-bold text-goldt">${WHOLE} kg · Mayoreo</span></div>
+  ${got.length ? `<p class="text-xs mt-1 font-semibold text-leaf">✓ Mayoreo ya aplicado en ${nm(got)}. ${saved}</p>` : ''}
+  <div class="flex items-center justify-between gap-2 mt-2"><p class="text-xs text-mute">Ahorrarías ${fmt(would)} en ${WHOLE} kg de ${prog.p.name.replace('Calidad ', '')} (suma todos sus molidos).</p><button type="button" class="text-xs font-extrabold rounded-full px-3 min-h-[2.75rem] bg-gold text-esp whitespace-nowrap" data-act="wfill" data-id="${prog.p.id}">+${left} kg</button></div></div>`;
     }
 
-    //Pago con mercado pago: si no hay link, no se muestra el botón. Si hay link pero contiene "tu-link", tampoco se muestra.
+    // Pago con Mercado Pago: si no hay link real (o contiene "tu-link"), el botón no se muestra a los clientes.
     function payBox() {
       const [ic, tx] = PAYINFO[info.pago] || PAYINFO.Efectivo, tr = info.pago === 'Transferencia', tj = info.pago === 'Tarjeta';
-      const btn = 'mt-2 text-xs font-extrabold rounded-full px-3 min-h-[2.5rem] bg-gold text-esp';
+      const btn = 'mt-2 text-xs font-extrabold rounded-full px-3 min-h-[2.75rem] bg-gold text-esp';
       return `<div class="pbox" role="status"><p class="text-sm"><span aria-hidden="true">${ic}</span> ${tx}</p>
-  ${tr ? `<div class="mt-2 rounded-xl bg-surf border border-line p-2.5 text-sm"><p><b>${esc(PAY.banco)}</b>${PAY.titular ? ' · ' + esc(PAY.titular) : ''}</p>${PAY.clabe ? `<p class="font-mono break-all mt-0.5">CLABE: ${esc(PAY.clabe)}</p><button class="${btn}" data-act="copyclabe">📋 Copiar CLABE</button>` : ''}
-  <p class="mt-2 text-xs text-mute">Concepto de la transferencia:</p><p id="pconcept" class="font-mono font-bold break-all">${esc(concepto())}</p><button class="${btn}" data-act="copyconcept">📋 Copiar Concepto</button></div>` : ''}
-  ${tj && MP_OK ? `<button class="btn btn-gold w-full mt-3" data-act="mp">💳 Pagar con Mercado Pago</button><p class="text-[11px] text-mute mt-1">Se abre el sitio seguro de Mercado Pago y se registra tu pedido.</p>` : ''}
-  ${tj && !MP_OK && DEV ? `<p class="mt-2 text-[11px] rounded-lg border border-dashed border-gold p-2">"Pagar con Mercado Pago".</p>` : ''}</div>`;  //Solo visible en pruebas: pega tu link real en <b>MP_LINK</b> para mostrar el botón--
+  ${tr ? `<div class="mt-2 rounded-xl bg-surf border border-line p-2.5 text-sm">${PAY_OK ? `<p><b>${esc(PAY.banco)}</b>${PAY.titular ? ' · ' + esc(PAY.titular) : ''}</p><p class="font-mono break-all mt-0.5">CLABE: ${esc(PAY.clabe)}</p><button type="button" class="${btn}" data-act="copyclabe">📋 Copiar CLABE</button>` : `<p class="text-xs text-mute">Los datos de cuenta se confirman por WhatsApp.</p>${DEV ? '<p class="mt-1 text-xs rounded-lg border border-dashed border-gold p-2">Solo visible en pruebas: pon tu CLABE real (18 dígitos) en <b>PAY</b> para mostrarla.</p>' : ''}`}
+  <p class="mt-2 text-xs text-mute">Concepto de la transferencia:</p><p id="pconcept" class="font-mono font-bold break-all">${esc(concepto())}</p><button type="button" class="${btn}" data-act="copyconcept">📋 Copiar Concepto</button></div>` : ''}
+  ${tj && MP_OK ? `<button type="button" class="btn btn-gold w-full mt-3" data-act="mp">💳 Pagar con Mercado Pago</button><p class="text-xs text-mute mt-1">Se abre Mercado Pago y se registra tu pedido.</p>` : ''}
+  ${tj && !MP_OK && DEV ? `<p class="mt-2 text-xs rounded-lg border border-dashed border-gold p-2">Solo visible en pruebas: pega tu link real en <b>MP_LINK</b> para mostrar "Pagar con Mercado Pago".</p>` : ''}</div>`;
     }
-    function wholesaleMini() {
-      const best = Math.max(0, ...PRODS.map(p => kgOf(p.id))), ok = best >= WHOLE, left = +(WHOLE - best).toFixed(1);
-      return `<div class="wmini${ok ? ' ok' : ''}" aria-hidden="true"><div class="wbar"><i style="width:${Math.min(100, best / WHOLE * 100)}%"></i></div><span>${ok ? '✓ Mayoreo activo' : `Faltan ${left} kg para mayoreo`}</span></div>`;
+    // Resumen: Subtotal (precio menudeo) − mayoreo = total; el envío NO se calcula aquí
+    function sumBox(c) {
+      const r = (l, v, cls = '') => `<div class="sumrow ${cls}"><span>${l}</span><span>${v}</span></div>`;
+      return `<section class="cstep" aria-label="Resumen del pedido"><h3 class="font-extrabold uppercase text-xs tracking-wider text-goldt">Resumen del pedido</h3><div class="mt-2">
+    ${r('Subtotal productos <span class="text-xs text-mute">(precio menudeo)</span>', fmt(P(c.refC)))}
+    ${c.wholeC ? r('Descuento de mayoreo', '−' + fmt(P(c.wholeC)), 'neg') : r('Descuento de mayoreo', '$0 · aún no aplica', 'mute')}
+    ${r('Envío', 'Por confirmar', 'mute')}
+    ${r('Total estimado <span class="text-xs font-semibold">(sin envío)</span>', fmt(P(c.totalC)) + ' MXN', 'big')}</div>
+    <p class="text-xs text-mute mt-2">El costo de envío se confirma por WhatsApp. Enviar el pedido es una solicitud: no es un pago ni una confirmación definitiva hasta que Café Milenio te responda.</p></section>`;
     }
     function renderCart() {
       if (!$('#pn')) return;
-      const L = lines(), n = L.length, c = $('#count');
-      if (c) {
-        c.textContent = n; c.classList.toggle('zero', !n); if (n !== last && n) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } last = n;
+      const c = calc(), L = c.L, n = L.length, cnt = $('#count');
+      if (cnt) {
+        cnt.textContent = n; cnt.classList.toggle('zero', !n); if (n !== last && n) { cnt.classList.remove('bump'); void cnt.offsetWidth; cnt.classList.add('bump'); } last = n;
       }
-      const opt = (arr, act, cur) => arr.map(([v, t]) => `<button class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('');
+      const cb = $('#cartBtn'); if (cb) cb.setAttribute('aria-label', n ? `Abrir carrito, ${n} producto${n > 1 ? 's' : ''}` : 'Abrir carrito');
+      const opt = (arr, act, cur) => arr.map(([v, t]) => `<button type="button" class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('');
       const step = (n, t) => `<h3 class="flex items-center gap-2 font-extrabold uppercase text-xs tracking-wider text-goldt"><span class="cnum">${n}</span>${t}</h3>`;
-      const FQ = [['unica', 'Compra única', 'Sin recordatorios'], ['15', 'Cada 15 días', 'Te recordamos reordenar'], ['mes', 'Cada mes', 'Te recordamos reordenar']];
-      const tkg = L.reduce((a, x) => a + x.l.kg, 0);
-      $('#pn').innerHTML = `<div class="flex justify-between items-center mb-3"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">Tu carrito${n ? ` <span class="text-sm font-semibold text-mute normal-case">· ${tkg} kg</span>` : ''}</h2><button class="q" data-act="close" aria-label="Cerrar carrito">✕</button></div>` + (n ? `
-  <ul class="divide-y divide-line">${L.map(x => `<li class="py-3 flex gap-3"><div class="w-12 h-14 shrink-0 rounded-xl bg-surf border border-line p-1" aria-hidden="true">${bagSvg(x.p)}</div><div class="min-w-0 grow"><div class="flex justify-between items-start gap-2"><p class="font-bold leading-tight">Café ${x.p.name.replace('Calidad ', '')}</p><p class="font-extrabold">${fmt(x.sub)}</p></div>
-    <p class="text-xs text-mute mt-1 flex flex-wrap items-center gap-x-2 gap-y-1"><span class="rounded-full px-2 py-0.5 bg-gold/15 text-ink font-semibold">${x.l.g}</span><span>${fmt(x.u)}/kg</span><span class="font-bold ${kgOf(x.l.id) >= 5 ? 'text-leaf' : 'text-goldt'}">${kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo'}</span></p>
-    <div class="mt-2 flex items-center gap-1.5"><button class="q cq" data-act="cdec" data-k="${x.k}" aria-label="Quitar medio kilo">−</button><span class="w-14 text-center font-extrabold text-sm">${x.l.kg} kg</span><button class="q cq" data-act="cinc" data-k="${x.k}" aria-label="Agregar medio kilo">+</button><button class="ml-auto text-xs underline text-mute min-h-[2.75rem] px-1" data-act="del" data-k="${x.k}" aria-label="Quitar ${x.p.name} del carrito">🗑 Quitar</button></div></div></li>`).join('')}</ul>
-  ${wholesaleBar()}
-  <div class="cform pb-36">
+      const FQ = [['unica', 'Compra única', 'Sin recordatorios'], ['15', 'Cada 15 días', 'Te escribimos por WhatsApp para reordenar'], ['mes', 'Cada mes', 'Te escribimos por WhatsApp para reordenar']];
+      $('#pn').innerHTML = `<div class="cap flex justify-between items-center gap-3"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">Tu carrito${n ? ` <span class="text-sm font-semibold text-mute normal-case">· ${fmtKg(c.kg)}</span>` : ''}</h2><button type="button" class="q" data-act="close" aria-label="Cerrar carrito">✕</button></div>` + (n ? `
+  <ul class="divide-y divide-line" aria-label="Productos en el carrito">${L.map(x => `<li class="py-3 flex gap-3"><div class="w-12 h-14 shrink-0 rounded-xl bg-surf border border-line p-1" aria-hidden="true">${bagSvg(x.p)}</div><div class="min-w-0 grow"><div class="flex justify-between items-start gap-2"><p class="font-bold leading-tight">Café ${x.p.name.replace('Calidad ', '')}</p><p class="font-extrabold">${fmt(P(x.subC))}</p></div>
+    <p class="text-xs text-mute mt-1 flex flex-wrap items-center gap-x-2 gap-y-1"><span class="rounded-full px-2 py-0.5 bg-gold/15 text-ink font-semibold">${gl(x.l.g)}</span><span>${x.wh ? `<s>${fmt(x.p.men)}</s> ` : ''}${fmt(x.u)}/kg</span><span class="font-bold ${x.wh ? 'text-leaf' : 'text-goldt'}">${x.wh ? 'Mayoreo' : 'Menudeo'}</span></p>
+    <div class="mt-2 flex items-center gap-1.5"><button type="button" class="q cq" data-act="cdec" data-k="${x.k}" aria-label="Quitar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">−</button><span class="min-w-[5rem] text-center leading-tight"><b class="block text-sm">${bags(x.l)}</b>${isBagged(x.l) ? `<span class="text-xs text-mute">${fmtKg(x.l.kg)}</span>` : ''}</span><button type="button" class="q cq" data-act="cinc" data-k="${x.k}" aria-label="Agregar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">+</button><button type="button" class="ml-auto text-xs underline text-mute min-h-[2.75rem] px-1" data-act="del" data-k="${x.k}" aria-label="Quitar ${x.p.name}, ${gl(x.l.g)}, del carrito"><span aria-hidden="true">🗑</span> Quitar</button></div></div></li>`).join('')}</ul>
+  ${wholesaleBar(c)}
+  <div class="cform">
+  ${sumBox(c)}
   <section class="cstep">${step(1, 'Tus datos')}
     <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-nombre">Nombre *</label><input id="i-nombre" class="in" data-f="nombre" autocomplete="name" value="${esc(info.nombre)}"></section>
   <section class="cstep">${step(2, 'Método de entrega')}
     <div class="grid grid-cols-2 gap-2 mt-3">${opt([['envio', '🚚 Envío a domicilio'], ['recoger', '🏪 Recoger en tienda']], 'ent', info.ent)}</div>
     ${info.ent === 'envio' ? `<label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-destino">Municipio / Estado de destino *</label><input id="i-destino" class="in" data-f="destino" placeholder="Ej. Tuxtla Gutiérrez, Chiapas" value="${esc(info.destino)}">
     <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-dir">Dirección de entrega *</label><input id="i-dir" class="in" data-f="dir" autocomplete="street-address" placeholder="Calle, número, colonia, C.P." value="${esc(info.dir)}">`
-          : `<div class="rounded-2xl border border-line bg-bg p-3 mt-3 text-sm"><p class="font-bold">🏪 Recoge en nuestra tienda</p><p class="text-mute">${STORE}</p><a class="underline text-goldt font-semibold" href="${MAPS}" target="_blank" rel="noopener">Ver en el mapa</a>
+          : `<div class="rounded-2xl border border-line bg-bg p-3 mt-3 text-sm"><p class="font-bold">🏪 Recoge en nuestra tienda</p><p class="text-mute">${STORE}</p><a class="underline text-goldt font-semibold inline-flex items-center min-h-[2.75rem]" href="${MAPS}" target="_blank" rel="noopener">Ver en el mapa</a>
       <div class="mt-3 pt-3 border-t border-line"><p class="font-bold">🕒 Horario de atención</p><p class="text-mute">Lunes a Sábado: 7:00 a. m. – 6:00 p. m.</p><p class="text-mute">Domingo: <b class="text-cherry">CERRADO</b></p></div></div>
     <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-fecha">Fecha y hora estimada de recolección *</label><input id="i-fecha" type="datetime-local" class="in" data-f="fecha" min="${new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16)}" value="${esc(info.fecha)}">
     <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-recoge">¿Quién recoge? (opcional)</label><input id="i-recoge" class="in" data-f="recoge" placeholder="Solo si es otra persona" value="${esc(info.recoge)}">`}</section>
   <section class="cstep">${step(3, 'Forma de pago estimada')}
     <div class="grid grid-cols-3 gap-2 mt-3">${opt([['Efectivo', '💵 Efectivo'], ['Transferencia', '🏦 Transf.'], ['Tarjeta', '💳 Tarjeta']], 'pago', info.pago)}</div>${payBox()}</section>
   <section class="cstep">${step(4, 'Recompra (opcional)')}
-    <p class="text-xs text-mute mt-2">¿Con qué frecuencia compras café?</p><div class="grid gap-2 mt-2">${FQ.map(([v, t, d]) => `<button class="gopt" aria-pressed="${info.frecuencia === v}" data-act="freq" data-v="${v}"><b>${v === 'unica' ? '' : '🔄 '}${t}</b><span>${d}</span></button>`).join('')}</div></section>
+    <p class="text-xs text-mute mt-2">¿Con qué frecuencia compras café?</p><div class="grid gap-2 mt-2">${FQ.map(([v, t, d]) => `<button type="button" class="gopt" aria-pressed="${info.frecuencia === v}" data-act="freq" data-v="${v}"><b>${v === 'unica' ? '' : '🔄 '}${t}</b><span>${d}</span></button>`).join('')}</div></section>
+  <ul class="mt-4 grid gap-1 text-xs text-mute"><li>🧾 Revisas tu comprobante antes de enviar.</li><li>💬 Tu pedido se confirma por WhatsApp con Café Milenio.</li><li>💵 Al enviar el pedido no se cobra nada.</li><li>📦 Envíos a todo México. Mayoreo desde ${WHOLE} kg por calidad.</li></ul>
   </div>
   <div class="csend bg-[#180A07] border-t-2 border-gold/50 shadow-[0_-15px_30px_rgba(0,0,0,0.7)]">
     ${err ? `<p role="alert" class="mb-2 text-sm font-bold text-cherry">${err}</p>` : ''}
-    ${wholesaleMini()}
-    <div class="flex justify-between items-baseline"><span class="font-bold text-sm">Total estimado</span><span class="text-2xl font-extrabold">${fmt(total())} <span class="text-xs font-bold text-mute">MXN</span></span></div>
-    <button class="btn btn-gold w-full mt-2" data-act="send">Revisar y enviar por WhatsApp</button>
-    <p class="mt-2 text-center text-xs font-bold text-leaf">🔒 Compra 100% segura por WhatsApp</p>
-    <ul class="mt-2 grid grid-cols-3 gap-1 text-[10px] leading-tight text-mute text-center"><li>🧾<br>Revisas tu comprobante antes de enviar</li><li>🔒<br>Sin pago en línea</li><li>📦<br>Envíos a todo México</li></ul>
-    <p class="text-[11px] text-mute mt-2 text-center">Mayoreo desde 5 kg por calidad. El costo de envío se confirma por WhatsApp.</p>
+    <div class="flex items-end justify-between gap-3"><div><p class="text-xs text-mute leading-tight">Total estimado · sin envío${c.wholeC ? ` · ahorras ${fmt(P(c.wholeC))}` : ''}</p><p class="text-2xl font-extrabold leading-tight">${fmt(P(c.totalC))} <span class="text-xs font-bold text-mute">MXN</span></p></div></div>
+    <button type="button" class="btn btn-gold w-full mt-2" data-act="send">Revisar y enviar por WhatsApp</button>
   </div>`
-        : `<p class="text-mute">Tu carrito está vacío. Elige una calidad en la tienda y agrégala.</p><a href="#tienda" class="btn btn-gold mt-5" data-act="close">Ir a la tienda</a>`);
+        : `<div class="text-center py-10"><p class="text-5xl" aria-hidden="true">🛒</p><p class="mt-3 font-bold">Tu carrito está vacío</p><p class="text-mute text-sm mt-1">Elige una calidad, su presentación y molido, y agrégala.</p><a href="#tienda" class="btn btn-gold mt-5" data-act="close">Ir a la tienda</a></div>`);
     }
-    const QM = [['espresso', '☕ Espresso / Moka'], ['goteo', '💧 Cafetera de goteo'], ['prensa', '🫖 Prensa Francesa'], ['olla', '🍯 Café de Olla']];
+        const QM = [['espresso', '☕ Espresso / Moka'], ['goteo', '💧 Cafetera de goteo'], ['prensa', '🫖 Prensa Francesa'], ['olla', '🍯 Café de Olla']];
     const QP = [['balance', '🍫 Balanceado con notas a chocolate y cacao'], ['intenso', '🔥 Intenso y tostado'], ['ligero', '🌿 Opciones ligeras con baja cafeína']];
     function quizResult() {
       const { m, p } = quiz; let id = 'europea', g = 'Molido medio';
@@ -1165,21 +1336,22 @@
     }
     function renderQuiz() {
       const q = $('#qzd'); if (!q) return; const step = !quiz.m ? 1 : !quiz.p ? 2 : 3;
-      const dots = `<div class="qzdots" aria-hidden="true">${[1, 2, 3].map(n => `<i class="${n <= step ? 'on' : ''}"></i>`).join('')}</div>`;
-      const x = `<button class="q absolute top-3 right-3" data-act="qzclose" aria-label="Cerrar test">✕</button>`;
-      const opts = (arr, act, cur) => `<div class="grid gap-2 mt-4">${arr.map(([v, t]) => `<button class="gopt" aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('')}</div>`;
-      if (step === 1) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 1 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Cómo preparas tu café?</h2>` + opts(QM, 'qm', quiz.m);
-      else if (step === 2) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 2 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Qué perfil de sabor buscas?</h2>` + opts(QP, 'qp', quiz.p) + `<button class="text-xs underline text-mute mt-3 min-h-[2.75rem]" data-act="qzback">← Volver</button>`;
+      const dots = `<div class="qzdots" role="img" aria-label="Paso ${step} de 3">${[1, 2, 3].map(n => `<i class="${n <= step ? 'on' : ''}"></i>`).join('')}</div>`;
+      const x = `<button type="button" class="q absolute top-3 right-3" data-act="qzclose" aria-label="Cerrar test">✕</button>`;
+      const opts = (arr, act, cur) => `<div class="grid gap-2 mt-4">${arr.map(([v, t], i) => `<button type="button" class="gopt" ${i === 0 ? 'data-autofocus' : ''} aria-pressed="${cur === v}" data-act="${act}" data-v="${v}"><b>${t}</b></button>`).join('')}</div>`;
+      if (step === 1) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 1 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Cómo preparas tu café?</h2><p class="text-xs text-mute text-center mt-1">Elegimos el molido según tu método.</p>` + opts(QM, 'qm', quiz.m);
+      else if (step === 2) q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Pregunta 2 de 2</p><h2 id="qzt" class="font-head font-extrabold text-xl text-center mt-1">¿Qué perfil de sabor buscas?</h2><p class="text-xs text-mute text-center mt-1">Te recomendamos una de nuestras 3 calidades.</p>` + opts(QP, 'qp', quiz.p) + `<button type="button" class="text-sm underline text-mute mt-3 min-h-[2.75rem]" data-act="qzback">← Volver a la pregunta 1</button>`;
       else {
-        const r = quizResult(), pr = byId(r.id), kg = 1;
+        const r = quizResult(), pr = byId(r.id);
         q.innerHTML = x + dots + `<p class="font-serif uppercase tracking-[.25em] text-goldt text-xs text-center">Tu café ideal</p><h2 id="qzt" class="font-head font-extrabold text-2xl text-center mt-1">Café ${pr.name}</h2>
   <div class="relative mx-auto mt-3 w-32 h-40">${artImg(pr, 'object-contain')}</div>
-  <div class="qzhl rounded-xl bg-surf p-3 mt-4 text-sm"><p><b>Tueste:</b> ${pr.tueste}</p><p><b>Notas:</b> ${pr.notas.join(' · ')}</p><p><b>Molido recomendado:</b> ${r.g}</p><p><b>Precio:</b> ${fmt(pr.men)}/kg (mayoreo ${fmt(pr.may)} desde 5 kg)</p></div>
-  <button class="btn btn-gold w-full mt-4" data-act="qzadd">Agregar automáticamente al carrito</button><button class="text-xs underline text-mute mt-2 min-h-[2.75rem] w-full" data-act="qzreset">Repetir test</button>`;
+  <div class="qzhl rounded-xl bg-surf p-3 mt-4 text-sm"><p><b>Tueste:</b> ${pr.tueste}</p><p><b>Perfil:</b> nivel ${pr.nivel}/5 · acidez ${pr.acidez.toLowerCase()} · dulzor ${pr.dulzor.toLowerCase()}</p><p><b>Notas:</b> ${pr.notas.join(' · ')}</p><p><b>Molido recomendado:</b> ${gl(r.g)}</p><p><b>Precio:</b> ${fmt(pr.men)}/kg (mayoreo ${fmt(pr.may)} desde ${WHOLE} kg)</p></div>
+  <button type="button" class="btn btn-gold w-full mt-4" data-autofocus data-act="qzgo">Ver en la tienda</button><button type="button" class="btn w-full mt-2 border-2 border-gold text-ink" data-act="qzadd">Agregar 1 kg al carrito</button>
+  <div class="flex justify-between"><button type="button" class="text-sm underline text-mute mt-2 min-h-[2.75rem]" data-act="qzback2">← Cambiar respuesta</button><button type="button" class="text-sm underline text-mute mt-2 min-h-[2.75rem]" data-act="qzreset">Repetir test</button></div>`;
       }
-      q.querySelector('.gopt, .btn')?.focus();
+      q.querySelector('[data-autofocus]')?.focus({ preventScroll: true });
     }
-    const openQuiz = () => { quiz = { m: '', p: '' }; renderQuiz(); $('#qz').classList.add('on'); $('#qz').setAttribute('aria-hidden', 'false'); };
+        const openQuiz = () => { quiz = { m: '', p: '' }; renderQuiz(); $('#qz').classList.add('on'); $('#qz').setAttribute('aria-hidden', 'false'); };
     const closeQuiz = () => { $('#qz')?.classList.remove('on'); $('#qz')?.setAttribute('aria-hidden', 'true'); };
     /* ===== Reseñas ===== */
     const SEED = [
@@ -1190,30 +1362,31 @@
     ]; // Para reseñas reales agrega v: true (muestra la insignia "Compra verificada") y quita seed: 1
     let reviews = [], cloudRev = null, rv = { s: 0, n: '', p: 'Experiencia General', t: '', done: null, err: '', blob: null, prev: '', busy: false };
     try { reviews = JSON.parse(localStorage.getItem('milenio-reviews') || '[]'); if (!Array.isArray(reviews)) reviews = []; } catch (e) { reviews = []; }
-    const allRev = () => (cloudRev && cloudRev.length ? cloudRev : [...reviews, ...SEED]);
+    const SHOW_SEED_REVIEWS = false; // ⚠ true solo para maquetar: muestra reseñas de EJEMPLO (inventadas). En producción debe ser false.
+    const allRev = () => (cloudRev && cloudRev.length ? cloudRev : [...reviews, ...(SHOW_SEED_REVIEWS ? SEED : [])]);
     const okUrl = u => /^https:\/\/firebasestorage\.googleapis\.com\//.test(u || '');
     // Puente con Firebase (el módulo ES del final llama a onCloudReady cuando carga)
     window.onCloudReady = c => { cloud = c; flushOrders(); c.listenReviews(list => { cloudRev = list; renderReviews(); }, () => { cloudRev = null; renderReviews(); }); };
-    if (window.__cloud) window.onCloudReady(window.__cloud);
     const starsH = n => `<span class="stars" role="img" aria-label="${n} de 5 estrellas">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
     const AV = [['#D9A23F', '#24100B'], ['#7A3E22', '#F6EBDD'], ['#3F7A2A', '#F6EBDD'], ['#B3262B', '#F6EBDD'], ['#24100B', '#D9A23F']];
     const avatar = n => { let h = 0; for (const ch of n) h = (h * 31 + ch.charCodeAt(0)) >>> 0; const [bg, fg] = AV[h % AV.length], ini = n.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase(); return `<span class="avt" style="background:${bg};color:${fg}" aria-hidden="true">${esc(ini)}</span>`; };
     const RVLBL = ['', 'Muy malo', 'Regular', 'Bueno', 'Muy bueno', 'Excelente'];
     function renderReviews() {
-      const L = allRev(), N = L.length, avg = L.reduce((a, r) => a + r.s, 0) / N;
-      if ($('#rvSum')) $('#rvSum').innerHTML = `<div class="flex items-center gap-4"><span class="text-5xl font-extrabold leading-none">${avg.toFixed(1)}</span><div><p class="text-lg leading-none">${starsH(Math.round(avg))}</p><p class="text-xs text-mute mt-1">de 5.0 · ${N} opiniones</p></div></div>
-  <p class="text-xs text-mute mt-2">De amantes del café chiapaneco</p>
-  <div class="mt-4 grid gap-1.5">${[5, 4, 3, 2, 1].map(n => { const c = L.filter(r => r.s === n).length; return `<div class="flex items-center gap-2 text-xs"><span class="w-8 shrink-0 font-semibold">${n} ★</span><div class="rbar flex-1"><i style="width:${c / N * 100}%"></i></div><span class="w-5 text-right text-mute">${c}</span></div>`; }).join('')}</div>
-  <button class="btn btn-gold w-full mt-5" data-act="rvopen">⭐ Dejar mi opinión</button>`;
-      if ($('#rvList')) $('#rvList').innerHTML = L.slice(0, 12).map(r => `<article class="rcard"><div class="flex items-center gap-3">${avatar(r.n)}<div class="min-w-0 grow"><b class="block truncate leading-tight">${esc(r.n)}</b>${r.v ? '<span class="vbadge">✓ Compra verificada</span>' : r.seed ? '<span class="text-[11px] text-mute">Reseña de ejemplo</span>' : r.cloud ? `<span class="text-[11px] text-mute">${new Date(r.d).toLocaleDateString('es-MX', { dateStyle: 'medium' })}</span>` : '<span class="text-[11px] text-mute">Tu reseña</span>'}</div>${starsH(r.s)}</div>
-    <p class="text-sm leading-relaxed mt-3">“${esc(r.t)}”</p>${r.foto && okUrl(r.foto) ? `<img src="${esc(r.foto)}" alt="Foto de la reseña de ${esc(r.n)}" loading="lazy" class="mt-3 rounded-2xl w-full aspect-[4/3] object-cover" onerror="this.remove()">` : ''}<p class="mt-auto pt-3"><span class="text-[11px] font-bold rounded-full px-2.5 py-1 bg-gold/15 text-ink">☕ ${esc(r.p)}</span></p></article>`).join('');
+      const L = allRev(), N = L.length, avg = N ? L.reduce((a, r) => a + r.s, 0) / N : 0;
+      if ($('#rvSum')) $('#rvSum').innerHTML = (N ? `<div class="flex items-center gap-4"><span class="text-5xl font-extrabold leading-none">${avg.toFixed(1)}</span><div><p class="text-lg leading-none">${starsH(Math.round(avg))}</p><p class="text-xs text-mute mt-1">de 5.0 · ${N} opinion${N > 1 ? 'es' : ''}</p></div></div>
+  <div class="mt-4 grid gap-1.5">${[5, 4, 3, 2, 1].map(n => { const c = L.filter(r => r.s === n).length; return `<div class="flex items-center gap-2 text-xs"><span class="w-8 shrink-0 font-semibold">${n} ★</span><div class="rbar flex-1" aria-hidden="true"><i style="width:${c / N * 100}%"></i></div><span class="w-5 text-right text-mute">${c}</span></div>`; }).join('')}</div>`
+        : `<p class="font-extrabold text-lg">Aún no hay opiniones</p><p class="text-sm text-mute mt-1">Si ya probaste nuestro café, cuéntanos cómo te fue.</p>`) + `
+  <button type="button" class="btn btn-gold w-full mt-5" data-act="rvopen">⭐ Dejar mi opinión</button>`;
+      if ($('#rvList')) $('#rvList').innerHTML = N ? L.slice(0, 12).map(r => `<article class="rcard"><div class="flex items-center gap-3">${avatar(r.n)}<div class="min-w-0 grow"><b class="block truncate leading-tight">${esc(r.n)}</b>${r.v ? '<span class="vbadge">✓ Compra verificada</span>' : r.seed ? '<span class="text-xs text-mute">Reseña de ejemplo</span>' : r.cloud ? `<span class="text-xs text-mute">${new Date(r.d).toLocaleDateString('es-MX', { dateStyle: 'medium' })}</span>` : '<span class="text-xs text-mute">Tu reseña · solo en este dispositivo</span>'}</div>${starsH(r.s)}</div>
+    <p class="text-sm leading-relaxed mt-3">“${esc(r.t)}”</p>${r.foto && okUrl(r.foto) ? `<img src="${esc(r.foto)}" alt="Foto de la reseña de ${esc(r.n)}" loading="lazy" decoding="async" class="mt-3 rounded-2xl w-full aspect-[4/3] object-cover" onerror="this.remove()">` : ''}<p class="mt-auto pt-3"><span class="text-xs font-bold rounded-full px-2.5 py-1 bg-gold/15 text-ink">☕ ${esc(r.p)}</span></p></article>`).join('')
+        : `<div class="rounded-3xl border border-dashed border-line p-8 text-center text-mute">Sé la primera persona en dejar una opinión sobre Café Milenio.</div>`;
     }
     function renderRvForm() {
       const q = $('#rvd'); if (!q) return; const x = `<button class="q absolute top-3 right-3" data-act="rvclose" aria-label="Cerrar">✕</button>`;
       if (rv.done) {
         const r = rv.done, msg = `\u{2B50} *NUEVA RESEÑA - CAFÉ MILENIO*\n\n\u{1F464} *Cliente:* ${r.n}\n\u{2B50} *Calificación:* ${r.s}/5\n\u{2615} *Producto:* ${r.p}\n\u{1F4AC} *Comentario:* ${r.t}`;
         q.innerHTML = x + `<div class="text-center"><p class="text-5xl" aria-hidden="true">🎉</p><h2 id="rvh" class="font-head font-extrabold text-xl mt-2">¡Gracias por tu opinión, ${esc(r.n)}!</h2><p class="text-sm text-mute mt-1">${rv.local ? 'No pudimos conectar con la nube: tu reseña se guardó solo en este dispositivo.' : 'Tu reseña ya aparece en la lista para todos.'}</p><p class="mt-2">${starsH(r.s)}</p></div>
-  <a class="btn btn-gold w-full mt-4" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(msg)}">Enviar mi comentario directamente por WhatsApp al productor</a>
+  ${WA_OK ? `<a class="btn btn-gold w-full mt-4" target="_blank" rel="noopener" href="${waUrl(msg)}">Enviar mi comentario directamente por WhatsApp al productor</a>` : ''}
   <button class="text-xs underline text-mute mt-2 min-h-[2.75rem] w-full" data-act="rvclose">No, gracias</button>`;
         return;
       }
@@ -1222,7 +1395,7 @@
   <p class="text-center text-sm font-bold text-goldt h-5" aria-live="polite">${RVLBL[rv.s]}</p>
   <label class="block text-xs font-bold text-mute mt-2 mb-1" for="rv-n">Tu nombre *</label><input id="rv-n" class="in" maxlength="40" autocomplete="name" data-rv="n" value="${esc(rv.n)}">
   <p class="text-xs font-bold text-mute mt-3 mb-1">¿Qué producto compraste?</p><div class="flex flex-wrap gap-2" role="group">${['Calidad Europea', 'Calidad Americana', 'Calidad Nacional', 'Experiencia General'].map(v => `<button type="button" class="rchip" aria-pressed="${rv.p === v}" data-act="rvprod" data-v="${v}">${v.replace('Calidad ', '')}</button>`).join('')}</div>
-  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-t">Cuéntanos tu experiencia con el aroma, sabor o servicio *</label><textarea id="rv-t" class="in" rows="4" maxlength="400" data-rv="t" placeholder="Ej. El aroma es increíble y llegó en 3 días…">${esc(rv.t)}</textarea><p class="text-[11px] text-mute text-right"><span id="rv-c">${rv.t.length}</span>/400</p>
+  <label class="block text-xs font-bold text-mute mt-3 mb-1" for="rv-t">Cuéntanos tu experiencia con el aroma, sabor o servicio *</label><textarea id="rv-t" class="in" rows="4" maxlength="400" data-rv="t" placeholder="Ej. El aroma es increíble y llegó en 3 días…">${esc(rv.t)}</textarea><p class="text-xs text-mute text-right"><span id="rv-c">${rv.t.length}</span>/400</p>
   <label class="block text-xs font-bold text-mute mt-2 mb-1" for="rv-foto">Foto de tu café (opcional)</label><input type="file" id="rv-foto" accept="image/*" class="in text-sm">
   <div id="rv-prev">${rv.prev ? `<div class="relative mt-2"><img src="${rv.prev}" alt="Vista previa de tu foto" class="rounded-xl w-full max-h-44 object-cover"><button type="button" class="absolute top-2 right-2 text-xs font-bold rounded-full px-3 min-h-[2.25rem] bg-esp text-[#F6EBDD]" data-act="rvnofoto">Quitar foto</button></div>` : ''}</div>
   ${rv.err ? `<p role="alert" class="mt-2 text-sm font-bold text-cherry">${rv.err}</p>` : ''}
@@ -1271,39 +1444,50 @@
       try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(t); return true; } } catch (e) { }
       try { const a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px'; document.body.append(a); a.select(); a.setSelectionRange(0, t.length); const ok = document.execCommand('copy'); a.remove(); return ok; } catch (e) { return false; }
     }
-    function toast(t) { document.querySelectorAll('.toast').forEach(x => x.remove()); const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = '✓ ' + t; document.body.append(d); setTimeout(() => d.remove(), 2300); }
-    function setCart(open) { const c = $('#cart'); if (!c) return; c.classList.toggle('on', open); c.setAttribute('aria-hidden', !open); if (open) { renderCart(); $('#pn').querySelector('.q')?.focus(); } }
+    function renderTrust() { const t = $('#trust'); if (t) t.innerHTML = TRUST.map(([i, a, b]) => `<li><span class="ic" aria-hidden="true">${i}</span><span><b>${a}</b>${b}</span></li>`).join(''); }
+    function toast(t, warn) {
+      document.querySelectorAll('.toast').forEach(x => x.remove()); const d = document.createElement('div'); d.className = 'toast'; d.textContent = (warn ? '⚠ ' : '✓ ') + t; document.body.append(d); setTimeout(() => d.remove(), warn ? 4200 : 2300);
+      const lv = $('#live'); if (lv) { lv.textContent = ''; setTimeout(() => { lv.textContent = t; }, 60); }
+    }
+    function setCart(open) { const c = $('#cart'); if (!c || open === c.classList.contains('on')) return; if (open) renderCart(); c.classList.toggle('on', open); c.setAttribute('aria-hidden', String(!open)); }
     const fdate = v => new Date(v).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
     function orderData() {
-      const ent = info.ent === 'envio', folio = curFolio || (curFolio = 'MIL-' + Date.now().toString(36).toUpperCase().slice(-6));
+      const c = calc(), ent = info.ent === 'envio', folio = curFolio || (curFolio = 'MIL-' + Date.now().toString(36).toUpperCase().slice(-6));
       const rows = [['Cliente', info.nombre.trim(), E.user], ['Folio', folio, E.receipt]];
       if (ent) { rows.push(['Destino', info.destino.trim(), E.loc], ['Entrega', `Envío a ${info.dir.trim()} (Costo por confirmar)`, E.truck]); }
       else { rows.push(['Sucursal', STORE, E.shop], ['Entrega', `Recolección en tienda · ${fdate(info.fecha)}`, E.truck]); if (info.recoge.trim()) rows.push(['Recoge', info.recoge.trim(), E.who]); }
       rows.push(['Pago', info.pago, E.card]);
-      const freq = FREQ[info.frecuencia] || '', pay = info.pago === 'Transferencia' && PAY.clabe ? `${PAY.banco}${PAY.titular ? ' · ' + PAY.titular : ''} · CLABE ${PAY.clabe} · Concepto: ${concepto()}` : '';
-      const items = lines().map(x => ({ txt: `${x.l.kg}kg Café ${x.p.name}, ${x.l.g} (${kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo'}: ${fmt(x.sub)})`, nm: `${x.l.kg}kg Café ${x.p.name} · ${x.l.g}`, sub: x.sub }));
-      const L = lines(), kgPorCalidad = {}; L.forEach(x => { kgPorCalidad[x.p.id] = +((kgPorCalidad[x.p.id] || 0) + x.l.kg).toFixed(1); });
+      const tr = info.pago === 'Transferencia', freq = FREQ[info.frecuencia] || '';
+      const pay = tr ? (PAY_OK ? `${PAY.banco}${PAY.titular ? ' · ' + PAY.titular : ''} · CLABE ${PAY.clabe} · Concepto: ${concepto()}` : `Concepto sugerido: ${concepto()} (los datos de cuenta te los confirmamos por este chat)`) : '';
+      const items = c.L.map(x => ({ txt: `${qty(x.l)} · Café ${x.p.name} · Molido: ${gd(x.l.g)} · ${fmt(x.u)}/kg (${x.wh ? 'Mayoreo' : 'Menudeo'}) = ${fmt(P(x.subC))}`, nm: `${qty(x.l)} Café ${x.p.name} · ${gl(x.l.g)} · ${fmt(x.u)}/kg`, sub: P(x.subC) }));
+      const sr = [['Subtotal productos (menudeo)', fmt(P(c.refC))]]; if (c.wholeC) sr.push(['Descuento de mayoreo', '−' + fmt(P(c.wholeC))]);
+      sr.push(['Envío', 'Por confirmar']);
+      const kgPorCalidad = {}; c.L.forEach(x => { kgPorCalidad[x.p.id] = +((kgPorCalidad[x.p.id] || 0) + x.l.kg).toFixed(2); });
       const rec = {
         folio, cliente: info.nombre.trim(), entrega: ent ? 'envio' : 'recoger', destino: ent ? info.destino.trim() : '', direccion: ent ? info.dir.trim() : '', sucursal: ent ? '' : STORE, fechaRecoleccion: ent ? '' : info.fecha, recoge: ent ? '' : info.recoge.trim(),
-        productos: L.map(x => ({ calidad: x.p.name, molido: x.l.g, kg: x.l.kg, precioKg: x.u, tarifa: kgOf(x.l.id) >= 5 ? 'Mayoreo' : 'Menudeo', subtotal: x.sub })),
-        totalKg: +L.reduce((a, x) => a + x.l.kg, 0).toFixed(1), kgPorCalidad, total: total(), pago: info.pago, concepto: info.pago === 'Transferencia' ? concepto() : '',
+        productos: c.L.map(x => ({ calidad: x.p.name, molido: x.l.g, presentacion: x.l.pr ? fmtKg(x.l.pr) : '', bolsas: isBagged(x.l) ? Math.round(x.l.kg / x.l.pr) : 0, kg: x.l.kg, precioKg: x.u, tarifa: x.wh ? 'Mayoreo' : 'Menudeo', subtotal: P(x.subC) })),
+        totalKg: c.kg, kgPorCalidad, subtotalMenudeo: P(c.refC), descuentoMayoreo: P(c.wholeC), subtotal: P(c.subC), total: P(c.totalC), envio: 'por_confirmar', pago: info.pago, concepto: tr ? concepto() : '',
         frecuencia: FREQ[info.frecuencia] || 'Compra única'
       };
-      return { rows, items, freq, pay, rec, plink: info.pago === 'Tarjeta' && MP_OK ? MP_LINK : '', folio, total: total(), fecha: fdate(Date.now()) };
+      return { rows, items, sr, freq, pay, rec, plink: info.pago === 'Tarjeta' && MP_OK ? MP_LINK : '', folio, total: P(c.totalC), fecha: fdate(Date.now()) };
     }
-    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '\u2022 ' + i.txt).join('\n') + `\n\n---\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN` + (d.pay ? `\n\n\u{1F3E6} *DATOS PARA TRANSFERENCIA:* ${d.pay}` : '') + (d.plink ? `\n\n\u{1F4B3} *PAGO EN LÍNEA:* Mercado Pago ${d.plink}` : '') + (d.freq ? `\n\n\u{1F504} *FRECUENCIA DE RECOMPRA:* Desea recordatorio automático [${d.freq}]` : '');
+    const buildMsg = d => `${E.pin} *COTIZACIÓN DE CAFÉ POR KILO - CAFÉ MILENIO*\n\n` + d.rows.map(([l, v, e]) => `${e} *${l}:* ${v}`).join('\n') + `\n\n---\n${E.box} *DETALLE DEL PEDIDO:*\n` + d.items.map(i => '• ' + i.txt).join('\n') + `\n\n---\n` + d.sr.map(([l, v]) => `${l}: ${v}`).join('\n') + `\n${E.money} *TOTAL ESTIMADO:* ${fmt(d.total)} MXN (sin envío)` + (d.pay ? `\n\n\u{1F3E6} *DATOS PARA TRANSFERENCIA:* ${d.pay}` : '') + (d.plink ? `\n\n\u{1F4B3} *PAGO EN LÍNEA:* Mercado Pago ${d.plink}` : '') + (d.freq ? `\n\n\u{1F504} *FRECUENCIA DE RECOMPRA DESEADA:* ${d.freq} (recordatorio manual por WhatsApp)` : '') + `\n\nℹ️ Esta es una solicitud de cotización, no una compra pagada. El pedido y el costo de envío se confirman cuando Café Milenio te responda.`;
     function showTicket(d) {
-      pending = d; d.url = `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(buildMsg(d))}`;
+      pending = d; d.url = WA_OK ? waUrl(buildMsg(d)) : '';
       let n = 0; const i = () => `style="--i:${n++}"`;
       if (!$('#tkd')) return;
-      $('#tkd').innerHTML = `<div class="paper"><button class="tkx" data-act="tkclose" aria-label="Cerrar">✕</button>
+      $('#tkd').innerHTML = `<div class="paper"><button type="button" class="tkx" data-act="tkclose" aria-label="Cerrar">✕</button>
   <div class="text-center"><div class="okw" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 52 52" width="64" height="64"><circle cx="26" cy="26" r="24" fill="#22C55E"/><path class="chk" d="M14 27l8 8 16-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40"/></svg></div>
   <h2 id="tkt" class="text-xl font-extrabold">Confirma tu cotización</h2><p class="text-xs" style="color:#7B6A5F">Café Milenio · ${esc(d.fecha)}</p></div><div class="dash"></div>
   ${d.rows.map(([l, v, e]) => `<div class="rw" ${i()}><span class="l">${e} ${l}</span><span>${esc(v)}</span></div>`).join('')}<div class="dash"></div>
-  ${d.items.map(it => `<div class="rw" ${i()}><span>${esc(it.nm)}</span><span class="amt">${fmt(it.sub)}</span></div>`).join('')}${d.freq ? `<div class="rw" ${i()}><span class="l">\u{1F504} Recompra</span><span>${esc(d.freq)}</span></div>` : ''}<div class="dash"></div>
+  ${d.items.map(it => `<div class="rw" ${i()}><span>${esc(it.nm)}</span><span class="amt">${fmt(it.sub)}</span></div>`).join('')}<div class="dash"></div>
+  ${d.sr.map(([l, v]) => `<div class="rw" ${i()}><span class="l">${esc(l)}</span><span class="amt">${esc(v)}</span></div>`).join('')}
+  ${d.freq ? `<div class="rw" ${i()}><span class="l">\u{1F504} Recompra</span><span>${esc(d.freq)}</span></div>` : ''}<div class="dash"></div>
   <div class="rw" ${i()} style="font-size:1.1rem;font-weight:800"><span class="l" style="color:inherit">TOTAL ESTIMADO</span><span class="amt">${fmt(d.total)} MXN</span></div>
-  <button class="go mt-4" data-act="tkgo">Confirmar y Abrir WhatsApp</button><button class="tkb" data-act="tksave">Guardar comprobante</button><button class="tkb" data-act="tkclose">Editar datos</button></div><div class="zig" aria-hidden="true"></div>`;
-      if ($('#tk')) $('#tk').classList.add('on'); $('#tkd').querySelector('.go')?.focus();
+  <p class="text-xs mt-2" style="color:#7B6A5F">Sin costo de envío. Enviar el mensaje es una solicitud: no es un pago ni una confirmación definitiva.</p>
+  ${WA_OK ? '' : '<p role="alert" class="text-xs font-bold mt-2" style="color:#B3262B">Falta configurar el número de WhatsApp del negocio (WA).</p>'}
+  <button type="button" class="go mt-4" data-act="tkgo" ${WA_OK ? '' : 'disabled'}>Confirmar y Abrir WhatsApp</button><button type="button" class="tkb" data-act="tksave">Guardar comprobante</button><button type="button" class="tkb" data-act="tkclose">Editar datos</button></div><div class="zig" aria-hidden="true"></div>`;
+      if ($('#tk')) $('#tk').classList.add('on');
     }
     const closeTicket = () => $('#tk')?.classList.remove('on');
     function paint(x, d, W, draw) {
@@ -1316,9 +1500,10 @@
       ctr('Comprobante de cotización', `bold 20px ${mono}`, '#2B1D1A'); ctr('Café Milenio · ' + d.fecha, `12px ${mono}`, '#7B6A5F'); dash();
       d.rows.forEach(([l, v]) => row(l, v, false, 13)); dash();
       d.items.forEach(it => { x.font = `13px ${mono}`; const am = fmt(it.sub), aw = x.measureText(am).width + 14, ls = wrap(it.nm, W - 2 * pad - aw); if (draw) { x.fillStyle = '#2B1D1A'; x.textAlign = 'left'; ls.forEach((t, k) => x.fillText(t, pad, y + k * 19)); x.textAlign = 'right'; x.fillText(am, W - pad, y); } y += ls.length * 19 + 2; }); dash();
+      d.sr.forEach(([l, v]) => row(l, v, false, 13));
       if (d.freq) row('Recompra', d.freq, false, 13);
-      row('TOTAL', fmt(d.total) + ' MXN', true, 17); y += 6; dash();
-      x.font = `11px ${mono}`; wrap('Documento informativo. El costo de envío se confirma por WhatsApp. Mayoreo desde 5 kg por calidad.', W - 2 * pad).forEach(t => { if (draw) { x.fillStyle = '#7B6A5F'; x.textAlign = 'center'; x.fillText(t, W / 2, y); } y += 16; });
+      dash(); row('TOTAL (sin envío)', fmt(d.total) + ' MXN', true, 17); y += 6; dash();
+      x.font = `11px ${mono}`; wrap('Documento informativo: no es un comprobante de pago ni una confirmación definitiva. El costo de envío se confirma por WhatsApp. Mayoreo desde ' + WHOLE + ' kg por calidad.', W - 2 * pad).forEach(t => { if (draw) { x.fillStyle = '#7B6A5F'; x.textAlign = 'center'; x.fillText(t, W / 2, y); } y += 16; });
       return y + pad - 8;
     }
     function ticketCanvas(d) { const W = 480, sc = 2, m = document.createElement('canvas').getContext('2d'), H = paint(m, d, W, false), c = document.createElement('canvas'); c.width = W * sc; c.height = H * sc; const x = c.getContext('2d'); x.scale(sc, sc); x.fillStyle = '#FFFDF6'; x.fillRect(0, 0, W, H); paint(x, d, W, true); return c; }
@@ -1331,7 +1516,7 @@
     }
     function validForm() {
       const ent = info.ent === 'envio';
-      if (!info.nombre.trim()) err = 'Escribe tu nombre.'; else if (ent && !info.destino.trim()) err = 'Escribe el municipio y estado de destino.'; else if (ent && !info.dir.trim()) err = 'Escribe la dirección de entrega.'; else if (!ent && !info.fecha) err = 'Elige la fecha y hora estimada de recolección.';
+      if (!Object.keys(cart).length) err = 'Agrega al menos un producto al carrito.'; else if (!info.nombre.trim()) err = 'Escribe tu nombre.'; else if (ent && !info.destino.trim()) err = 'Escribe el municipio y estado de destino.'; else if (ent && !info.dir.trim()) err = 'Escribe la dirección de entrega.'; else if (!ent && !info.fecha) err = 'Elige la fecha y hora estimada de recolección.';
       else if (!ent && (new Date(info.fecha).getDay() === 0)) err = 'Los domingos estamos cerrados. Elige de lunes a sábado.';
       else if (!ent && (new Date(info.fecha).getHours() < 7 || new Date(info.fecha).getHours() >= 18)) err = 'Horario de recolección: 7:00 a. m. – 6:00 p. m.';
       else err = '';
@@ -1359,30 +1544,44 @@
       if (qa === 'rvclose') { closeRv(); return; }
       if (qa === 'rvstar') { rv.s = +b.dataset.v; rv.err = ''; renderRvForm(); return; }
       if (qa === 'rvprod') { rv.p = b.dataset.v; renderRvForm(); return; }
-      if (qa === 'wfill') { const id = b.dataset.id, left = +(WHOLE - kgOf(id)).toFixed(1), ex = Object.keys(cart).find(k => cart[k].id === id), key = ex || id + '|' + ui[id].g; cart[key] = { id, g: cart[key]?.g || ui[id].g, kg: (cart[key]?.kg || 0) + left }; save(); toast(`+${left} kg de ${byId(id).name}: ¡Mayoreo desbloqueado!`); renderGrid(); renderCart(); return; }
+      if (qa === 'wfill') {
+        const id = b.dataset.id, left = +(WHOLE - kgOf(id)).toFixed(2); if (left <= 0) return;
+        const pr = left % 1 === 0 ? 1 : left % .5 === 0 ? .5 : .25, key = ckey(id, ui[id].g, pr); cart[key] = { id, g: ui[id].g, pr, kg: +((cart[key]?.kg || 0) + left).toFixed(2) };
+        save(); toast(`+${fmtKg(left)} de ${byId(id).name} (${gl(ui[id].g)}): ¡Mayoreo desbloqueado!`); rerender(); return;
+      }
       if (qa === 'rvpub') { pubRv(); return; }
       if (qa === 'qzopen') { openQuiz(); return; }
       if (qa === 'qzclose') { closeQuiz(); return; }
       if (qa === 'qm') { quiz.m = b.dataset.v; renderQuiz(); return; }
       if (qa === 'qp') { quiz.p = b.dataset.v; renderQuiz(); return; }
       if (qa === 'qzback') { quiz.m = ''; renderQuiz(); return; }
+      if (qa === 'qzback2') { quiz.p = ''; renderQuiz(); return; }
+      if (qa === 'qzgo') { const r = quizResult(); ui[r.id].g = r.g; closeQuiz(); rerender(); setTimeout(() => { const c = document.getElementById('card-' + r.id), h = c?.querySelector('h3'); c?.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } c?.classList.add('flash'); setTimeout(() => c?.classList.remove('flash'), 1800); }, 90); return; }
       if (qa === 'qzreset') { quiz = { m: '', p: '' }; renderQuiz(); return; }
       if (qa === 'qzadd') {
-        const r = quizResult(), key = r.id + '|' + r.g; cart[key] = { id: r.id, g: r.g, kg: (cart[key]?.kg || 0) + 1 };
-        save(); closeQuiz(); renderGrid(); renderCart(); toast(`Café ${byId(r.id).name} (${r.g}) añadido`); setTimeout(() => setCart(true), 450); return;
+        const r = quizResult(), key = ckey(r.id, r.g, 1); cart[key] = { id: r.id, g: r.g, pr: 1, kg: Math.min(POLICY.maxKgLine, (cart[key]?.kg || 0) + 1) };
+        save(); closeQuiz(); rerender(); toast(`Café ${byId(r.id).name} (${gl(r.g)}) añadido`); setTimeout(() => setCart(true), 450); return;
       }
       const a = b.dataset.act, id = b.dataset.id, k = b.dataset.k, s = ui[id];
-      if (a === 'grind') s.g = b.dataset.g; else if (a === 'kinc') s.kg += .5; else if (a === 'kdec') s.kg = Math.max(.5, s.kg - .5);
-      else if (a === 'add') { const key = id + '|' + s.g; cart[key] = { id, g: s.g, kg: (cart[key]?.kg || 0) + s.kg }; s.kg = 1; save(); toast(`${cart[key].kg}kg Café ${byId(id).name} añadido`); renderCart(); }
-      else if (a === 'cinc' || a === 'cdec') { cart[k].kg += a === 'cinc' ? .5 : -.5; if (cart[k].kg <= 0) delete cart[k]; save(); }
-      else if (a === 'del') { delete cart[k]; save(); }
+      if (a === 'grind') s.g = b.dataset.g; else if (a === 'pres') { s.pr = +b.dataset.v; s.kg = s.pr; } else if (a === 'kinc') s.kg = Math.min(POLICY.maxKgLine, s.kg + s.pr); else if (a === 'kdec') s.kg = Math.max(s.pr, s.kg - s.pr);
+      else if (a === 'add') {
+        const key = ckey(id, s.g, s.pr), cur = cart[key]?.kg || 0;
+        if (kgOf(id) + s.kg > POLICY.maxKgLine) { toast(`Máximo ${POLICY.maxKgLine} kg por calidad en el carrito. Para pedidos mayores escríbenos por WhatsApp.`, true); return; }
+        const added = s.kg; cart[key] = { id, g: s.g, pr: s.pr, kg: +(cur + added).toFixed(2) }; s.kg = s.pr; save(); toast(`${fmtKg(added)} de Café ${byId(id).name.replace('Calidad ', '')} (${gl(s.g)}) añadido al carrito`);
+      }
+      else if (a === 'cinc' || a === 'cdec') {
+        const l = cart[k]; if (!l) return; const st = l.pr || (l.kg >= 1 && l.kg % .5 === 0 ? .5 : .25), nk = +(l.kg + (a === 'cinc' ? st : -st)).toFixed(2);
+        if (a === 'cinc' && kgOf(l.id) + st > POLICY.maxKgLine) { toast(`Máximo ${POLICY.maxKgLine} kg por calidad en el carrito.`, true); return; }
+        if (nk <= 0) { delete cart[k]; toast('Producto eliminado del carrito'); } else l.kg = nk; save();
+      }
+      else if (a === 'del') { delete cart[k]; save(); toast('Producto eliminado del carrito'); }
       else if (a === 'ent') { info.ent = b.dataset.v; err = ''; } else if (a === 'pago') info.pago = b.dataset.v; else if (a === 'freq') info.frecuencia = b.dataset.v;
       else if (a === 'send') { send(); return; }
-      else if (a === 'tkgo') { window.open(pending.url, '_blank'); saveOrder(pending, 'enviado_whatsapp'); curFolio = null; closeTicket(); return; }
+      else if (a === 'tkgo') { if (!WA_OK || !pending?.url) { toast('Falta configurar el número de WhatsApp del negocio.', true); return; } window.open(pending.url, '_blank', 'noopener'); saveOrder(pending, 'enviado_whatsapp'); curFolio = null; closeTicket(); return; }
       else if (a === 'tksave') { saveTicket(); return; }
-      else if (a === 'tkclose') { closeTicket(); $('#pn')?.querySelector('[data-f="nombre"]')?.focus(); return; }
+      else if (a === 'tkclose') { closeTicket(); return; }
       else if (a === 'close') { setCart(false); return; }
-      renderGrid(); renderCart();
+      rerender();
     });
     document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); if (f === 'nombre' && $('#pconcept')) $('#pconcept').textContent = concepto(); } });
     // Teclado móvil: centra el campo enfocado y suelta la barra fija mientras escribes
@@ -1395,18 +1594,88 @@
       });
       pn.addEventListener('focusout', () => { t = setTimeout(() => { if (!isF(document.activeElement)) pn.classList.remove('kb'); }, 150); });
     })();
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('#rv')?.classList.contains('on')) closeRv(); else if ($('#qz')?.classList.contains('on')) closeQuiz(); else if ($('#tk')?.classList.contains('on')) closeTicket(); else setCart(false); } });
+    // Re-render conservando el foco (para teclado y lectores de pantalla)
+    function rerender() {
+      const a = document.activeElement, d = a && a.dataset && a.dataset.act ? a.dataset : null, inCart = !!(a && a.closest && a.closest('#pn'));
+      const sel = d ? '[data-act="' + d.act + '"]' + ['id', 'k', 'v', 'g'].filter(x => d[x] !== undefined).map(x => `[data-${x}="${d[x]}"]`).join('') : '';
+      renderGrid(); renderCart();
+      if (sel) { const n = document.querySelector((inCart ? '#pn ' : '#grid ') + sel); if (n && n !== a) n.focus({ preventScroll: true }); }
+      if (inCart && (!document.activeElement || document.activeElement === document.body) && $('#cart').classList.contains('on')) $('#pn .q')?.focus({ preventScroll: true });
+    }
+    // Menú móvil
+    const mb = $('#menuBtn'), mn = $('#mnav');
+    const setMenu = o => { if (!mb || !mn) return; mn.classList.toggle('hidden', !o); mb.setAttribute('aria-expanded', String(o)); mb.setAttribute('aria-label', o ? 'Cerrar menú' : 'Abrir menú'); mb.textContent = o ? '✕' : '☰'; };
+    if (mb) mb.onclick = () => { const o = mn.classList.contains('hidden'); setMenu(o); if (o) mn.querySelector('a')?.focus(); };
+    if (mn) mn.onclick = e => { if (e.target.closest('a')) setMenu(false); };
+    document.addEventListener('click', e => { if (mn && !mn.classList.contains('hidden') && !e.target.closest('#mnav, #menuBtn')) setMenu(false); });
+    window.matchMedia('(min-width:1024px)').addEventListener?.('change', () => setMenu(false));
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if ($('#rv')?.classList.contains('on')) closeRv(); else if ($('#qz')?.classList.contains('on')) closeQuiz(); else if ($('#tk')?.classList.contains('on')) closeTicket(); else if ($('#cart')?.classList.contains('on')) setCart(false);
+      else if (mn && !mn.classList.contains('hidden')) { setMenu(false); mb.focus(); }
+    });
+    // Diálogos: foco atrapado (inert al resto), devuelve el foco a quien lo abrió y bloquea el scroll del fondo
+    (() => {
+      const els = ['#rv', '#qz', '#tk', '#cart'].map($).filter(Boolean), bg = ['header', 'main', 'footer', '.skip'].map($).filter(Boolean), op = new Map();
+      const FOC = 'a[href],button:not([disabled]),input:not([disabled]),textarea,select,[tabindex]:not([tabindex="-1"])', top = () => els.find(e => e.classList.contains('on'));
+      const sync = () => { const t = top(); document.body.classList.toggle('lock', !!t); bg.forEach(e => { e.inert = !!t; }); els.forEach(e => { e.inert = !!t && e !== t; }); };
+      const mo = new MutationObserver(ms => ms.forEach(m => {
+        const e = m.target, on = e.classList.contains('on'), was = op.has(e);
+        if (on && !was) { op.set(e, document.activeElement); sync(); setTimeout(() => { if (!e.contains(document.activeElement)) (e.querySelector('[data-autofocus]') || [...e.querySelectorAll(FOC)].find(x => x.getClientRects().length))?.focus({ preventScroll: true }); }, 60); }
+        else if (!on && was) { const o = op.get(e); op.delete(e); sync(); const t = o && document.contains(o) && o !== document.body ? o : (e.id === 'cart' ? $('#cartBtn') : null); setTimeout(() => t?.focus?.({ preventScroll: true }), 0); }
+      }));
+      els.forEach(e => mo.observe(e, { attributes: true, attributeFilter: ['class'] }));
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return; const t = top(); if (!t) return;
+        const f = [...t.querySelectorAll(FOC)].filter(x => x.getClientRects().length && getComputedStyle(x).visibility !== 'hidden'); if (!f.length) return;
+        const a = document.activeElement, first = f[0], lastEl = f[f.length - 1];
+        if (!t.contains(a)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && a === first) { e.preventDefault(); lastEl.focus(); }
+        else if (!e.shiftKey && a === lastEl) { e.preventDefault(); first.focus(); }
+      });
+    })();
     if ($('#cartBtn')) $('#cartBtn').onclick = () => setCart(true);
-    if ($('#menuBtn')) $('#menuBtn').onclick = () => { const m = $('#mnav'), o = m.classList.toggle('hidden'); $('#menuBtn').setAttribute('aria-expanded', !o); };
-    if ($('#mnav')) $('#mnav').onclick = e => { if (e.target.closest('a')) { $('#mnav').classList.add('hidden'); $('#menuBtn').setAttribute('aria-expanded', 'false'); } };
-    
+    // Preguntas frecuentes: solo datos confirmados por el propio sitio (todo sale de las constantes de configuración)
+    function renderFaq() {
+      const el = $('#faqList'); if (!el) return;
+      const F = [
+        ['¿Qué presentaciones y tipos de molido hay?', `Vendemos por kilo y puedes elegir bolsas de ${PRES.map(x => x[1]).join(', ')}. Molido: ${GR.map(g => g[1]).join(', ')}. Lo que eliges queda guardado en cada producto del carrito y aparece en tu pedido.`],
+        ['¿Cómo funciona el precio de mayoreo?', `Desde ${WHOLE} kg de una misma calidad (sumando todos sus molidos y presentaciones) se aplica el precio de mayoreo de esa calidad: ${PRODS.map(p => `${p.name} ${fmt(p.may)}/kg en lugar de ${fmt(p.men)}/kg`).join('; ')}. Se calcula por calidad, no sobre el total de la compra.`],
+        ['¿Hacen envíos? ¿Cuánto cuestan?', 'Enviamos a todo México. Los precios no incluyen el costo de envío: se confirma por WhatsApp según tu destino.'],
+        ['¿Qué formas de pago hay?', `Efectivo (al momento de la entrega o al recoger en tienda), transferencia SPEI y tarjeta. Eliges tu forma de pago estimada en el carrito y se confirma por WhatsApp.`],
+        ['¿Cómo hago mi pedido?', 'Agrega tus productos al carrito, llena tus datos y toca “Revisar y enviar por WhatsApp”. Verás tu comprobante y se abrirá WhatsApp con el pedido. Enviarlo es una solicitud: el pedido queda confirmado hasta que Café Milenio te responda.'],
+        ['¿Puedo recoger en tienda?', `Sí: ${STORE}. Horario: lunes a sábado de 7:00 a. m. a 6:00 p. m.; domingo cerrado.`],
+      ];
+      el.innerHTML = F.map(([q, a]) => `<details class="faq"><summary>${q}</summary><div class="ans">${a}</div></details>`).join('');
+    }
+    // Sección activa en el menú
+    (() => {
+      const ids = ['inicio', 'origen', 'tienda', 'resenas', 'preguntas', 'contacto'], links = [...document.querySelectorAll('#dnav a, #mnav a')];
+      if (!('IntersectionObserver' in window)) return;
+      const so = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) links.forEach(a => { if (a.getAttribute('href') === '#' + x.target.id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); }), { rootMargin: '-35% 0px -60% 0px' });
+      ids.forEach(i => { const e = document.getElementById(i); if (e) so.observe(e); });
+    })();
+
     renderStatic(); 
     renderGrid(); 
     renderCart();
     renderReviews();
+    if (!THEME_MUERTOS) document.body.classList.add('nodm');
+    // Pétalos de cempasúchil en el hero: 12 en celular, 22 en escritorio; solo animan transform/opacity y se pausan fuera de pantalla
+    function initPetals() {
+      const box = $('#petals'), hero = $('#inicio');
+      if (!THEME_MUERTOS || !box || !hero || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      const n = innerWidth < 768 ? 12 : 22, rnd = (a, b) => a + Math.random() * (b - a);
+      box.innerHTML = Array.from({ length: n }, () => `<i class="petal" style="--x:${rnd(0, 98).toFixed(1)}%;--s:${rnd(9, 17).toFixed(1)}px;--d:${rnd(9, 17).toFixed(1)}s;--dl:${(-rnd(0, 17)).toFixed(1)}s;--sw:${rnd(-70, 70).toFixed(0)}px"></i>`).join('');
+      const fit = () => box.style.setProperty('--fall', (hero.offsetHeight + 40) + 'px');
+      fit(); let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 150); });
+      if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => box.classList.toggle('off', !e.isIntersecting)).observe(hero);
+    }
+    renderTrust(); renderFaq(); initPetals();
     
     const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .12 }) : null;
     document.querySelectorAll('.rv').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+    if (window.__cloud) window.onCloudReady(window.__cloud); // Firebase ya cargó antes que este script (caché): conéctalo ahora
   </script>
 <script type="module">
     /* Firebase v10 (CDN). Reglas de seguridad recomendadas: ver comentarios al final de este bloque. */
