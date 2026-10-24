@@ -1730,8 +1730,14 @@
         return getDownloadURL(r);
       },
       async addReview(r) { await addDoc(collection(db, 'resenas'), { ...r, fecha: serverTimestamp() }); },
-      listenProducts(ok, fail) { // catálogo editable desde admin.html (colección "productos")
-        return onSnapshot(collection(db, 'productos'), snap => ok(snap.docs.map(d => ({ id: d.id, ...d.data() }))), fail);
+      listenProducts(ok, fail) { // un listener por documento de "productos": europea, americana y nacional (se editan en admin.html)
+        const ids = ['europea', 'americana', 'nacional'], docs = {};
+        const unsubs = ids.map(id => onSnapshot(doc(db, 'productos', id), snap => {
+          if (snap.exists()) docs[id] = { id, ...snap.data() }; else delete docs[id];
+          console.log("Precios cargados desde Firestore:", docs); // confirma en la consola que los datos vienen de la nube
+          ok(Object.values(docs));
+        }, fail));
+        return () => unsubs.forEach(u => u());
       },
       async saveOrder(folio, rec, estado, exists) {
         const d = doc(db, 'pedidos', folio);
