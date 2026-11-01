@@ -17,12 +17,15 @@
   <meta property="og:url" content="https://cafemilenio.com.mx/">
   <meta property="og:title" content="Café Milenio · Café de altura de Jaltenango, Chiapas">
   <meta property="og:description" content="Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.">
-  <meta property="og:image" content="https://cafemilenio.com.mx/img/milenio_admi.jpg">
-  <meta property="og:image:alt" content="Café Milenio">
+  <meta property="og:image" content="https://cafemilenio.com.mx/img/og-milenio.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Café Milenio: bolsa de café de altura de Jaltenango, Chiapas">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Café Milenio · Café de altura de Jaltenango, Chiapas">
   <meta name="twitter:description" content="Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.">
-  <meta name="twitter:image" content="https://cafemilenio.com.mx/img/milenio_admi.jpg">
+  <meta name="twitter:image" content="https://cafemilenio.com.mx/img/og-milenio.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -1496,13 +1499,90 @@ html.mopen{overflow:hidden}
   .mbar>*{display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:2.9rem;border-radius:999px;font-weight:800;font-size:.9rem;white-space:nowrap}
   .mb-cart{flex:1 1 auto;background:linear-gradient(135deg,#FFB347,#FF7A1A);color:#24100B;border:0}
   .mb-shop{padding:0 1.1rem;border:1.5px solid rgba(217,162,63,.6);color:#F6EBDD}
-  footer{padding-bottom:4.5rem}
-  .off-banner{bottom:calc(5rem + env(safe-area-inset-bottom,0px))}
+}
+</style>
+<style id="fix-ab">
+/* ===== Cintillo promocional de temporada ===== */
+.ab{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:.5rem .75rem;width:100%;padding:calc(.5rem + env(safe-area-inset-top,0px)) 1rem .5rem;font-size:.75rem;line-height:1.3;color:#FEF3C7;background:linear-gradient(90deg,#78350F,#B45309,#78350F);box-shadow:0 4px 10px -4px rgba(0,0,0,.5)}
+@media(min-width:768px){.ab{font-size:.875rem}}
+.ab-tx{flex:1 1 auto;min-width:0;margin:0;text-align:center;font-weight:600}
+.ab-cta{flex:none;display:inline-flex;align-items:center;gap:.35rem;min-height:2rem;padding:.25rem .85rem;border-radius:999px;background:#FEF3C7;color:#78350F;font-weight:800;white-space:nowrap;text-decoration:none;transition:transform .2s,background .2s}
+.ab-cta:hover{background:#fff;transform:scale(1.04)}
+.ab-x{flex:none;width:2rem;height:2rem;border-radius:50%;border:0;background:transparent;color:#FEF3C7;opacity:.75;font-size:.9rem;cursor:pointer}
+.ab-x:hover{opacity:1;background:rgba(255,255,255,.15)}
+.ab :focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:560px){.ab{flex-wrap:wrap;justify-content:center;padding-right:2.6rem;position:sticky}.ab-tx{flex:1 1 100%}.ab-x{position:absolute;top:calc(.25rem + env(safe-area-inset-top,0px));right:.35rem}}
+html.ab-off .ab{display:none}
+#kit{scroll-margin-top:calc(var(--hh,57px) + 1.5rem)}
+/* la barra de navegación se coloca debajo del cintillo (o sube al borde si se cierra) */
+header.sticky{top:calc(env(safe-area-inset-top,0px) + var(--ab,0px))!important}
+.ab+header.sticky{top:var(--ab,0px)!important}
+html.ab-off header.sticky{top:env(safe-area-inset-top,0px)!important}
+</style>
+<style id="fix-kit">
+/* ===== Kit Navideño (hero de la tienda) ===== */
+.kit{position:relative;max-width:68rem;margin:0 auto;padding:1.1rem;border-radius:1.75rem;background:linear-gradient(160deg,color-mix(in srgb,var(--surf) 92%,#5B1130),var(--surf));border:2px solid #E7B94C;box-shadow:0 0 0 1px rgba(255,214,120,.25),0 0 28px rgba(231,185,76,.35),0 30px 60px -34px rgba(0,0,0,.9)}
+.kit-badge{position:absolute;top:-.85rem;left:1.25rem;z-index:3;padding:.4rem .95rem;border-radius:999px;background:linear-gradient(90deg,#B0182B,#8E1222);color:#FFF4D6;font-weight:800;font-size:.78rem;letter-spacing:.02em;border:1.5px solid #E7B94C;box-shadow:0 8px 18px -8px rgba(0,0,0,.8)}
+.kit-grid{display:grid;gap:1.25rem;margin-top:.5rem}
+@media(min-width:768px){.kit{padding:1.6rem}.kit-grid{grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}}
+.kit-gal{position:relative;min-width:0}
+.kit-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:1.25rem;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;aspect-ratio:4/3;background:#1A0A12}
+.kit-track::-webkit-scrollbar{display:none}
+.kit-sl{position:relative;flex:0 0 100%;scroll-snap-align:center;height:100%}
+.kit-sl>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.kit-art{position:absolute;inset:0;width:100%;height:100%}
+.kit-sl2>img{object-fit:cover}
+.kit-cap{position:absolute;left:.75rem;bottom:.75rem;z-index:2;padding:.25rem .7rem;border-radius:999px;background:rgba(20,8,5,.75);color:#F6EBDD;font-size:.75rem;font-weight:700}
+.kit-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.6rem}
+.kit-dots i{width:.5rem;height:.5rem;border-radius:50%;background:color-mix(in srgb,var(--mute) 45%,transparent);transition:all .25s}
+.kit-dots i.on{width:1.3rem;border-radius:99px;background:#E7B94C}
+.kit-pn{min-width:0}
+.kit-d{margin:.6rem 0 .9rem;color:var(--mute);font-size:.92rem;line-height:1.5}.kit-d b{color:var(--ink)}
+.kit .lbl{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:.8rem 0 .4rem}
+.kit-opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem}
+.kit-opts.kit-gr{grid-template-columns:repeat(2,minmax(0,1fr))}
+.kit-opts .gopt{min-height:2.9rem;justify-content:center}
+.kit-opts .gopt.has-ic{justify-content:flex-start}
+.kit-pr{display:flex;align-items:flex-end;justify-content:space-between;gap:.75rem;margin:1.1rem 0 .9rem;padding-top:.9rem;border-top:1px dashed var(--line)}
+.kit-old{margin:0;color:var(--mute);font-size:.95rem}
+.kit-new{margin:0;font-family:var(--font-head,inherit);font-weight:800;font-size:2.4rem;line-height:1;color:#E7B94C}.kit-new small{font-size:.9rem;font-weight:700}
+.kit-save{padding:.35rem .8rem;border-radius:999px;background:rgba(47,125,75,.2);color:#7FE0A0;border:1px solid rgba(47,125,75,.7);font-weight:800;font-size:.78rem;white-space:nowrap}
+@media(prefers-reduced-motion:no-preference){.kit-badge{animation:kitglow 2.8s ease-in-out infinite}@keyframes kitglow{50%{box-shadow:0 0 18px rgba(231,185,76,.65)}}}
+</style>
+<style id="fix-pro">
+/* ===== v16 · Vista profesional: sin ornamentos de Día de Muertos, paleta café + oro, superficies limpias ===== */
+body{background-image:none!important}
+.petals,.petal,.pp-bar,.pp{display:none!important}
+.badge{background:var(--gold)!important;color:#24100B!important}
+#inicio{background-image:radial-gradient(60rem 30rem at 85% 10%,rgba(217,162,63,.12),transparent)!important}
+#inicio h1 em,#inicio .ttl em{text-shadow:none}
+#nosotros .nos-card,.kit,.pcard{box-shadow:0 22px 44px -30px rgba(0,0,0,.85)!important}
+#nosotros .nos-card{border-color:color-mix(in srgb,var(--gold) 28%,var(--line))}
+.wm{opacity:.05!important}
+.ico.sk,.ico.mg{display:none!important}
+.icow{letter-spacing:.28em}
+/* Contorno en las imágenes de Grano entero / Café molido para que contrasten con el fondo */
+.sel-ic{box-shadow:0 0 0 2px #E8C26A,0 0 0 3.5px rgba(20,8,5,.85),0 5px 12px -4px rgba(0,0,0,.7)!important}
+.sel-ic.sel-em{background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.18)!important}
+.gopt.pill.has-ic[aria-pressed="true"] .sel-ic:not(.sel-em){box-shadow:0 0 0 2px #FFD679,0 0 0 3.5px rgba(20,8,5,.9),0 0 12px rgba(255,214,121,.45)!important}
+</style>
+<style id="fix-hero2">
+/* ===== Inicio en móvil: imagen protagonista y bloques inferiores compactos ===== */
+@media(max-width:767px){
+  #inicio #heroFrame{aspect-ratio:4/5!important;max-height:none!important;max-width:none!important;width:100%;padding:.4rem;border-radius:1.5rem}
+  #inicio #heroBag{border-radius:1.15rem}
+  #inicio .hero-img{margin-inline:-.25rem;width:calc(100% + .5rem)}
+  #inicio dl{gap:.4rem;margin-top:.1rem}
+  #inicio dl>div{padding:.4rem .25rem!important;border-radius:.9rem!important}
+  #inicio dl dt{font-size:1rem!important;line-height:1.2}
+  #inicio dl dd{font-size:.65rem!important;line-height:1.2}
+  #inicio .hero-buy{margin-bottom:.6rem}
 }
 </style>
 </head>
 
 <body>
+  <script>try{if(sessionStorage.getItem('mi-ab')==='1')document.documentElement.classList.add('ab-off')}catch(e){}</script>
   <a href="#main" class="skip">Saltar al contenido</a>
   <div id="live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <noscript><p style="padding:1rem;background:#fff;color:#24100B;text-align:center">Esta tienda necesita JavaScript. Escríbenos por WhatsApp al +52 961 603 7111 para hacer tu pedido.</p></noscript>
@@ -1566,7 +1646,7 @@ html.mopen{overflow:hidden}
     style="top:env(safe-area-inset-top,0px)">
     <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
       <a href="#inicio" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Café Milenio, ir al inicio">
-        <img src="img/cafe_mil.jpg" alt="" width="44" height="44"
+        <img src="img/milenio_admi.jpg" alt="" width="44" height="44"
           class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover bg-[#F4EFE6] shrink-0"
           onerror="this.outerHTML='<span class=&quot;w-10 h-10 rounded-full bg-[#F4EFE6] grid place-items-center shrink-0&quot;>☕</span>'">
         <span class="font-script leading-none whitespace-nowrap hd-logo" aria-hidden="true">Café Milenio</span>
@@ -1587,10 +1667,6 @@ html.mopen{overflow:hidden}
       <a href="#inicio" class="border-t border-white/10" data-i18n="nav.home">Inicio</a><a href="#tienda" class="border-t border-white/10" data-i18n="nav.shop">Tienda</a><a href="#nosotros" class="border-t border-white/10" data-i18n="nav.origin">Origen</a><a href="#resenas" class="border-t border-white/10" data-i18n="nav.reviews">Reseñas</a><a href="#preguntas" class="border-t border-white/10" data-i18n="nav.faqm">Preguntas frecuentes</a><a href="#contacto" class="border-t border-white/10" data-i18n="nav.contact">Contacto</a>
       <div class="mnav-langwrap"><div class="lang-sw mnav-lang" role="group" aria-label="Idioma / Language"><button type="button" class="lang-b" data-lang="es" aria-pressed="true" aria-label="Español">🇲🇽 ES</button><button type="button" class="lang-b" data-lang="en" aria-pressed="false" aria-label="English (USA)">🇺🇸 EN</button></div></div>
     </nav>
-  <div id="mbar" class="mbar" aria-hidden="true">
-    <button type="button" class="mb-cart" id="mbCart" tabindex="-1"><span aria-hidden="true">🛒</span> <span data-i18n="mb.cart">Ver Carrito</span> <b id="mbCount">(0)</b></button>
-    <a class="mb-shop" id="mbShop" href="#tienda" tabindex="-1"><span aria-hidden="true">☕</span> <span data-i18n="mb.shop">Tienda</span></a>
-  </div>
 
   <main id="main">
 
@@ -1853,6 +1929,7 @@ html.mopen{overflow:hidden}
     // Imágenes de los selectores (Grano entero, Café molido y Costal). Se reemplazan por fotos reales desde admin.html (Imágenes del sitio).
     const SEL_DEF = { grano: 'img/sel-grano.webp', molido: 'img/sel-molido.webp', costal: 'img/sel-costal.webp' }, SEL_FB = { grano: '\u{1F330}', molido: '\u2615', costal: '\u{1F4E6}' };
     const SEL_GR = { 'Molido fino': 'img/sel-molido-fino.webp', 'Molido medio': 'img/sel-molido.webp', 'Molido medio-grueso': 'img/sel-molido-mg.webp', 'Prensa francesa': 'img/sel-molido-grueso.webp' }; // molido por tipo (si no hay foto propia en el panel)
+    const selEm = () => `<i class="sel-ic sel-em" aria-hidden="true"><em>\u2615</em></i>`; // tipo de molido: solo emoji de taza
     const selIc = (k, g) => { const u = k === 'molido' && g && !SITE.sel.molido ? SEL_GR[g] : (SITE.sel[k] || SEL_DEF[k]); return `<i class="sel-ic" aria-hidden="true"><em>${SEL_FB[k]}</em><img src="${esc(u || SEL_DEF[k])}" alt="" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()"></i>`; };
     const HERO_FIT = 'cover';
     const HERO_POS = 'center 35%'; // ajusta qué parte de la foto queda visible (ej. 'left center')
@@ -1887,10 +1964,12 @@ html.mopen{overflow:hidden}
     PRODS.forEach(p => ui[p.id] = { g: 'Grano entero', kg: 1, pr: 1 });
     const save = () => { try { localStorage.setItem('milenio-cart', JSON.stringify(cart)); } catch (e) { } };
     const byId = id => PRODS.find(p => p.id === id);
-    const kgOf = id => +Object.values(cart).filter(l => l.id === id).reduce((a, l) => a + l.kg, 0).toFixed(2);
+    const kgOf = id => +Object.values(cart).filter(l => l.id === id && !l.kit).reduce((a, l) => a + l.kg, 0).toFixed(2);
     // ===== Configuración de temporada y confianza =====
-    const THEME_MUERTOS = true; // false = quita papel picado, pétalos, brillos de ofrenda e iconos de Día de Muertos
+    const THEME_MUERTOS = false; // false = quita papel picado, pétalos, brillos de ofrenda e iconos de Día de Muertos
     try { localStorage.removeItem('milenio-cupon'); } catch (e) { } // limpia el cupón que haya guardado una versión anterior
+    // Kit Navideño: 1 kg de café (calidad y molido a elegir) + taza conmemorativa + empaque de yute. Precio fijo por kit.
+    const KIT = { regular: 580, price: 490, max: 10 };
     const PRES = [[.25, '250 g'], [.5, '500 g'], [1, '1 kg']];
     const SACK = 5, SACK_MAX = 50; // Costal (5-50 kg): se vende de 5 en 5 kg y siempre a precio de mayoreo (desde 5 kg de una calidad)
     const isSack = l => l.pr === SACK;
@@ -1908,7 +1987,7 @@ html.mopen{overflow:hidden}
     const EN = () => LANG === 'en';
     const I18N = {
       es: {
-        'mb.cart': 'Ver Carrito', 'mb.shop': 'Tienda', 'nav.home': 'Inicio', 'nav.origin': 'Origen', 'nav.shop': 'Tienda', 'nav.reviews': 'Reseñas', 'nav.faq': 'Preguntas', 'nav.faqm': 'Preguntas', 'nav.contact': 'Contacto',
+        'mb.cart': 'Ver Carrito', 'mb.shop': 'Tienda', 'ab.msg': '🎄 Edición Navideña: Reserva tus paquetes de regalo antes del 20 de diciembre. 🚚 Envíos a todo México.', 'ab.cta': 'Ver Especiales', 'ab.close': 'Cerrar aviso', 'nav.home': 'Inicio', 'nav.origin': 'Origen', 'nav.shop': 'Tienda', 'nav.reviews': 'Reseñas', 'nav.faq': 'Preguntas', 'nav.faqm': 'Preguntas', 'nav.contact': 'Contacto',
         'quiz.entry': '☕ ¿No sabes qué café elegir? <span class="text-goldt underline">Haz el test de 3 preguntas</span>',
         'hero.shop': '<span aria-hidden="true">🛒</span> Ver Tienda', 'hero.org2': 'Origen', 'hero.eyebrow': 'Café arábiga · Jaltenango, Chiapas', 'hero.h1': 'Café 100% <span class="text-gold">chiapaneco</span>', 'hero.p': 'Productores de café con un aroma que nos distingue y una gran tradición. Del cafetal a tu taza, con envíos a todo México.', 'hero.buy': '<span aria-hidden="true">🛒</span> Comprar café', 'hero.origin': 'Conocer el origen', 'hero.loc': 'Ubicación', 'hero.s1': 'msnm de altura', 'hero.s2': 'precio mayoreo', 'hero.s3': 'envíos a todo el país',
         retail: 'Menudeo', wholesale: 'Mayoreo',
@@ -1953,7 +2032,7 @@ html.mopen{overflow:hidden}
         'q.ideal': n => `Tu café ideal es ${n}`, 'q.sug': 'Molido sugerido:', 'q.sold': 'Agotado por ahora.', 'q.see': 'Ver mi café', 'q.add1': 'Agregar 1 kg al carrito', 'q.change': 'Cambiar respuesta', 'q.retake': 'Repetir test'
       },
       en: {
-        'mb.cart': 'View Cart', 'mb.shop': 'Shop', 'nav.home': 'Home', 'nav.origin': 'Origin', 'nav.shop': 'Shop', 'nav.reviews': 'Reviews', 'nav.faq': 'FAQ', 'nav.faqm': 'FAQ', 'nav.contact': 'Contact',
+        'mb.cart': 'View Cart', 'mb.shop': 'Shop', 'ab.msg': '🎄 Holiday Edition: Reserve your gift bundles before December 20. 🚚 We ship all over Mexico.', 'ab.cta': 'See Specials', 'ab.close': 'Close notice', 'nav.home': 'Home', 'nav.origin': 'Origin', 'nav.shop': 'Shop', 'nav.reviews': 'Reviews', 'nav.faq': 'FAQ', 'nav.faqm': 'FAQ', 'nav.contact': 'Contact',
         'quiz.entry': '☕ Not sure which coffee to pick? <span class="text-goldt underline">Take the 3-question quiz</span>',
         'hero.shop': '<span aria-hidden="true">🛒</span> View Shop', 'hero.org2': 'Origin', 'hero.eyebrow': 'Arabica coffee · Jaltenango, Chiapas', 'hero.h1': '100% <span class="text-gold">Chiapas</span> Coffee', 'hero.p': 'Coffee growers with a distinctive aroma and a long tradition. From the plantation to your cup, shipping across Mexico.', 'hero.buy': '<span aria-hidden="true">🛒</span> Shop Coffee', 'hero.origin': 'Our Origin', 'hero.loc': 'Location', 'hero.s1': 'meters above sea level', 'hero.s2': 'wholesale price', 'hero.s3': 'shipping nationwide',
         retail: 'Retail', wholesale: 'Wholesale',
@@ -2031,12 +2110,12 @@ html.mopen{overflow:hidden}
     const gl = g => EN() && GEN[g] ? GEN[g][2] : glEs(g);
     const gd = gl;
     const isBagged = l => l.pr && !isSack(l) && Math.abs(l.kg / l.pr - Math.round(l.kg / l.pr)) < 1e-9;
-    const bagsU = l => isSack(l) ? (EN() ? `Sack of ${fmtKg(l.kg)}` : `Costal de ${fmtKg(l.kg)}`) : bags(l); // para pantalla
+    const bagsU = l => l.kit ? (EN() ? `${l.kg} Holiday Kit${l.kg > 1 ? 's' : ''}` : `${l.kg} Kit${l.kg > 1 ? 's' : ''} Navideño${l.kg > 1 ? 's' : ''}`) : isSack(l) ? (EN() ? `Sack of ${fmtKg(l.kg)}` : `Costal de ${fmtKg(l.kg)}`) : bags(l); // para pantalla
     const bags = l => isSack(l) ? `Costal de ${fmtKg(l.kg)}` : isBagged(l) ? `${Math.round(l.kg / l.pr)} × ${fmtKg(l.pr)}` : fmtKg(l.kg);
-    const qty = l => isSack(l) ? `Costal de ${fmtKg(l.kg)}` : isBagged(l) ? `${bags(l)} (${fmtKg(l.kg)})` : fmtKg(l.kg);
+    const qty = l => l.kit ? `${l.kg} ${l.kg > 1 ? 'Kits Navideños' : 'Kit Navideño'}` : isSack(l) ? `Costal de ${fmtKg(l.kg)}` : isBagged(l) ? `${bags(l)} (${fmtKg(l.kg)})` : fmtKg(l.kg);
     function calc() {
-      const kgq = {}; Object.values(cart).forEach(l => { kgq[l.id] = (kgq[l.id] || 0) + l.kg; });
-      const L = Object.entries(cart).map(([k, l]) => { const p = byId(l.id), wh = kgq[l.id] >= WHOLE, t = wh ? 'may' : 'men'; return { k, l, p, wh, u: lineU(p, l, t), subC: lineC(p, l, t), refC: lineC(p, l, 'men'), refU: lineU(p, l, 'men') }; });
+      const kgq = {}; Object.values(cart).forEach(l => { if (!l.kit) kgq[l.id] = (kgq[l.id] || 0) + l.kg; });
+      const L = Object.entries(cart).map(([k, l]) => { const p = byId(l.id); if (l.kit) { const c = C(KIT.price) * l.kg; return { k, l, p, wh: false, kit: true, u: KIT.price, subC: c, refC: c, refU: KIT.price }; } const wh = kgq[l.id] >= WHOLE, t = wh ? 'may' : 'men'; return { k, l, p, wh, u: lineU(p, l, t), subC: lineC(p, l, t), refC: lineC(p, l, 'men'), refU: lineU(p, l, 'men') }; });
       const sum = f => L.reduce((a, x) => a + f(x), 0), refC = sum(x => x.refC), subC = sum(x => x.subC);
       const wholeC = Math.max(0, refC - subC); // si el administrador pone un mayoreo más caro, no hay "descuento": el subtotal de referencia nunca baja del total
       return { L, kg: +sum(x => x.l.kg).toFixed(2), refC: subC + wholeC, wholeC, subC, totalC: subC };
@@ -2050,6 +2129,7 @@ html.mopen{overflow:hidden}
         if (!l || !byId(l.id)) return; let kg = Math.round((+l.kg) * 4) / 4; if (!(kg > 0)) return;
         const g = GR.some(x => x[0] === l.g) ? l.g : 'Grano entero', pr = PRES.some(x => x[0] === l.pr) || l.pr === SACK ? l.pr : 0, k = ckey(l.id, g, pr);
         if (pr === SACK) kg = Math.min(SACK_MAX, Math.max(SACK, Math.round(kg / SACK) * SACK)); // costal: de 5 en 5 kg, máx. 50
+        if (l.kit) { const kk = ckey(l.id, g, 1) + '|kit'; cart[kk] = { id: l.id, g, pr: 1, kit: 1, kg: Math.min(KIT.max, Math.max(1, Math.round(+l.kg || 1)) + (cart[kk]?.kg || 0)) }; return; }
         cart[k] = { id: l.id, g, pr, kg: Math.min(pr === SACK ? SACK_MAX : POLICY.maxKgLine, (cart[k]?.kg || 0) + kg) };
       });
     } catch (e) { cart = {}; }
@@ -2083,6 +2163,47 @@ html.mopen{overflow:hidden}
       if ($('#footWa')) { if (WA_OK) { $('#footWa').href = wa; $('#footWa').target = '_blank'; } else $('#footWa').remove(); }
       if ($('#yr')) $('#yr').textContent = new Date().getFullYear();
     }
+    // ===== Kit Navideño (bloque destacado al inicio de la tienda) =====
+    const kitS = { q: 'europea', g: 'Grano entero' }, kt = (es, en) => EN() ? en : es;
+    const kitArt = p => `<svg viewBox="0 0 400 300" class="kit-art" role="img" aria-label="${kt('Kit Navideño: bolsa de café, taza y empaque de yute', 'Holiday Kit: coffee bag, mug and burlap pack')}">
+      <defs><linearGradient id="kg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B1530"/><stop offset="1" stop-color="#1A0A12"/></linearGradient><linearGradient id="kg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D2A86B"/><stop offset="1" stop-color="#9A7340"/></linearGradient></defs>
+      <rect width="400" height="300" fill="url(#kg1)"/>
+      <g fill="#F6D98A" opacity=".85"><circle cx="40" cy="40" r="2.4"/><circle cx="120" cy="22" r="1.8"/><circle cx="330" cy="36" r="2.6"/><circle cx="370" cy="110" r="1.8"/><circle cx="60" cy="150" r="1.6"/><circle cx="260" cy="20" r="1.6"/></g>
+      <path d="M70 268c0-4 6-6 20-6h220c14 0 20 2 20 6v12H70z" fill="#0006"/>
+      <path d="M92 108l24-18h108l24 18 12 156H80z" fill="url(#kg2)"/><path d="M116 90l-8 20h128l-8-20z" fill="#0003"/><path d="M110 110h128" stroke="#6E4E26" stroke-width="5" stroke-linecap="round"/>
+      <path d="M92 108l22 6M256 108l-22 6" stroke="#6E4E26" stroke-width="3"/>
+      <rect x="116" y="150" width="108" height="64" rx="6" fill="#F4EBDD"/><text x="170" y="178" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" fill="#3B1530">Café Milenio</text><text x="170" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="2" fill="#7A5A32">EDICIÓN NAVIDEÑA</text>
+      <g transform="translate(236 150) scale(.52)"><path d="M0 0h120l-6 150c-1 6-6 10-12 10H18c-6 0-11-4-12-10z" fill="${p ? p.bag : '#7A1F5C'}"/><rect x="18" y="40" width="84" height="70" rx="4" fill="${p ? p.label : '#F4EBDD'}"/></g>
+      <g transform="translate(262 196)"><path d="M0 0h74v44a30 30 0 0 1-30 30H30A30 30 0 0 1 0 44z" fill="#F4EBDD"/><path d="M74 12h8a16 16 0 0 1 0 32h-8" fill="none" stroke="#F4EBDD" stroke-width="8"/><path d="M0 14h74" stroke="#B0182B" stroke-width="7"/><path d="M12 30l7 10 7-10 7 10 7-10 7 10" fill="none" stroke="#2F7D4B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 -10q8-10 0-18M36 -12q8-10 0-18M58 -10q8-10 0-18" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/></g>
+      <g transform="translate(150 78)"><path d="M0 0c-18-22-34-6-18 6 8 6 18 2 18-6zm0 0c18-22 34-6 18 6-8 6-18 2-18-6z" fill="#B0182B"/><circle cx="0" cy="0" r="6" fill="#8E1222"/></g></svg>`;
+    function renderKit() {
+      const k = $('#kit'); if (!k) return; if (!byId(kitS.q)) kitS.q = (PRODS[0] || {}).id; const p = byId(kitS.q); if (!p) { k.innerHTML = ''; return; }
+      const sold = p.disponible === false, ink = cart[ckey(p.id, kitS.g, 1) + '|kit'], save$ = KIT.regular - KIT.price, pct = Math.round(save$ / KIT.regular * 100);
+      const pill = (act, v, on, ic, lab, sub, dis) => `<button type="button" class="gopt pill ${ic ? 'has-ic sm' : ''}"${dis ? ' disabled aria-disabled="true"' : ''} aria-pressed="${on}" data-act="${act}" data-v="${esc(v)}">${ic || ''}<span class="${ic ? 'sel-tx' : ''}"><b>${lab}</b>${sub ? `<span>${sub}</span>` : ''}</span></button>`;
+      k.innerHTML = `<article class="kit" aria-labelledby="kit-t">
+  <span class="kit-badge">🎄 ${kt('Edición Limitada de Temporada', 'Limited Holiday Edition')}</span>
+  <div class="kit-grid">
+    <div class="kit-gal"><div class="kit-track" tabindex="0" aria-label="${kt('Galería del kit', 'Kit gallery')}">
+      <div class="kit-sl"><img src="img/kit-navideno.webp" alt="${kt('Kit Navideño Café Milenio', 'Café Milenio Holiday Kit')}" loading="lazy" decoding="async" onerror="this.remove()">${kitArt(p)}</div>
+      <div class="kit-sl kit-sl2"><img src="${esc(SITE.sel.costal || SEL_DEF.costal)}" alt="${kt('Empaque de regalo de yute con sello Café Milenio', 'Burlap gift pack stamped Café Milenio')}" loading="lazy" decoding="async"><span class="kit-cap">${kt('Empaque de regalo de yute', 'Burlap gift pack')}</span></div>
+    </div><div class="kit-dots" aria-hidden="true"><i class="on"></i><i></i></div></div>
+    <div class="kit-pn">
+      <h3 id="kit-t" class="font-head font-extrabold text-2xl md:text-3xl leading-tight">${kt('Kit Navideño Café Milenio ☕🎁', 'Café Milenio Holiday Kit ☕🎁')}</h3>
+      <p class="kit-d">${kt('Incluye <b>1 kg de Café de Altura</b> (calidad a elegir) + <b>taza artesanal conmemorativa</b> + <b>empaque de regalo navideño de yute</b>.', 'Includes <b>1 kg of high-altitude coffee</b> (your choice of grade) + a <b>commemorative handcrafted mug</b> + a <b>burlap holiday gift pack</b>.')}</p>
+      <p class="lbl">${kt('Calidad', 'Grade')}</p><div class="kit-opts" role="group" aria-label="${kt('Calidad', 'Grade')}">${PRODS.map(x => pill('kitq', x.id, kitS.q === x.id, '', pnShort(x), '', false)).join('')}</div>
+      <p class="lbl">${kt('Tipo de molido', 'Grind')}</p><div class="kit-opts kit-gr" role="group" aria-label="${kt('Tipo de molido', 'Grind')}">${GR.map(([v, sh, ds]) => pill('kitg', v, kitS.g === v, v === 'Grano entero' ? selIc('grano') : selEm(), gl(v), '', false)).join('')}</div>
+      <div class="kit-pr"><div><p class="kit-old"><s aria-label="${kt('Precio regular', 'Regular price')} ${fmt(KIT.regular)}">${fmt(KIT.regular)} MXN</s></p><p class="kit-new">${fmt(KIT.price)} <small>MXN</small></p>${EN() ? `<p class="text-[11px] text-mute">${usd(KIT.price)}</p>` : ''}</div><span class="kit-save">${kt('Ahorras', 'Save')} ${fmt(save$)} · −${pct}%</span></div>
+      ${sold ? `<button type="button" class="btn w-full min-h-[3.4rem] border-2 border-line text-mute cursor-not-allowed" disabled aria-disabled="true">${t('card.soldbtn')}</button>` : `<button type="button" class="btn btn-gold w-full min-h-[3.4rem] text-base" data-act="kitadd">🎁 ${kt('Agregar Paquete al Carrito', 'Add Kit to Cart')}</button>`}
+      <p class="text-xs text-mute text-center mt-2" role="status">${ink ? kt(`Ya tienes ${ink.kg} en tu carrito con este café y molido.`, `You already have ${ink.kg} in your cart with this coffee and grind.`) : kt('Reserva antes del 20 de diciembre · Envíos a todo México', 'Reserve before December 20 · Shipping all over Mexico')}</p>
+    </div>
+  </div></article>`;
+    }
+    document.addEventListener('scroll', e => { const t = e.target; if (!t || !t.classList || !t.classList.contains('kit-track')) return; const i = Math.round(t.scrollLeft / Math.max(1, t.clientWidth)); t.parentElement.querySelectorAll('.kit-dots i').forEach((d, j) => d.classList.toggle('on', j === i)); }, true);
+    function kitAdd(b) {
+      const p = byId(kitS.q); if (!p || p.disponible === false) return; const key = ckey(p.id, kitS.g, 1) + '|kit', cur = cart[key]?.kg || 0;
+      if (cur + 1 > KIT.max) { toast(`Máximo ${KIT.max} kits por pedido. Para más, escríbenos por WhatsApp.`, true); return; }
+      cart[key] = { id: p.id, g: kitS.g, pr: 1, kit: 1, kg: cur + 1 }; save(); toast(`🎁 Kit Navideño · Café ${p.name.replace('Calidad ', '')} (${gl(kitS.g)}) ${kt('añadido al carrito', 'added to cart')}`); try { flyToCart(b); } catch (x) { } rerender();
+    }
     function renderGrid() {
       const g = $('#grid'); if (!g) return;
       g.innerHTML = PRODS.map(p => {
@@ -2099,7 +2220,7 @@ html.mopen{overflow:hidden}
       <div class="wcard${may ? ' is-on' : ''}" role="status"><span class="wcard-ic" aria-hidden="true">${may ? WIC.ok : WIC.tag}</span><div class="wcard-tx"><p class="wcard-h">${may ? t('wc.on', fmt(wu)) : t('wc.off', WHOLE, fmt(wu))}</p><p class="wcard-s">${may ? (sv2(d) ? t('wc.onsub', sv2(d)) : t('wc.onsub0', WHOLE)) : t('wc.offsub', left, imp(left), sv2(d * WHOLE))}${inCart ? ' · ' + t('card.incart', dkg(inCart)) : ''}</p></div><div class="vbar" aria-hidden="true"><i style="width:${Math.min(100, kgEff / WHOLE * 100)}%"></i></div></div>
       <div><p class="lbl" id="pr-${p.id}">${t('card.size')}</p><div class="grid grid-cols-3 gap-2" role="group" aria-labelledby="pr-${p.id}">${PRES.map(([v, t]) => `<button type="button" class="gopt pill"${dis} aria-pressed="${s.pr === v}" data-act="pres" data-id="${p.id}" data-v="${v}"><b>${t}</b>${EN() ? `<span>${imp(v)}</span>` : ''}</button>`).join('')}<button type="button" class="gopt pill has-ic col-span-3"${dis} aria-pressed="${s.pr === SACK}" data-act="pres" data-id="${p.id}" data-v="${SACK}">${selIc('costal')}<span class="sel-tx"><b>${t('card.sack')}</b><span>${t('card.sacksub')}</span></span></button></div></div>
       <div><p class="lbl" id="gr-${p.id}">${t('card.grind')}</p><div class="grid grid-cols-2 gap-2" role="group" aria-labelledby="gr-${p.id}"><button type="button" class="gopt pill has-ic"${dis} aria-pressed="${s.g === 'Grano entero'}" data-act="gmode" data-id="${p.id}" data-v="whole">${selIc('grano')}<span class="sel-tx"><b>${t('card.whole')}</b></span></button><button type="button" class="gopt pill has-ic"${dis} aria-pressed="${s.g !== 'Grano entero'}" data-act="gmode" data-id="${p.id}" data-v="ground">${selIc('molido')}<span class="sel-tx"><b>${t('card.ground')}</b></span></button></div>
-        ${s.g !== 'Grano entero' ? `<div class="grid grid-cols-2 gap-2 mt-2" role="group" aria-label="${t('card.griptype', pn(p))}" data-sub="${p.id}">${GR.slice(1).map(([n, sh, ds]) => `<button type="button" class="gopt pill has-ic sm"${dis} aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}">${selIc('molido', n)}<span class="sel-tx"><b>${gS(n, sh)}</b><span>${gD(n, ds)}</span></span></button>`).join('')}</div>` : ''}</div>
+        ${s.g !== 'Grano entero' ? `<div class="grid grid-cols-2 gap-2 mt-2" role="group" aria-label="${t('card.griptype', pn(p))}" data-sub="${p.id}">${GR.slice(1).map(([n, sh, ds]) => `<button type="button" class="gopt pill has-ic sm"${dis} aria-pressed="${s.g === n}" data-act="grind" data-id="${p.id}" data-g="${n}">${selEm()}<span class="sel-tx"><b>${gS(n, sh)}</b><span>${gD(n, ds)}</span></span></button>`).join('')}</div>` : ''}</div>
       <div class="flex items-center gap-2 mt-auto"><button type="button" class="q"${dis} data-act="kdec" data-id="${p.id}" aria-label="Quitar ${fmtKg(s.pr)}">−</button><span class="min-w-[5.5rem] text-center leading-tight"><b class="block">${s.pr === SACK ? fmtKg(s.kg) : bags({ kg: s.kg, pr: s.pr })}</b><span class="text-xs text-mute">${s.pr === SACK ? t('card.sacklbl') + (EN() ? ' · ' + imp(s.kg) : '') : dkg(s.kg)}</span></span><button type="button" class="q"${dis} data-act="kinc" data-id="${p.id}" aria-label="Agregar ${fmtKg(s.pr)}">+</button><span class="ml-auto text-right"><span class="block text-xs text-mute">${t('card.subtotal')}</span><span class="font-extrabold text-lg">${fmt(P(lineC(p, { kg: s.kg, pr: s.pr }, may ? 'may' : 'men')))}</span></span></div>
       ${p.disponible === false ? `<button type="button" class="btn w-full min-h-[3.4rem] border-2 border-line text-mute cursor-not-allowed" disabled aria-disabled="true" data-agotado="${p.id}">${t('card.soldbtn')}</button>` : `<button type="button" class="btn btn-gold cta w-full" data-act="add" data-id="${p.id}"><span aria-hidden="true">🛒</span> ${t('card.add')}</button>`}
     </div></article>`;
@@ -2110,6 +2231,7 @@ html.mopen{overflow:hidden}
       const inCart = PRODS.map(p => ({ p, kg: kgOf(p.id) })).filter(x => x.kg > 0), got = inCart.filter(x => x.kg >= WHOLE), prog = inCart.filter(x => x.kg < WHOLE).sort((a, b) => b.kg - a.kg)[0];
       const nm = a => a.map(x => pnShort(x.p)).join(t('ws.and')), saved = c.wholeC ? t('ws.saved', fmt(P(c.wholeC))) : '';
       const one = x => (got.length > 1 ? `<b>${pnShort(x.p)}:</b> ` : '') + wsOn(x.p.may, x.p.men - x.p.may);
+      if (!inCart.length) return '';
       if (!prog) return `<div class="wbox ok rounded-2xl border border-leaf bg-surf p-3.5 mt-4" role="status"><div class="flex items-start gap-2.5"><span class="wico" aria-hidden="true">🎉</span><div class="text-sm leading-snug font-bold text-leaf">${got.map(x => `<p>${one(x)}</p>`).join('')}</div></div><div class="wbar ok mt-3" role="progressbar" aria-label="${t('ws.ariaok')}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i style="width:100%"></i></div><p class="text-xs mt-2 font-semibold text-leaf">${saved}</p></div>`;
       const kg = prog.kg, pct = Math.min(100, kg / WHOLE * 100), left = +(WHOLE - kg).toFixed(2), near = pct >= 60;
       return `<div class="wbox${near ? ' near' : ''} rounded-2xl border border-gold/60 bg-surf p-3.5 mt-4" role="status">
@@ -2151,9 +2273,9 @@ html.mopen{overflow:hidden}
       const step = (n, t) => `<h3 class="flex items-center gap-2 font-extrabold uppercase text-xs tracking-wider text-goldt"><span class="cnum">${n}</span>${t}</h3>`;
       const FQ = [['unica', t('fq.unica'), t('fq.unica.d')], ['15', t('fq.15'), t('fq.d')], ['mes', t('fq.mes'), t('fq.d')]];
       $('#pn').innerHTML = `<div class="cap flex justify-between items-center gap-3"><h2 id="ct" class="font-head font-extrabold uppercase text-2xl">${t('cart.title')}${n ? ` <span class="text-sm font-semibold text-mute normal-case">· ${dkg(c.kg)}</span>` : ''}</h2><button type="button" class="q" data-act="close" aria-label="${t('cart.close')}">✕</button></div>` + (n ? `
-  <ul class="divide-y divide-line" aria-label="${t('cart.aria')}">${L.map(x => `<li class="py-3 flex gap-3"><div class="w-12 h-14 shrink-0 rounded-xl bg-surf border border-line p-1" aria-hidden="true">${bagSvg(x.p)}</div><div class="min-w-0 grow"><div class="flex justify-between items-start gap-2"><p class="font-bold leading-tight">${t('card.coffee')} ${pnShort(x.p)}</p><p class="font-extrabold">${fmt(P(x.subC))}</p></div>
-    <p class="text-xs text-mute mt-1 flex flex-wrap items-center gap-x-2 gap-y-1"><span class="rounded-full px-2 py-0.5 bg-gold/15 text-ink font-semibold">${gl(x.l.g)}</span>${x.p.disponible === false ? `<span class="rounded-full px-2 py-0.5 bg-[#B3262B] text-white font-bold" role="alert" data-agotado-cart>${t('cart.soldwarn')}</span>` : ''}<span>${x.wh && x.refU > x.u ? `<s>${fmt(x.refU)}</s> ` : ''}${fmt(x.u)}/kg</span><span class="font-bold ${x.wh ? 'text-leaf' : 'text-goldt'}">${x.wh ? t('wholesale') : t('retail')}</span></p>
-    <div class="mt-2 flex items-center gap-1.5"><button type="button" class="q cq" data-act="cdec" data-k="${x.k}" aria-label="Quitar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">−</button><span class="min-w-[5rem] text-center leading-tight"><b class="block text-sm">${bagsU(x.l)}</b>${isBagged(x.l) ? `<span class="text-xs text-mute">${dkg(x.l.kg)}</span>` : (isSack(x.l) && EN() ? `<span class="text-xs text-mute">${imp(x.l.kg)}</span>` : '')}</span><button type="button" class="q cq" data-act="cinc" data-k="${x.k}" aria-label="Agregar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">+</button><button type="button" class="ml-auto text-xs underline text-mute min-h-[2.75rem] px-1" data-act="del" data-k="${x.k}" aria-label="${t('cart.remove')} ${pn(x.p)}, ${gl(x.l.g)}"><span aria-hidden="true">🗑</span> ${t('cart.remove')}</button></div></div></li>`).join('')}</ul>
+  <ul class="divide-y divide-line" aria-label="${t('cart.aria')}">${L.map(x => `<li class="py-3 flex gap-3"><div class="w-12 h-14 shrink-0 rounded-xl bg-surf border border-line p-1" aria-hidden="true">${bagSvg(x.p)}</div><div class="min-w-0 grow"><div class="flex justify-between items-start gap-2"><p class="font-bold leading-tight">${x.l.kit ? (EN() ? '🎁 Holiday Kit · ' : '🎁 Kit Navideño · ') : ''}${t('card.coffee')} ${pnShort(x.p)}</p><p class="font-extrabold">${fmt(P(x.subC))}</p></div>
+    <p class="text-xs text-mute mt-1 flex flex-wrap items-center gap-x-2 gap-y-1"><span class="rounded-full px-2 py-0.5 bg-gold/15 text-ink font-semibold">${gl(x.l.g)}</span>${x.p.disponible === false ? `<span class="rounded-full px-2 py-0.5 bg-[#B3262B] text-white font-bold" role="alert" data-agotado-cart>${t('cart.soldwarn')}</span>` : ''}${x.l.kit ? `<span><s>${fmt(KIT.regular)}</s> ${fmt(KIT.price)} c/u</span><span class="font-bold text-leaf">${EN() ? 'Seasonal price' : 'Precio de temporada'}</span>` : `<span>${x.wh && x.refU > x.u ? `<s>${fmt(x.refU)}</s> ` : ''}${fmt(x.u)}/kg</span><span class="font-bold ${x.wh ? 'text-leaf' : 'text-goldt'}">${x.wh ? t('wholesale') : t('retail')}</span>`}</p>
+    <div class="mt-2 flex items-center gap-1.5"><button type="button" class="q cq" data-act="cdec" data-k="${x.k}" aria-label="Quitar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">−</button><span class="min-w-[5rem] text-center leading-tight"><b class="block text-sm">${bagsU(x.l)}</b>${x.l.kit ? '' : isBagged(x.l) ? `<span class="text-xs text-mute">${dkg(x.l.kg)}</span>` : (isSack(x.l) && EN() ? `<span class="text-xs text-mute">${imp(x.l.kg)}</span>` : '')}</span><button type="button" class="q cq" data-act="cinc" data-k="${x.k}" aria-label="Agregar ${fmtKg(x.l.pr || (x.l.kg >= 1 && x.l.kg % .5 === 0 ? .5 : .25))} de ${x.p.name}, ${gl(x.l.g)}">+</button><button type="button" class="ml-auto text-xs underline text-mute min-h-[2.75rem] px-1" data-act="del" data-k="${x.k}" aria-label="${t('cart.remove')} ${pn(x.p)}, ${gl(x.l.g)}"><span aria-hidden="true">🗑</span> ${t('cart.remove')}</button></div></div></li>`).join('')}</ul>
   ${wholesaleBar(c)}
   <div class="cform">
   ${sumBox(c)}
@@ -2389,13 +2511,13 @@ html.mopen{overflow:hidden}
       rows.push(['Pago', info.pago, E.card]);
       const tr = info.pago === 'Transferencia', freq = FREQ[info.frecuencia] || '';
       const pay = tr ? (PAY_OK ? `${PAY.banco}${PAY.titular ? ' · ' + PAY.titular : ''} · CLABE ${PAY.clabe} · Concepto: ${concepto()}` : `Concepto sugerido: ${concepto()} (los datos de cuenta te los confirmamos por este chat)`) : '';
-      const items = c.L.map(x => ({ txt: `${qty(x.l)} - Café ${x.p.name} - ${glEs(x.l.g)} · ${fmt(x.u)}/kg (${x.wh ? 'Mayoreo' : 'Menudeo'}) = ${fmt(P(x.subC))}`, nm: `${qty(x.l)} Café ${x.p.name} · ${glEs(x.l.g)} · ${fmt(x.u)}/kg`, sub: P(x.subC) }));
+      const items = c.L.map(x => x.l.kit ? ({ txt: `${qty(x.l)} - Café ${x.p.name} (1 kg) - ${glEs(x.l.g)} + taza conmemorativa + empaque de yute · ${fmt(KIT.price)} c/u (Precio de temporada) = ${fmt(P(x.subC))}`, nm: `${qty(x.l)} · Café ${x.p.name} · ${glEs(x.l.g)} · ${fmt(KIT.price)} c/u`, sub: P(x.subC) }) : ({ txt: `${qty(x.l)} - Café ${x.p.name} - ${glEs(x.l.g)} · ${fmt(x.u)}/kg (${x.wh ? 'Mayoreo' : 'Menudeo'}) = ${fmt(P(x.subC))}`, nm: `${qty(x.l)} Café ${x.p.name} · ${glEs(x.l.g)} · ${fmt(x.u)}/kg`, sub: P(x.subC) }));
       const sr = [['Subtotal productos (menudeo)', fmt(P(c.refC))]]; if (c.wholeC) sr.push(['Descuento de mayoreo', '−' + fmt(P(c.wholeC))]);
       sr.push(['Envío', 'Por confirmar']);
       const kgPorCalidad = {}; c.L.forEach(x => { kgPorCalidad[x.p.id] = +((kgPorCalidad[x.p.id] || 0) + x.l.kg).toFixed(2); });
       const rec = {
         folio, cliente: info.nombre.trim(), telefono: info.tel, entrega: ent ? 'envio' : 'recoger', destino: ent ? info.destino.trim() : '', direccion: ent ? info.dir.trim() : '', sucursal: ent ? '' : STORE, fechaRecoleccion: ent ? '' : info.fecha, recoge: ent ? '' : info.recoge.trim(),
-        productos: c.L.map(x => ({ calidad: x.p.name, molido: glEs(x.l.g), presentacion: isSack(x.l) ? qty(x.l) : x.l.pr ? fmtKg(x.l.pr) : '', bolsas: isBagged(x.l) ? Math.round(x.l.kg / x.l.pr) : 0, kg: x.l.kg, precioKg: x.u, tarifa: x.wh ? 'Mayoreo' : 'Menudeo', subtotal: P(x.subC) })),
+        productos: c.L.map(x => ({ calidad: x.l.kit ? x.p.name + ' · Kit Navideño' : x.p.name, molido: glEs(x.l.g), presentacion: x.l.kit ? qty(x.l) : isSack(x.l) ? qty(x.l) : x.l.pr ? fmtKg(x.l.pr) : '', bolsas: isBagged(x.l) ? Math.round(x.l.kg / x.l.pr) : 0, kg: x.l.kg, precioKg: x.u, tarifa: x.l.kit ? 'Temporada' : x.wh ? 'Mayoreo' : 'Menudeo', subtotal: P(x.subC) })),
         totalKg: c.kg, kgPorCalidad, subtotalMenudeo: P(c.refC), descuentoMayoreo: P(c.wholeC), subtotal: P(c.subC), total: P(c.totalC), envio: 'por_confirmar', pago: info.pago, concepto: tr ? concepto() : '',
         frecuencia: FREQ[info.frecuencia] || 'Compra única'
       };
@@ -2515,6 +2637,9 @@ html.mopen{overflow:hidden}
         save(); toast(`+${fmtKg(left)} de ${byId(id).name} (${gl(ui[id].g)}): ¡Mayoreo desbloqueado!`); rerender(); return;
       }
       if (qa === 'rvpub') { pubRv(); return; }
+      if (qa === 'kitq') { kitS.q = b.dataset.v; rerender(); return; }
+      if (qa === 'kitg') { kitS.g = b.dataset.v; rerender(); return; }
+      if (qa === 'kitadd') { kitAdd(b); return; }
       if (qa === 'qzopen') { openQuiz(); return; }
       if (qa === 'qzclose') { closeQuiz(); return; }
       if (qa === 'qt') { quiz.t = b.dataset.v; renderQuiz(); return; }
@@ -2540,9 +2665,9 @@ html.mopen{overflow:hidden}
         const added = s.kg; cart[key] = { id, g: s.g, pr: s.pr, kg: +(cur + added).toFixed(2) }; s.kg = s.pr; save(); toast(`${fmtKg(added)} de Café ${byId(id).name.replace('Calidad ', '')} (${gl(s.g)}) añadido al carrito`); flyToCart(b); if (b.closest('#pm')) closePm();
       }
       else if (a === 'cinc' || a === 'cdec') {
-        const l = cart[k]; if (!l) return; const st = l.pr || (l.kg >= 1 && l.kg % .5 === 0 ? .5 : .25), nk = +(l.kg + (a === 'cinc' ? st : -st)).toFixed(2);
+        const l = cart[k]; if (!l) return; if (l.kit && a === 'cinc' && l.kg + 1 > KIT.max) { toast(`Máximo ${KIT.max} kits por pedido. Para más, escríbenos por WhatsApp.`, true); return; } const st = l.pr || (l.kg >= 1 && l.kg % .5 === 0 ? .5 : .25), nk = +(l.kg + (a === 'cinc' ? st : -st)).toFixed(2);
         if (a === 'cinc' && l.pr === SACK && l.kg + st > SACK_MAX) { toast(`Máximo ${SACK_MAX} kg por costal.`, true); return; }
-        if (a === 'cinc' && kgOf(l.id) + st > POLICY.maxKgLine) { toast(`Máximo ${POLICY.maxKgLine} kg por calidad en el carrito.`, true); return; }
+        if (a === 'cinc' && !l.kit && kgOf(l.id) + st > POLICY.maxKgLine) { toast(`Máximo ${POLICY.maxKgLine} kg por calidad en el carrito.`, true); return; }
         if (nk <= 0) { delete cart[k]; toast('Producto eliminado del carrito'); } else l.kg = nk; save();
       }
       else if (a === 'del') { delete cart[k]; save(); toast('Producto eliminado del carrito'); }
@@ -2642,7 +2767,7 @@ html.mopen{overflow:hidden}
       $('#pmr').innerHTML = `<div><span class="pm-badge">${t('pm.origin')}</span><h2 id="pmt" class="font-head font-extrabold text-2xl md:text-3xl leading-tight mt-2 pr-12">${pn(p)}${sold ? ` <span class="text-xs font-bold align-middle rounded-full px-2.5 py-1 bg-[#B3262B] text-white">${t('card.sold')}</span>` : ''}</h2></div>
       <div><p class="pm-price" aria-live="polite">${fmt(unit)} MXN</p><p class="pm-sub">${s.pr === SACK ? t('pm.sack') + ' · ' : ''}${fmt(pk)} ${t('pm.perkg')} · ${fmt(+(pk / 1000).toFixed(3))} ${t('pm.perg')}${EN() ? ' · ' + usd(P(C(unit))) : ''}</p>${whB}</div>
       <div><p class="lbl">${t('pm.size')}</p><div class="pm-grid" role="group" aria-label="${t('pm.size')}">${PRES.map(([v, l]) => pill(v, l, EN() ? imp(v) : '', s.pr === v, 'pres')).join('')}${pill(SACK, t('card.sack'), t('card.sacksub'), s.pr === SACK, 'pres', 'pm-sack', selIc('costal'))}</div></div>
-      <div><p class="lbl">${t('pm.grind')}</p><div class="pm-grid two" role="group" aria-label="${t('pm.grind')}">${pill('whole', t('card.whole'), '', s.g === 'Grano entero', 'gmode', '', selIc('grano'))}${pill('ground', t('card.ground'), '', s.g !== 'Grano entero', 'gmode', '', selIc('molido'))}</div>${s.g !== 'Grano entero' ? `<div class="pm-grid two mt-2" role="group" aria-label="${t('card.griptype', pn(p))}">${GR.slice(1).map(([n, sh, ds]) => pill(n, gS(n, sh), gD(n, ds), s.g === n, 'grind', 'sm', selIc('molido', n))).join('')}</div>` : ''}</div>
+      <div><p class="lbl">${t('pm.grind')}</p><div class="pm-grid two" role="group" aria-label="${t('pm.grind')}">${pill('whole', t('card.whole'), '', s.g === 'Grano entero', 'gmode', '', selIc('grano'))}${pill('ground', t('card.ground'), '', s.g !== 'Grano entero', 'gmode', '', selIc('molido'))}</div>${s.g !== 'Grano entero' ? `<div class="pm-grid two mt-2" role="group" aria-label="${t('card.griptype', pn(p))}">${GR.slice(1).map(([n, sh, ds]) => pill(n, gS(n, sh), gD(n, ds), s.g === n, 'grind', 'sm', selEm())).join('')}</div>` : ''}</div>
       <div class="pm-sens"><p class="pm-h">${t('pm.sens')}</p>${bar(t('card.roast'), tRoast(tn) + ' · ' + t('card.level', p.nivel), Math.round(p.nivel / 5 * 100))}${bar(t('card.acid'), tVal(p.acidez), pc(ac))}${bar(t('card.sweet'), tVal(p.dulzor), pc(du))}</div>
       <div class="pm-bar"><div class="pm-buy"><div class="pm-q" role="group" aria-label="${t('pm.qty')}"><button type="button" class="q"${dis} data-act="kdec" data-id="${p.id}" aria-label="${t('pm.qty')} −">−</button><output aria-live="polite"><b>${s.pr === SACK ? fmtKg(s.kg) : bags({ kg: s.kg, pr: s.pr })}</b><span>${dkg(s.kg)}</span></output><button type="button" class="q"${dis} data-act="kinc" data-id="${p.id}" aria-label="${t('pm.qty')} +">+</button></div><div class="pm-tot"><span>${t('pm.total')}</span><b>${fmt(P(lineC(p, { kg: s.kg, pr: s.pr }, tier)))}</b></div></div>
       ${sold ? `<button type="button" class="btn w-full min-h-[3.4rem] border-2 border-line text-mute cursor-not-allowed" disabled aria-disabled="true">${t('card.soldbtn')}</button>` : `<button type="button" class="btn btn-gold cta w-full" data-act="add" data-id="${p.id}"><span aria-hidden="true">🛒</span> ${t('card.add')}</button>`}</div>`;
@@ -2656,8 +2781,9 @@ html.mopen{overflow:hidden}
       const a = document.activeElement, d = a && a.dataset && a.dataset.act ? a.dataset : null, inCart = !!(a && a.closest && a.closest('#pn'));
       const sel = d ? '[data-act="' + d.act + '"]' + ['id', 'k', 'v', 'g'].filter(x => d[x] !== undefined).map(x => `[data-${x}="${d[x]}"]`).join('') : '';
       const inPm = !!(a && a.closest && a.closest('#pm'));
-      renderGrid(); renderCart(); if ($('#pm')?.classList.contains('on')) renderPm();
-      if (sel) { const n = document.querySelector((inCart ? '#pn ' : inPm ? '#pmd ' : '#grid ') + sel); if (n && n !== a) n.focus({ preventScroll: true }); }
+      const inKit = !!(a && a.closest && a.closest('#kit'));
+      renderKit(); renderGrid(); renderCart(); if ($('#pm')?.classList.contains('on')) renderPm();
+      if (sel) { const n = document.querySelector((inCart ? '#pn ' : inPm ? '#pmd ' : inKit ? '#kit ' : '#grid ') + sel); if (n && n !== a) n.focus({ preventScroll: true }); }
       if (inCart && (!document.activeElement || document.activeElement === document.body) && $('#cart').classList.contains('on')) $('#pn .q')?.focus({ preventScroll: true });
     }
     // Menú móvil
@@ -2666,11 +2792,18 @@ html.mopen{overflow:hidden}
     if (mb) mb.onclick = () => { const o = mn.classList.contains('hidden'); setMenu(o); if (o) mn.querySelector('a')?.focus(); };
     // Altura real de la barra fija (sin menú): alimenta scroll-margin-top de cada sección
     const hdr = document.querySelector('header'), hdrBar = hdr && hdr.firstElementChild;
-    const setHH = () => { if (hdrBar) document.documentElement.style.setProperty('--hh', (hdrBar.offsetHeight + 1) + 'px'); };
-    setHH(); addEventListener('resize', setHH);
+    const abEl = $('#ab'), abH = () => abEl && abEl.offsetParent !== null ? abEl.offsetHeight : 0;
+    const setHH = () => { const a = abH(), st = document.documentElement.style; st.setProperty('--ab', a + 'px'); if (hdrBar) st.setProperty('--hh', (hdrBar.offsetHeight + 1 + a) + 'px'); };
+    setHH(); addEventListener('resize', setHH); if (abEl && window.ResizeObserver) new ResizeObserver(setHH).observe(abEl);
+    // Cintillo de temporada: se puede cerrar y no vuelve a aparecer durante la sesión
+    if (abEl) {
+      $('#abX').onclick = () => { document.documentElement.classList.add('ab-off'); try { sessionStorage.setItem('mi-ab', '1'); } catch (x) { } setHH(); };
+      // Va a la sección de paquetes de temporada (#paquetes); mientras no exista, lleva al catálogo
+      $('#abCta').onclick = e => { e.preventDefault(); goSection(document.getElementById('paquetes') ? '#paquetes' : '#kit'); };
+    }
     function goSection(id) {
       const tg = id && id.length > 1 ? document.querySelector(id) : null; if (!tg) return;
-      setHH(); const y = tg.getBoundingClientRect().top + scrollY - (hdrBar ? hdrBar.offsetHeight + 1 : 0);
+      setHH(); const y = tg.getBoundingClientRect().top + scrollY - (hdrBar ? hdrBar.offsetHeight + 1 + abH() : 0);
       scrollTo({ top: Math.max(0, y), behavior: MOTION_OK ? 'smooth' : 'auto' });
       try { history.replaceState(null, '', id); } catch (x) { }
       if (!tg.hasAttribute('tabindex')) tg.setAttribute('tabindex', '-1'); setTimeout(() => tg.focus({ preventScroll: true }), MOTION_OK ? 700 : 0);
@@ -2802,6 +2935,7 @@ html.mopen{overflow:hidden}
     function applyLangStatic() {
       document.documentElement.lang = EN() ? 'en' : 'es';
       document.querySelectorAll('[data-i18n]').forEach(e => { e.textContent = t(e.dataset.i18n); });
+      { const x = document.getElementById('abX'); if (x) x.setAttribute('aria-label', t('ab.close')); }
       document.querySelectorAll('[data-i18n-html]').forEach(e => { e.innerHTML = t(e.dataset.i18nHtml); });
       document.querySelectorAll('.lang-sw [data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
     }
@@ -2815,7 +2949,7 @@ html.mopen{overflow:hidden}
     renderStatic(); 
     renderNos();
     renderOrigen();
-    renderGrid(); 
+    renderKit(); renderGrid(); 
     renderCart();
     renderReviews();
     if (!THEME_MUERTOS) document.body.classList.add('nodm');
@@ -2874,11 +3008,11 @@ html.mopen{overflow:hidden}
 
     window.__cloud = {
       listenReviews(ok, fail) {
-        const q = query(collection(db, 'resenas'), where('aprobada', '==', true), orderBy('fecha', 'desc'), limit(30)); // solo las aprobadas en el panel
+        const q = query(collection(db, 'resenas'), where('aprobada', '==', true), limit(100)); // solo las aprobadas en el panel (sin orderBy: así no exige un índice compuesto en Firestore; se ordena aquí)
         return onSnapshot(q, snap => ok(snap.docs.map(d => {
           const x = d.data({ serverTimestamps: 'estimate' });
           return { id: d.id, n: String(x.nombre || ''), s: x.estrellas, p: String(x.producto || ''), t: String(x.comentario || ''), foto: String(x.fotoURL || ''), v: x.verificada === true || x.verificado === true, d: x.fecha && x.fecha.toMillis ? x.fecha.toMillis() : Date.now(), cloud: 1 };
-        }).filter(r => r.n && r.t && Number.isInteger(r.s) && r.s >= 1 && r.s <= 5)), fail);
+        }).filter(r => r.n && r.t && Number.isInteger(r.s) && r.s >= 1 && r.s <= 5).sort((a, b) => b.d - a.d).slice(0, 30)), fail);
       },
       async uploadPhoto(blob) {
         const r = ref(storage, `resenas/${Date.now()}_foto.jpg`);
