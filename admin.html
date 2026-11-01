@@ -520,6 +520,8 @@
   <div class="mt-4 border-t border-line pt-3 grid gap-2 sm:flex sm:items-end sm:gap-3">
     <div class="sm:w-64"><label class="block text-xs font-bold text-mute mb-1" for="wt-${esc(o.id)}">Teléfono del cliente (10 dígitos)</label><input id="wt-${esc(o.id)}" class="in" type="tel" inputmode="tel" autocomplete="off" placeholder="961 123 4567" value="${esc(waTel[o.id] ?? o.telefono ?? '')}" data-watel="${esc(o.id)}"></div>
     ${waNum(o.telefono) ? `<a class="btn btn-gold" data-wa="${esc(o.id)}" href="${waUrl(waNum(o.telefono), waMsg(o))}" target="_blank" rel="noopener">Enviar mensaje por WhatsApp</a>` : `<button type="button" class="btn btn-gold" data-wa="${esc(o.id)}">Enviar mensaje por WhatsApp</button>`}
+    <button type="button" class="btn btn-line" data-wacopy="${esc(o.id)}" title="Copia el mensaje completo para pegarlo en WhatsApp">Copiar mensaje</button>
+    <button type="button" class="btn btn-line" data-waplain="${esc(o.id)}" title="Abre WhatsApp con el mismo mensaje sin emojis">Enviar sin emojis</button>
     <button type="button" class="btn btn-line" data-print="${esc(o.id)}">🖨 Imprimir Comprobante</button>
     <button type="button" class="btn btn-danger" data-delord="${esc(o.id)}">Eliminar pedido</button></div>
   <p class="text-xs font-bold text-cherry mt-1" data-waerr="${esc(o.id)}" role="alert" hidden></p>`;
@@ -532,6 +534,8 @@
     // Codificación: todo emoji y carácter especial del mensaje se escribe como secuencia \u (no depende de cómo se guarde el archivo),
     // se limpia de FE0F / FFFD / sustitutos sueltos, se normaliza a NFC y se pasa SIEMPRE por encodeURIComponent() en waUrl().
     const waClean = t => String(t).replace(/[️�]/g, '').replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '').normalize('NFC');
+    // Versión sin emojis (por si la app de WhatsApp de escritorio los muestra como �) y copia directa al portapapeles
+    const waPlain = t => waClean(t).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\u23E0-\u23FF\u2B00-\u2BFF\uFE0F]/gu, '').replace(/[ \t]+\n/g, '\n').replace(/\n[ \t]+/g, '\n').replace(/ {2,}/g, ' ').replace(/^[ \t]+/gm, '').trim();
     const waUrl = (num, msg) => `https://wa.me/${num}?text=${encodeURIComponent(waClean(msg))}`;
     // Emoji dinámico por estado: [emoji, texto]. "preparacion" y "listo" quedan listos por si se agregan como estados; "enviado" en una entrega de recolección se muestra como "Listo para recolección".
     const WA_EST = {
@@ -581,6 +585,10 @@
         return;
       }
       const pr = e.target.closest('[data-print]'); if (pr) { const o = orders.find(x => x.id === pr.dataset.print); if (o) printLabel(o); return; }
+      const wc = e.target.closest('[data-wacopy]');
+      if (wc) { const o = orders.find(x => x.id === wc.dataset.wacopy); if (!o) return; const m = waMsg(o); (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(m) : Promise.reject()).then(() => toast('Mensaje copiado. Pégalo en el chat de WhatsApp.'), () => { const ta = document.createElement('textarea'); ta.value = m; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('Mensaje copiado. Pégalo en el chat de WhatsApp.'); } catch (x) { toast('No se pudo copiar.', true); } ta.remove(); }); return; }
+      const wp = e.target.closest('[data-waplain]');
+      if (wp) { const o = orders.find(x => x.id === wp.dataset.waplain); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : o.telefono); if (!n) { if (er) { er.textContent = 'Escribe un teléfono válido de 10 dígitos (ej. 961 123 4567).'; er.hidden = false; } inp && inp.focus(); return; } window.open(`https://wa.me/${n}?text=${encodeURIComponent(waPlain(waMsg(o)))}`, '_blank', 'noopener'); return; }
       const w = e.target.closest('[data-wa]');
       if (w) {
         const o = orders.find(x => x.id === w.dataset.wa); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : o.telefono);
