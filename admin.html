@@ -184,7 +184,7 @@
   <!-- ============ Inicio de sesión ============ -->
   <main id="login" class="min-h-screen grid place-items-center px-4 py-10" hidden>
     <section class="card w-full max-w-sm p-6 sm:p-8" aria-labelledby="lt">
-      <img src="img/milenio_admi.jpg" alt="Café Milenio" width="64" height="64" decoding="async" class="w-16 h-16 mx-auto object-contain">
+      <img src="img/milenio_admi.webp" alt="Café Milenio" width="64" height="64" decoding="async" class="w-16 h-16 mx-auto object-contain">
       <h1 id="lt" class="font-serif text-center text-3xl mt-2">Café Milenio</h1>
       <p class="text-center text-sm text-mute mt-1">Panel de administración</p>
       <form id="lf" class="mt-6 grid gap-3" novalidate>
@@ -205,7 +205,7 @@
   <div id="app" hidden>
     <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#160905]/70 border-b border-white/10">
       <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0"><img src="img/milenio_admi.jpg" alt="Café Milenio" width="36" height="36" decoding="async" class="w-9 h-9 shrink-0 object-contain rounded-full"><div class="min-w-0"><p class="font-serif text-lg leading-none">Café Milenio</p><p class="text-[11px] text-mute truncate mt-1" id="who"></p></div></div>
+        <div class="flex items-center gap-3 min-w-0"><img src="img/milenio_admi.webp" alt="Café Milenio" width="36" height="36" decoding="async" class="w-9 h-9 shrink-0 object-contain rounded-full"><div class="min-w-0"><p class="font-serif text-lg leading-none">Café Milenio</p><p class="text-[11px] text-mute truncate mt-1" id="who"></p></div></div>
         <div class="flex items-center gap-2 shrink-0">
           <button id="bell" class="btn btn-line bell" type="button" aria-pressed="false" aria-label="Pedidos pendientes: 0. Sonido activado"><span id="bellIc" aria-hidden="true">🔔</span><span id="bellN" class="bell-n" hidden>0</span></button>
           <a class="btn btn-line" href="index.html" target="_blank" rel="noopener">Ver tienda</a>
@@ -520,8 +520,6 @@
   <div class="mt-4 border-t border-line pt-3 grid gap-2 sm:flex sm:items-end sm:gap-3">
     <div class="sm:w-64"><label class="block text-xs font-bold text-mute mb-1" for="wt-${esc(o.id)}">Teléfono del cliente (10 dígitos)</label><input id="wt-${esc(o.id)}" class="in" type="tel" inputmode="tel" autocomplete="off" placeholder="961 123 4567" value="${esc(waTel[o.id] ?? o.telefono ?? '')}" data-watel="${esc(o.id)}"></div>
     ${waNum(o.telefono) ? `<a class="btn btn-gold" data-wa="${esc(o.id)}" href="${waUrl(waNum(o.telefono), waMsg(o))}" target="_blank" rel="noopener">Enviar mensaje por WhatsApp</a>` : `<button type="button" class="btn btn-gold" data-wa="${esc(o.id)}">Enviar mensaje por WhatsApp</button>`}
-    <button type="button" class="btn btn-line" data-wacopy="${esc(o.id)}" title="Copia el mensaje completo para pegarlo en WhatsApp">Copiar mensaje</button>
-    <button type="button" class="btn btn-line" data-waplain="${esc(o.id)}" title="Abre WhatsApp con el mismo mensaje sin emojis">Enviar sin emojis</button>
     <button type="button" class="btn btn-line" data-print="${esc(o.id)}">🖨 Imprimir Comprobante</button>
     <button type="button" class="btn btn-danger" data-delord="${esc(o.id)}">Eliminar pedido</button></div>
   <p class="text-xs font-bold text-cherry mt-1" data-waerr="${esc(o.id)}" role="alert" hidden></p>`;
@@ -534,9 +532,7 @@
     // Codificación: todo emoji y carácter especial del mensaje se escribe como secuencia \u (no depende de cómo se guarde el archivo),
     // se limpia de FE0F / FFFD / sustitutos sueltos, se normaliza a NFC y se pasa SIEMPRE por encodeURIComponent() en waUrl().
     const waClean = t => String(t).replace(/[️�]/g, '').replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '').normalize('NFC');
-    // Versión sin emojis (por si la app de WhatsApp de escritorio los muestra como �) y copia directa al portapapeles
-    const waPlain = t => waClean(t).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\u23E0-\u23FF\u2B00-\u2BFF\uFE0F]/gu, '').replace(/[ \t]+\n/g, '\n').replace(/\n[ \t]+/g, '\n').replace(/ {2,}/g, ' ').replace(/^[ \t]+/gm, '').trim();
-    const waUrl = (num, msg) => `https://wa.me/${num}?text=${encodeURIComponent(waClean(msg))}`;
+    const waUrl = (num, msg) => `https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(waClean(msg))}`;
     // Emoji dinámico por estado: [emoji, texto]. "preparacion" y "listo" quedan listos por si se agregan como estados; "enviado" en una entrega de recolección se muestra como "Listo para recolección".
     const WA_EST = {
       pendiente: ['\u{1F4DD}', 'Recibido'], confirmado: ['⏳', 'Confirmado'], preparacion: ['☕', 'En preparación'],
@@ -545,19 +541,19 @@
     const waEstado = o => { const k = o.entrega !== 'envio' && o._e === 'enviado' ? 'listo' : o._e; return WA_EST[k] || ['\u{1F4DD}', estLabel(o._e)]; };
     const waTxt = v => String(v == null ? '' : v).replace(/[*_~`]/g, '').trim(); // evita que el texto del cliente rompa las negritas de WhatsApp
     const waMsg = o => {
-      const cup = '☕', sp = '✨', hi = '\u{1F44B}', rc = '\u{1F4CB}', tr = '\u{1F69A}', st = '\u{1F3EA}', ct = '\u{1F6D2}', cd = '\u{1F4B3}', pr = '\u{1F64F}', pin = '\u{1F4CD}', cal = '\u{1F4C5}', bul = '•', bar = '━'.repeat(14);
+      const cup = '☕', sp = '✨', hi = '\u{1F44B}', tr = '\u{1F69A}', st = '\u{1F3EA}', cd = '\u{1F4B3}', pr = '\u{1F64F}', pin = '\u{1F4CD}', bar = '━'.repeat(14);
       const ps = Array.isArray(o.productos) ? o.productos : [], env = o.entrega === 'envio', [eEmo, eTxt] = waEstado(o);
-      const qty = p => p.bolsas ? `${p.bolsas} × ${waTxt(p.presentacion)} (${fmtKg(+p.kg || 0)})` : /^Costal/.test(p.presentacion || '') ? waTxt(p.presentacion) : fmtKg(+p.kg || 0);
-      const items = ps.map(p => `${bul} ${qty(p)} · *${waTxt(String(p.calidad || '').replace('Calidad ', ''))}*${p.molido ? ' · ' + waTxt(p.molido) : ''}`).join('\n');
-      const ent = env ? `${bul} *Tipo de entrega:* ${tr} Envío a domicilio${o.destino ? '\n' + bul + ' *Destino:* ' + pin + ' ' + waTxt(o.destino) : ''}`
-        : `${bul} *Tipo de entrega:* ${st} Recolección en sucursal${o.sucursal ? '\n' + bul + ' *Sucursal:* ' + pin + ' ' + waTxt(o.sucursal) : ''}${o.fechaRecoleccion ? '\n' + bul + ' *Fecha de recolección:* ' + cal + ' ' + waTxt(fdate(new Date(o.fechaRecoleccion).getTime())) : ''}`;
+      const qty = p => p.bolsas ? `${p.bolsas} × ${waTxt(p.presentacion)} (${fmtKg(+p.kg || 0)})` : /^Costal/.test(p.presentacion || '') ? `${waTxt(p.presentacion)} (${fmtKg(+p.kg || 0)})` : fmtKg(+p.kg || 0);
+      const items = ps.map(p => `- ${qty(p)} · *${waTxt(String(p.calidad || '').replace('Calidad ', ''))}*${p.molido ? ' · ' + waTxt(p.molido) : ''}`).join('\n');
+      const ent = env ? `- *Tipo de entrega:* ${tr} Envío a domicilio${o.destino ? '\n- *Destino:* ' + pin + ' ' + waTxt(o.destino) : ''}`
+        : `- *Tipo de entrega:* ${st} Recolección en sucursal${o.sucursal ? '\n- *Sucursal:* ' + pin + ' ' + waTxt(o.sucursal) : ''}`;
       const tot = Number.isFinite(+o.total) ? `*${money(o.total)} MXN*` : '*por confirmar*';
       return waClean(
         `${cup} *CAFÉ MILENIO* ${cup} ${sp}\n${bar}\n\n` +
         `¡Hola, *${waTxt(o.cliente) || 'cliente'}*! ${hi}\nGracias por elegir Café Milenio. Te escribimos sobre tu pedido:\n\n` +
-        `${rc} *DETALLES DEL PEDIDO*\n${bul} *Folio:* ${waTxt(o.folio || o.id)}\n${bul} *Estado:* ${eEmo} ${eTxt}\n${ent}\n\n` +
-        `${ct} *RESUMEN:*\n${items || bul + ' (sin productos)'}\n\n${bar}\n` +
-        `${cd} *TOTAL A PAGAR:* ${tot}\n${env ? '_No incluye el costo de envío; te lo confirmamos por este medio._\n' : ''}${bar}\n\n` +
+        `- *Folio:* ${waTxt(o.folio || o.id)}\n- *Estado:* ${eEmo} ${eTxt}\n${ent}\n\n` +
+        `${items || '- (sin productos)'}\n\n` +
+        `${cd} *TOTAL A PAGAR:* ${tot}\n${env ? '_No incluye el costo de envío; te lo confirmamos por este medio._\n' : ''}\n` +
         `${pr} ¡Muchas gracias por tu preferencia! Es un gusto servirte.\n${cup} _Café Milenio · Jaltenango, Chiapas_ ${sp}`);
     };
     // Imprimir comprobante / etiqueta de envío (CSS @media print: solo sale #printArea, en blanco y negro)
@@ -585,10 +581,6 @@
         return;
       }
       const pr = e.target.closest('[data-print]'); if (pr) { const o = orders.find(x => x.id === pr.dataset.print); if (o) printLabel(o); return; }
-      const wc = e.target.closest('[data-wacopy]');
-      if (wc) { const o = orders.find(x => x.id === wc.dataset.wacopy); if (!o) return; const m = waMsg(o); (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(m) : Promise.reject()).then(() => toast('Mensaje copiado. Pégalo en el chat de WhatsApp.'), () => { const ta = document.createElement('textarea'); ta.value = m; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('Mensaje copiado. Pégalo en el chat de WhatsApp.'); } catch (x) { toast('No se pudo copiar.', true); } ta.remove(); }); return; }
-      const wp = e.target.closest('[data-waplain]');
-      if (wp) { const o = orders.find(x => x.id === wp.dataset.waplain); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : o.telefono); if (!n) { if (er) { er.textContent = 'Escribe un teléfono válido de 10 dígitos (ej. 961 123 4567).'; er.hidden = false; } inp && inp.focus(); return; } window.open(`https://wa.me/${n}?text=${encodeURIComponent(waPlain(waMsg(o)))}`, '_blank', 'noopener'); return; }
       const w = e.target.closest('[data-wa]');
       if (w) {
         const o = orders.find(x => x.id === w.dataset.wa); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : o.telefono);
