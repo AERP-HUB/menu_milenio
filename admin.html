@@ -176,6 +176,22 @@
 .gt-act .del:hover:not([disabled]){background:rgba(179,38,43,.35)}
 .gt-empty{grid-column:1/-1;padding:1rem;border:1px dashed rgba(255,255,255,.2);border-radius:14px;font-size:.85rem;opacity:.75;text-align:center}
 </style>
+<style>.chip-rem{border-color:#E7B94C!important;color:#FFD679;font-weight:800}</style>
+<style id="fix-adm-wide">
+.rec-p{padding:1rem 1.1rem;margin:0 0 1rem;border-color:rgba(217,162,63,.55);background:linear-gradient(180deg,rgba(217,162,63,.10),rgba(217,162,63,.03))}
+.rec-l{list-style:none;margin:.7rem 0 0;padding:0;display:grid;gap:.5rem}
+.rec-r{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.65rem .8rem;border-radius:.85rem;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.rec-r.due{border-color:rgba(217,162,63,.7);background:rgba(217,162,63,.09)}
+@media(max-width:640px){.rec-r{flex-direction:column;align-items:stretch}.rec-r .flex{flex-wrap:wrap}}
+.kpi-rem{cursor:pointer;color:inherit;font:inherit;transition:border-color .2s,box-shadow .2s}
+.kpi-rem:hover,.kpi-rem.on{border-color:#D9A23F;box-shadow:0 0 18px -6px rgba(217,162,63,.7)}
+.kpi-rem.on #k-rem{color:#FFD679}
+@media(min-width:1024px){#kpis{grid-template-columns:repeat(4,minmax(0,1fr))}#ofil{flex-wrap:wrap;overflow:visible}}
+/* Escritorio grande: base más grande + contenedor más ancho (todo el panel usa rem) para aprovechar la pantalla */
+@media(min-width:1440px){html{font-size:17.5px}.max-w-6xl{max-width:80rem}}
+@media(min-width:1680px){html{font-size:19px}}
+@media(min-width:1860px){html{font-size:20px}}
+</style>
 </head>
 
 <body>
@@ -227,11 +243,13 @@
       <!-- a) Pedidos -->
       <section id="m-pedidos" role="tabpanel" aria-labelledby="t-pedidos" class="mt-4">
         <div id="newAlert" class="new-alert" role="status" aria-live="polite" hidden></div>
-        <div id="kpis" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4" role="group" aria-label="Resumen de los pedidos mostrados">
+        <div id="kpis" class="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4" role="group" aria-label="Resumen de los pedidos mostrados">
           <div class="card p-3"><p class="text-xs font-bold text-mute">Total de ingresos</p><p class="font-extrabold text-2xl mt-1 break-words" id="k-ing">—</p><p class="text-xs text-mute mt-0.5" id="k-ing-n"></p></div>
           <div class="card p-3"><p class="text-xs font-bold text-mute">Kilos vendidos</p><p class="font-extrabold text-2xl mt-1 break-words" id="k-kg">—</p><p class="text-xs text-mute mt-0.5" id="k-kg-n"></p></div>
-          <div class="card p-3 col-span-2 sm:col-span-1"><p class="text-xs font-bold text-mute">Calidad más solicitada</p><p class="font-extrabold text-2xl mt-1 break-words" id="k-top">—</p><p class="text-xs text-mute mt-0.5" id="k-top-n"></p></div>
+          <div class="card p-3"><p class="text-xs font-bold text-mute">Calidad más solicitada</p><p class="font-extrabold text-2xl mt-1 break-words" id="k-top">—</p><p class="text-xs text-mute mt-0.5" id="k-top-n"></p></div>
+          <button type="button" class="card p-3 text-left kpi-rem" id="k-remb" aria-label="Ver recordatorios de recompra pendientes"><p class="text-xs font-bold text-mute">⏰ Recompras por recordar</p><p class="font-extrabold text-2xl mt-1" id="k-rem">0</p><p class="text-xs text-mute mt-0.5" id="k-rem-n"></p></button>
         </div>
+        <section id="recPanel" class="card rec-p" aria-labelledby="rec-h" hidden></section>
         <div class="flex flex-col md:flex-row md:items-end gap-3">
           <div class="flex items-end gap-2 md:w-[26rem]"><div class="grow min-w-0"><label for="oq" class="block text-xs font-bold text-mute mb-1">Buscar por folio o cliente</label>
             <input id="oq" class="in" type="search" placeholder="Ej. MIL-AB12CD o María" autocomplete="off"></div>
@@ -336,6 +354,14 @@
     ];
     const ESTADOS = [['pendiente', 'Pendiente'], ['confirmado', 'Confirmado'], ['enviado', 'Enviado'], ['entregado', 'Entregado'], ['cancelado', 'Cancelado']];
     // La tienda registra los pedidos nuevos como "enviado_whatsapp" o "pago_en_linea_iniciado": aquí cuentan como Pendiente.
+    // Recompras: 'frecuencia' = 'unica' | '15_dias' | '30_dias'; 'proximaRecompra' = Timestamp. Los pedidos viejos (texto "Cada mes") se interpretan igual.
+    const FREQ_D = { '15_dias': 15, '30_dias': 30 }, FREQ_L = { unica: 'Compra única', '15_dias': 'Cada 15 días', '30_dias': 'Cada 30 días' };
+    const freqCode = o => { const f = String(o.frecuencia || ''); return FREQ_D[f] ? f : /15/.test(f) ? '15_dias' : /mes|30/i.test(f) ? '30_dias' : 'unica'; };
+    const nextRe = o => { const c = freqCode(o); return c === 'unica' ? 0 : (ms(o.proximaRecompra) || (o._t ? o._t + FREQ_D[c] * 864e5 : 0)); };
+    const remSent = o => ms(o.recordatorioEnviado) >= nextRe(o) && nextRe(o) > 0; // ya se le recordó en este ciclo
+    const remDue = o => o._e === 'entregado' && freqCode(o) !== 'unica' && nextRe(o) > 0 && nextRe(o) <= Date.now() && !remSent(o);
+    const remSoon = o => o._e === 'entregado' && freqCode(o) !== 'unica' && nextRe(o) > Date.now() && nextRe(o) <= Date.now() + 7 * 864e5 && !remSent(o);
+    const freqLine = o => { const c = freqCode(o); return FREQ_L[c] + (c !== 'unica' && nextRe(o) ? ' · próxima: ' + fdate(nextRe(o)) : ''); };
     const normEstado = e => ESTADOS.some(x => x[0] === e) ? e : 'pendiente';
     const origenTxt = e => e === 'pago_en_linea_iniciado' ? 'Pago en línea iniciado' : e === 'enviado_whatsapp' ? 'Enviado por WhatsApp' : '';
     const estLabel = e => (ESTADOS.find(x => x[0] === e) || ['', e])[1];
@@ -476,11 +502,40 @@
       $('#k-kg').textContent = `${+kg.toFixed(2)} kg`; $('#k-kg-n').textContent = use.length ? `${(kg / use.length).toFixed(1)} kg por pedido` : 'sin pedidos';
       $('#k-top').textContent = top ? top[0] : '—'; $('#k-top-n').textContent = top ? `${+top[1].kg.toFixed(2)} kg · ${top[1].ped} pedido${top[1].ped === 1 ? '' : 's'}` : 'sin pedidos';
     }
+    // ---- Recompras: el aviso se calcula solo con la frecuencia que el cliente eligió en el carrito (15 días / cada mes) ----
+    const dshort = t => t ? new Date(t).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' }) : '—';
+    function renderRec() {
+      const box = $('#recPanel'); if (!box) return;
+      const due = orders.filter(remDue).sort((a, b) => nextRe(a) - nextRe(b)), soon = orders.filter(remSoon).sort((a, b) => nextRe(a) - nextRe(b));
+      $('#k-rem').textContent = due.length; $('#k-rem-n').textContent = soon.length ? `${soon.length} en los próximos 7 días` : (due.length ? 'listos para enviar' : 'ninguno por ahora');
+      $('#k-remb').classList.toggle('on', due.length > 0);
+      if (!due.length && !soon.length) { box.hidden = true; box.innerHTML = ''; return; }
+      box.hidden = false;
+      const row = (o, isDue) => {
+        const ps = Array.isArray(o.productos) ? o.productos : [], cal = [...new Set(ps.map(p => String(p.calidad || '').replace('Calidad ', '')).filter(Boolean))].join(' / ') || 'Café', peso = fmtKg(+o.totalKg || ps.reduce((a, p) => a + (+p.kg || 0), 0)), dias = Math.max(0, Math.ceil((nextRe(o) - Date.now()) / 864e5));
+        return `<li class="rec-r${isDue ? ' due' : ''}"><div class="min-w-0"><p class="font-bold truncate">${esc(o.cliente || 'Cliente')} <span class="text-mute font-normal">· ${esc(o.folio || o.id)}</span></p>
+        <p class="text-xs text-mute">${esc(cal)} · ${esc(peso)} · ${esc(FREQ_L[freqCode(o)])} · ${isDue ? 'tocaba el ' : 'toca el '}${esc(dshort(nextRe(o)))}</p></div>
+        ${isDue ? `<div class="flex gap-2 shrink-0"><button type="button" class="btn btn-gold" data-prem="${esc(o.id)}">💬 Enviar recordatorio</button><button type="button" class="btn btn-line" data-prdone="${esc(o.id)}" title="Márcalo cuando ya se lo enviaste">✓ Hecho</button></div>` : `<span class="pill border-line text-mute shrink-0">en ${dias} día${dias === 1 ? '' : 's'}</span>`}</li>`;
+      };
+      box.innerHTML = `<div class="flex items-center justify-between gap-3 flex-wrap"><h3 id="rec-h" class="font-serif text-lg">⏰ Recompras por recordar ${due.length ? `<span class="pill border-gold/60 text-goldt ml-1">${due.length} hoy</span>` : ''}</h3><button type="button" class="btn btn-line" data-prall>Ver pedidos</button></div>
+      <p class="text-xs text-mute mt-1">El aviso se programa solo con la frecuencia que cada cliente eligió en el carrito. Envía el mensaje y marca «Hecho» para que no vuelva a aparecer.</p>
+      <ul class="rec-l">${due.slice(0, 8).map(o => row(o, true)).join('')}${soon.slice(0, Math.max(0, 8 - due.length)).map(o => row(o, false)).join('')}</ul>${due.length + soon.length > 8 ? `<p class="text-xs text-mute mt-2">Y ${due.length + soon.length - 8} más: pulsa «Ver pedidos».</p>` : ''}`;
+    }
+    $('#k-remb').addEventListener('click', () => { filt = 'recordatorios'; renderOrders(); $('#ofil')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    $('#recPanel').addEventListener('click', async e => {
+      if (e.target.closest('[data-prall]')) { filt = 'recordatorios'; renderOrders(); $('#ofil')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      const s = e.target.closest('[data-prem]'), d = e.target.closest('[data-prdone]'), id = s ? s.dataset.prem : d ? d.dataset.prdone : null; if (!id) return;
+      const o = orders.find(x => x.id === id); if (!o) return;
+      if (s) { const n = waNum(o.telefono); if (!n) { toast('Este pedido no tiene un teléfono válido. Ábrelo en «Ver pedido», escríbelo y envíalo desde ahí.', true); return; } waHint(); window.open(waUrl(n, waRecordatorio(o)), '_blank', 'noopener'); return; }
+      d.disabled = true;
+      try { await updateDoc(doc(db, 'pedidos', id), { recordatorioEnviado: serverTimestamp(), actualizado: serverTimestamp() }); toast(`Recordatorio de ${o.cliente || 'cliente'} marcado como enviado`); }
+      catch (x) { toast('No se pudo marcar: ' + errMsg(x), true); d.disabled = false; }
+    });
     function renderOrders() {
-      const q = norm($('#oq').value), cnt = { todos: orders.length }; ESTADOS.forEach(([k]) => { cnt[k] = 0; }); orders.forEach(o => { cnt[o._e]++; });
-      $('#ofil').innerHTML = [['todos', 'Todos'], ...ESTADOS].map(([k, l]) => `<button type="button" class="chip" data-f="${k}" aria-pressed="${filt === k}">${l} (${cnt[k]})</button>`).join('');
-      const list = orders.filter(o => (filt === 'todos' || o._e === filt) && (!q || norm(o.id + ' ' + (o.folio || '') + ' ' + (o.cliente || '')).includes(q)));
-      renderKpis(list); shown = list;
+      const q = norm($('#oq').value), cnt = { todos: orders.length }; ESTADOS.forEach(([k]) => { cnt[k] = 0; }); orders.forEach(o => { cnt[o._e]++; }); cnt.recordatorios = orders.filter(remDue).length;
+      $('#ofil').innerHTML = [['todos', 'Todos'], ...ESTADOS, ['recordatorios', '⏰ Recordatorios Pendientes']].map(([k, l]) => `<button type="button" class="chip${k === 'recordatorios' && cnt[k] ? ' chip-rem' : ''}" data-f="${k}" aria-pressed="${filt === k}">${l} (${cnt[k]})</button>`).join('');
+      const list = orders.filter(o => (filt === 'todos' || (filt === 'recordatorios' ? remDue(o) : o._e === filt)) && (!q || norm(o.id + ' ' + (o.folio || '') + ' ' + (o.cliente || '')).includes(q)));
+      renderKpis(list); renderRec(); shown = list;
       $('#ocount').textContent = orders.length ? `${list.length} de ${orders.length} pedidos${orders.length >= 300 ? ' (se muestran los 300 más recientes)' : ''}` : 'Aún no hay pedidos.';
       const foc = document.activeElement && document.activeElement.dataset ? { k: ['est', 'tog'].find(x => document.activeElement.dataset[x] !== undefined), v: document.activeElement.dataset.est ?? document.activeElement.dataset.tog } : null;
       $('#olist').innerHTML = list.length ? list.map(orderRow).join('') : `<p class="card p-6 text-center text-mute">${orders.length ? 'Ningún pedido coincide con el filtro.' : 'Cuando un cliente envíe un pedido desde la tienda aparecerá aquí al instante.'}</p>`;
@@ -501,6 +556,7 @@
     <div><label class="sr-only" for="s-${esc(o.id)}">Estado del pedido ${esc(o.folio || o.id)}</label>
       <span class="bdg bdg-${o._e} mb-1.5">● ${estLabel(o._e)}</span><select id="s-${esc(o.id)}" class="in !min-h-[2.75rem] !py-1 font-semibold" data-est="${esc(o.id)}">${ESTADOS.map(([k, l]) => `<option value="${k}" ${k === o._e ? 'selected' : ''} class="bg-esp text-ink">${l}</option>`).join('')}</select></div>
   </div>
+  ${remDue(o) ? `<p class="mt-2 text-xs font-bold text-goldt">⏰ Recompra pendiente (${esc(FREQ_L[freqCode(o)])}) · tocaba el ${fdate(nextRe(o))}</p><button type="button" class="btn btn-gold mt-1" data-warem="${esc(o.id)}">⏰ Enviar recordatorio por WhatsApp</button>` : ''}
   <button type="button" class="mt-2 text-xs font-bold text-goldt underline min-h-[2.75rem]" data-tog="${esc(o.id)}" aria-expanded="${open}" aria-controls="d-${esc(o.id)}">${open ? 'Ocultar detalle' : 'Ver detalle'}</button>
   <div id="d-${esc(o.id)}" class="mt-1 border-t border-line pt-3 text-sm" ${open ? '' : 'hidden'}>${open ? orderDetail(o) : ''}</div>
 </article>`;
@@ -508,7 +564,7 @@
     function orderDetail(o) {
       const ps = Array.isArray(o.productos) ? o.productos : [], env = o.entrega === 'envio', kv = (k, v) => v ? `<div><dt class="text-[11px] uppercase font-bold text-mute">${k}</dt><dd class="break-words">${esc(v)}</dd></div>` : '';
       return `<dl class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-    ${kv('Cliente', o.cliente)}${kv('Teléfono', o.telefono)}${kv('Pago', o.pago)}${kv('Recompra', o.frecuencia)}
+    ${kv('Cliente', o.cliente)}${kv('Teléfono', o.telefono)}${kv('Pago', o.pago)}${kv('Recompra', freqLine(o))}
     ${env ? kv('Destino', o.destino) + kv('Dirección', o.direccion) : kv('Sucursal', o.sucursal) + kv('Recolección', o.fechaRecoleccion ? fdate(new Date(o.fechaRecoleccion).getTime()) : '') + kv('Recoge', o.recoge)}
     ${kv('Concepto de transferencia', o.concepto)}${kv('Envío', env ? 'Costo por confirmar' : '')}</dl>
   <div class="mt-4"><table class="dtab"><thead><tr><th>Producto</th><th>Molido</th><th>Cant.</th><th>Tarifa</th><th class="r">Precio/kg</th><th class="r">Subtotal</th></tr></thead><tbody>
@@ -520,6 +576,7 @@
   <div class="mt-4 border-t border-line pt-3 grid gap-2 sm:flex sm:items-end sm:gap-3">
     <div class="sm:w-64"><label class="block text-xs font-bold text-mute mb-1" for="wt-${esc(o.id)}">Teléfono del cliente (10 dígitos)</label><input id="wt-${esc(o.id)}" class="in" type="tel" inputmode="tel" autocomplete="off" placeholder="961 123 4567" value="${esc(waTel[o.id] ?? o.telefono ?? '')}" data-watel="${esc(o.id)}"></div>
     ${waNum(o.telefono) ? `<a class="btn btn-gold" data-wa="${esc(o.id)}" href="${waUrl(waNum(o.telefono), waMsg(o))}" target="_blank" rel="noopener">Enviar mensaje por WhatsApp</a>` : `<button type="button" class="btn btn-gold" data-wa="${esc(o.id)}">Enviar mensaje por WhatsApp</button>`}
+    ${remDue(o) ? `<button type="button" class="btn btn-gold" data-warem="${esc(o.id)}">⏰ Recordatorio de recompra</button>` : ''}
     <button type="button" class="btn btn-line" data-print="${esc(o.id)}">🖨 Imprimir Comprobante</button>
     <button type="button" class="btn btn-danger" data-delord="${esc(o.id)}">Eliminar pedido</button></div>
   <p class="text-xs font-bold text-cherry mt-1" data-waerr="${esc(o.id)}" role="alert" hidden></p>`;
@@ -532,7 +589,10 @@
     // Codificación: todo emoji y carácter especial del mensaje se escribe como secuencia \u (no depende de cómo se guarde el archivo),
     // se limpia de FE0F / FFFD / sustitutos sueltos, se normaliza a NFC y se pasa SIEMPRE por encodeURIComponent() en waUrl().
     const waClean = t => String(t).replace(/[️�]/g, '').replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '').normalize('NFC');
-    const waUrl = (num, msg) => `https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(waClean(msg))}`;
+    // Celular: wa.me (abre la app). Laptop/PC: WhatsApp Web, porque la app de escritorio de Windows muestra � en lugar de los emojis.
+    const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+    function waHint() { if (IS_MOBILE) return; try { if (sessionStorage.getItem('waweb-hint')) return; sessionStorage.setItem('waweb-hint', '1'); } catch (x) { } toast('Se abrirá WhatsApp Web. Si te lo pide, inicia sesión escaneando el QR con tu celular.'); }
+    const waUrl = (num, msg) => (IS_MOBILE ? `https://wa.me/${num}?text=` : `https://web.whatsapp.com/send?phone=${num}&text=`) + encodeURIComponent(waClean(msg));
     // Emoji dinámico por estado: [emoji, texto]. "preparacion" y "listo" quedan listos por si se agregan como estados; "enviado" en una entrega de recolección se muestra como "Listo para recolección".
     const WA_EST = {
       pendiente: ['\u{1F4DD}', 'Recibido'], confirmado: ['⏳', 'Confirmado'], preparacion: ['☕', 'En preparación'],
@@ -555,6 +615,13 @@
         `${items || '- (sin productos)'}\n\n` +
         `${cd} *TOTAL A PAGAR:* ${tot}\n${env ? '_No incluye el costo de envío; te lo confirmamos por este medio._\n' : ''}\n` +
         `${pr} ¡Muchas gracias por tu preferencia! Es un gusto servirte.\n${cup} _Café Milenio · Jaltenango, Chiapas_ ${sp}`);
+    };
+    // Recordatorio de recompra (pedidos entregados con frecuencia 15/30 días cuya próxima recompra ya llegó)
+    const waRecordatorio = o => {
+      const ps = Array.isArray(o.productos) ? o.productos : [], uniq = a => [...new Set(a.filter(Boolean))];
+      const cal = uniq(ps.map(p => waTxt(String(p.calidad || '').replace('Calidad ', '')))).join(' / ') || 'tu café', mol = uniq(ps.map(p => waTxt(p.molido))).join(' / ') || '—';
+      const peso = fmtKg(+o.totalKg || ps.reduce((a, p) => a + (+p.kg || 0), 0));
+      return waClean(`¡Hola, *${waTxt(o.cliente) || 'cliente'}*! \u2615 Calculamos que tu café (*${cal}* · *${mol}*) está por terminarse. ¿Te gustaría reordenar tu pedido habitual de ${peso} por este medio?`);
     };
     // Imprimir comprobante / etiqueta de envío (CSS @media print: solo sale #printArea, en blanco y negro)
     function printLabel(o) {
@@ -581,11 +648,17 @@
         return;
       }
       const pr = e.target.closest('[data-print]'); if (pr) { const o = orders.find(x => x.id === pr.dataset.print); if (o) printLabel(o); return; }
+      const wr = e.target.closest('[data-warem]');
+      if (wr) {
+        const o = orders.find(x => x.id === wr.dataset.warem); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : (waTel[o.id] ?? o.telefono));
+        if (!n) { openOrders.add(o.id); renderOrders(); const i2 = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`); if (er) { er.textContent = 'Escribe el teléfono del cliente (10 dígitos) y vuelve a pulsar el botón del recordatorio.'; er.hidden = false; } i2 && i2.focus(); return; }
+        waHint(); window.open(waUrl(n, waRecordatorio(o)), '_blank', 'noopener'); return;
+      }
       const w = e.target.closest('[data-wa]');
       if (w) {
         const o = orders.find(x => x.id === w.dataset.wa); if (!o) return; const inp = document.querySelector(`#olist [data-watel="${CSS.escape(o.id)}"]`), er = document.querySelector(`#olist [data-waerr="${CSS.escape(o.id)}"]`), n = waNum(inp ? inp.value : o.telefono);
         if (!n) { e.preventDefault(); if (er) { er.textContent = 'Escribe un teléfono válido de 10 dígitos (ej. 961 123 4567).'; er.hidden = false; } inp && inp.focus(); return; }
-        const url = waUrl(n, waMsg(o));
+        const url = waUrl(n, waMsg(o)); waHint();
         if (w.tagName === 'A') { w.href = url; return; } // con teléfono guardado es un enlace directo: se actualiza (por si se corrigió el número) y el navegador lo abre
         window.open(url, '_blank', 'noopener'); return;
       }
@@ -621,7 +694,7 @@
         <div class="bar mt-2" data-bar="${d.id}" hidden><i style="width:0"></i></div><p class="text-xs mt-1" data-imsg="${d.id}" role="status"></p></div>
       <button type="button" class="sw" role="switch" aria-checked="true" data-sw="${d.id}"><span>Disponible para la venta <span class="block text-xs font-normal text-mute">Apágalo cuando se agote; se guarda al instante</span></span><i aria-hidden="true"></i></button>
     </div>
-    <div class="grid gap-4 content-start min-w-0">
+    <div class="grid gap-4 content-start min-w-0">  
       <div class="grid gap-2"><p class="sec">Precio por presentación <span class="normal-case tracking-normal font-semibold text-mute">(MXN, bolsa completa)</span></p>
         <div class="ptable" role="group" aria-label="Precios por presentación">
           <span class="ch" aria-hidden="true"></span><span class="ch" aria-hidden="true">Precio 250g</span><span class="ch" aria-hidden="true">Precio 500g</span><span class="ch" aria-hidden="true">Precio 1kg</span>
@@ -937,11 +1010,11 @@
  service cloud.firestore {
    match /databases/{db}/documents {
 
-     // Administradores: el principal y un correo de respaldo (cambia el de respaldo por uno real). Cada correo debe estar verificado (Authentication → el usuario confirmó su correo).
+     // Administradores: el principal (puedes agregar más, separados por coma). Cada correo debe estar verificado (Authentication → el usuario confirmó su correo).
      function isAdmin() {
        return request.auth != null
          && request.auth.token.email_verified == true
-         && request.auth.token.email in ['aldoroblero772@gmail.com', 'respaldo.admin@example.com'];
+         && request.auth.token.email in ['aldoroblero772@gmail.com'];
      }
 
      // Ayudas de validación: campo opcional de texto / número dentro de un rango.
@@ -988,7 +1061,8 @@
          && request.resource.data.keys().hasOnly(['hero','origen','proceso','selectores','actualizado'])
          && (!('hero' in request.resource.data) || (request.resource.data.hero is string && request.resource.data.hero.size() < 700))
          && (!('origen' in request.resource.data) || (request.resource.data.origen is list && request.resource.data.origen.size() <= 3))
-         && (!('proceso' in request.resource.data) || (request.resource.data.proceso is list && request.resource.data.proceso.size() <= 4));
+         && (!('proceso' in request.resource.data) || (request.resource.data.proceso is list && request.resource.data.proceso.size() <= 4))
+         && (!('selectores' in request.resource.data) || request.resource.data.selectores is map);
        allow delete: if false;
      }
 
@@ -1019,7 +1093,7 @@
          return d.folio == folio
            && folio.matches('^MIL-[A-Z0-9]{6,12}$')
            && d.keys().hasAll(['folio','cliente','productos','total','estado','fecha'])
-           && d.keys().hasOnly(['folio','cliente','telefono','entrega','destino','direccion','sucursal','fechaRecoleccion','recoge','productos','totalKg','kgPorCalidad','subtotalMenudeo','descuentoMayoreo','subtotal','total','envio','pago','concepto','frecuencia','estado','fecha'])
+           && d.keys().hasOnly(['folio','cliente','telefono','entrega','destino','direccion','sucursal','fechaRecoleccion','recoge','productos','totalKg','kgPorCalidad','subtotalMenudeo','descuentoMayoreo','subtotal','total','envio','pago','concepto','frecuencia','proximaRecompra','estado','fecha'])
            && d.fecha == request.time
            && d.cliente is string && d.cliente.size() > 0 && d.cliente.size() <= 80
            && (!('telefono' in d) || (d.telefono is string && d.telefono.matches('^[0-9]{10}$')))
@@ -1027,9 +1101,14 @@
            && (!('pago' in d) || d.pago in ['Efectivo','Transferencia','Tarjeta'])
            && (!('envio' in d) || d.envio == 'por_confirmar')
            && optTxt(d, 'destino', 120) && optTxt(d, 'direccion', 300) && optTxt(d, 'sucursal', 150)
-           && optTxt(d, 'fechaRecoleccion', 40) && optTxt(d, 'recoge', 80) && optTxt(d, 'concepto', 60) && optTxt(d, 'frecuencia', 40)
+           && optTxt(d, 'fechaRecoleccion', 40) && optTxt(d, 'recoge', 80) && optTxt(d, 'concepto', 60) && (!('frecuencia' in d) || d.frecuencia in ['unica','15_dias','30_dias'])
+           && (!('proximaRecompra' in d) || (d.proximaRecompra is timestamp && d.frecuencia in ['15_dias','30_dias']
+               && d.proximaRecompra > request.time - duration.value(2, 'd') && d.proximaRecompra < request.time + duration.value(60, 'd')))
            && d.productos is list && d.productos.size() >= 1 && d.productos.size() <= 100
-           && (!('kgPorCalidad' in d) || (d.kgPorCalidad is map && d.kgPorCalidad.keys().hasOnly(['europea','americana','nacional'])))
+           && (!('kgPorCalidad' in d) || (d.kgPorCalidad is map && d.kgPorCalidad.keys().hasOnly(['europea','americana','nacional'])
+               && d.kgPorCalidad.get('europea', 0) is number && d.kgPorCalidad.get('europea', 0) <= 300
+               && d.kgPorCalidad.get('americana', 0) is number && d.kgPorCalidad.get('americana', 0) <= 300
+               && d.kgPorCalidad.get('nacional', 0) is number && d.kgPorCalidad.get('nacional', 0) <= 300))
            && d.total is number && d.total > 0 && d.total < 1000000
            && optNum(d, 'subtotal', 0, 1000000) && optNum(d, 'subtotalMenudeo', 0, 1000000)
            && optNum(d, 'descuentoMayoreo', 0, 1000000) && optNum(d, 'totalKg', 0.25, 300)
@@ -1039,8 +1118,9 @@
        // El estado inicial lo define solo el `create` (arriba). Cambiarlo después es exclusivo del administrador:
        // la tienda ya no puede modificar pedidos existentes.
        allow update: if isAdmin()
-         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado','actualizado'])
+         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado','actualizado','recordatorioEnviado'])
          && request.resource.data.actualizado == request.time
+         && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['recordatorioEnviado']) || request.resource.data.recordatorioEnviado == request.time)
          && request.resource.data.estado in ['pendiente','confirmado','enviado','entregado','cancelado','enviado_whatsapp','pago_en_linea_iniciado'];
        allow read: if isAdmin();
        allow delete: if isAdmin();
@@ -1054,11 +1134,11 @@
  service firebase.storage {
    match /b/{bucket}/o {
 
-     // Administradores: el principal y un correo de respaldo (cambia el de respaldo por uno real). Cada correo debe estar verificado.
+     // Administradores: el principal (puedes agregar más, separados por coma). Cada correo debe estar verificado.
      function isAdmin() {
        return request.auth != null
          && request.auth.token.email_verified == true
-         && request.auth.token.email in ['aldoroblero772@gmail.com', 'respaldo.admin@example.com'];
+         && request.auth.token.email in ['aldoroblero772@gmail.com'];
      }
 
      // Imágenes de las bolsas de café: las ve cualquiera; solo el administrador las sube o borra.
