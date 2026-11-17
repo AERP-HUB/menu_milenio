@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://aerp-hub.github.io/menu_milenio/sitemap.xml
+Sitemap: https://cafemilenio.com.mx/sitemap.xml
