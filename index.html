@@ -8,8 +8,9 @@
   <meta name="description"
     content="Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.">
   <meta name="theme-color" content="#170B08">
-  <link rel="icon" type="image/jpeg" href="img/milenio_admi.jpg">
-  <link rel="apple-touch-icon" href="img/milenio_admi.jpg">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" href="img/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="canonical" href="https://cafemilenio.com.mx/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Café Milenio">
@@ -1378,7 +1379,7 @@ html{scroll-behavior:smooth;scroll-padding-top:0!important}
 #nosotros .org-pane>.nos-card{width:100%}
 #nosotros .org-fig{position:relative;margin:0;overflow:hidden;border-radius:1.5rem;border:1px solid var(--line);background:var(--surf2);box-shadow:0 20px 50px -24px rgba(255,103,0,.5);align-self:center}
 #nosotros .org-fig picture{display:block}
-#nosotros .org-fimg{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+#nosotros .org-fimg{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%}
 #nosotros .org-fig figcaption{padding:.7rem 1rem;font-size:.85rem;color:var(--mute);border-top:1px solid var(--line)}
 #nosotros .org-dots{display:flex;justify-content:center;gap:.15rem;margin-top:.5rem}
 #nosotros .org-dot{width:2.2rem;height:2.2rem;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
@@ -1550,7 +1551,7 @@ body{background-image:none!important}
   #inicio .hero-buy{margin-bottom:.6rem}
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Café Milenio","description":"Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.","url":"https://cafemilenio.com.mx/","logo":"https://cafemilenio.com.mx/img/milenio_admi.jpg","image":"https://cafemilenio.com.mx/img/og-milenio.jpg","telephone":"+52 992 110 0559","email":"jaltenangomilenio@gmail.com","servesCuisine":"Café","address":{"@type":"PostalAddress","streetAddress":"Calle Primera Ote. Nte. #327","addressLocality":"Jaltenango de la Paz","addressRegion":"Chiapas","postalCode":"30370","addressCountry":"MX"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"18:00"}],"areaServed":"MX","sameAs":["https://www.instagram.com/cafemileniooficial"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Café Milenio","description":"Café arábiga 100% chiapaneco, tostado y molido en Jaltenango. Menudeo, mayoreo desde 5 kg y envíos a todo México.","url":"https://cafemilenio.com.mx/","logo":"https://cafemilenio.com.mx/img/cafe_mil.jpg","image":"https://cafemilenio.com.mx/img/og-milenio.jpg","telephone":"+52 992 110 0559","email":"jaltenangomilenio@gmail.com","servesCuisine":"Café","address":{"@type":"PostalAddress","streetAddress":"Calle Primera Ote. Nte. #327","addressLocality":"Jaltenango de la Paz","addressRegion":"Chiapas","postalCode":"30370","addressCountry":"MX"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"18:00"}],"areaServed":"MX","sameAs":["https://www.facebook.com/CafeMilenioOficial","https://www.instagram.com/cafemileniooficial"],"hasMap":"https://maps.app.goo.gl/XzFvWwX7WY4Km17h6","containedInPlace":{"@type":"Restaurant","name":"Restaurante El Milenio","address":{"@type":"PostalAddress","streetAddress":"Calle Primera Ote. Nte. #327","addressLocality":"Jaltenango de la Paz","addressRegion":"Chiapas","postalCode":"30370","addressCountry":"MX"}}}</script>
 <style id="fix-ux2">
 @media(min-width:768px){#inicio>div.max-w-6xl{grid-template-rows:1fr 1fr;row-gap:1.25rem;align-items:stretch}#inicio .hero-top{align-self:end}#inicio .hero-act{align-self:start}}
 #nosotros .nd{width:2.75rem;height:2.75rem}
@@ -1639,6 +1640,18 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
   #nosotros .org-pane{min-height:0;padding-block:1.5rem}
 }
 </style>
+<style id="fix-cfg">
+.site-aviso{display:flex;align-items:center;justify-content:center;gap:.5rem;text-align:center;padding:.6rem 1rem;font-size:.9rem;font-weight:700;line-height:1.35;background:linear-gradient(90deg,#FFC857,#FF8A1F);color:#2A1200}
+.site-aviso[data-t=alerta]{background:#B3262B;color:#fff}
+.site-aviso[hidden]{display:none}
+.env-est{margin-top:.35rem;font-size:.8rem;font-weight:700;color:var(--goldt)}
+.env-est:empty{display:none}
+</style>
+<style id="fix-logo">
+picture.lgo{display:contents}
+.hd-brand img{border-radius:.6rem!important;object-fit:contain!important;background:#F4EBE4!important}
+.hero-brand img{width:5.5rem!important;height:5.5rem!important;border-radius:1rem!important;object-fit:contain!important;background:#F4EBE4!important}
+</style>
 </head>
 
 <body>
@@ -1702,13 +1715,14 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     </symbol>
   </svg>
 
+  <div id="avisoTop" class="site-aviso" role="status" aria-live="polite" hidden></div>
   <header class="sticky z-40 backdrop-blur-md bg-esp/90 text-[#F6EBDD] border-b border-white/10"
     style="top:env(safe-area-inset-top,0px)">
     <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
       <a href="#inicio" class="hd-brand flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Café Milenio, ir al inicio">
-        <img src="img/milenio_admi.jpg" alt="" width="44" height="44"
+        <picture class="lgo"><source type="image/webp" srcset="img/cafe_mil-480.webp"><img src="img/cafe_mil.jpg" alt="" width="44" height="44"
           class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover bg-[#F4EFE6] shrink-0"
-          onerror="this.outerHTML='<span class=&quot;w-10 h-10 rounded-full bg-[#F4EFE6] grid place-items-center shrink-0&quot;>☕</span>'">
+          onerror="this.outerHTML='<span class=&quot;w-10 h-10 rounded-full bg-[#F4EFE6] grid place-items-center shrink-0&quot;>☕</span>'"></picture>
         <span class="font-script leading-none whitespace-nowrap hd-logo" aria-hidden="true">Café Milenio</span>
       </a>
       <nav id="dnav" class="hidden lg:flex gap-5 xl:gap-7 font-semibold text-sm uppercase tracking-wider" aria-label="Principal">
@@ -1739,7 +1753,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         <!-- Columna Izquierda: Textos y Botones -->
         <!-- 1) Encabezado + subtítulo -->
         <div class="hero-top text-left w-full hero-copy">
-          <p class="hero-brand" aria-label="Café Milenio"><img src="img/milenio_admi.jpg" alt="" width="88" height="88" decoding="async" onerror="this.style.display='none'"><span class="font-script" aria-hidden="true">Café Milenio</span></p>
+          <p class="hero-brand" aria-label="Café Milenio"><picture class="lgo"><source type="image/webp" srcset="img/cafe_mil-480.webp"><img src="img/cafe_mil.jpg" alt="" width="88" height="88" decoding="async" onerror="this.style.display='none'"></picture><span class="font-script" aria-hidden="true">Café Milenio</span></p>
           <p class="icow font-serif uppercase tracking-[.3em] text-gold text-xs sm:text-sm flex items-center gap-2"><svg class="dm ico mg w-5 h-5 shrink-0" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-marigold"/></svg><span data-i18n="hero.eyebrow">Café arábiga · Jaltenango, Chiapas</span><svg class="dm ico sk w-5 h-6 shrink-0" viewBox="0 0 100 110" aria-hidden="true"><use href="#i-skull"/></svg></p>
           <h1 class="font-head font-extrabold uppercase leading-[.98] tracking-tight mt-4 hero-t" data-i18n-html="hero.h1">Café 100% <span class="text-gold">chiapaneco</span></h1>
           <p class="mt-5 text-lg text-[#E6D6C6] max-w-md" data-i18n="hero.p">
@@ -1830,7 +1844,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
               <p class="nos-p" data-i18n="nos.q1">Seguimos siendo un legado familiar: cultivamos café en Jaltenango, Chiapas, y creemos que la calidad comienza desde el origen. Nuestros granos crecen entre 900 y 1000 msnm, en Nueva Palestina, municipio de Ángel Albino Corzo, con variedades Bourbon, Mundo Novo, Marsellesa y Caturra.</p>
               <p class="nos-p" data-i18n="nos.q2">Tostamos y molemos en casa. Un café versátil para espresso, capuchino, cold brew o prensa francesa.</p>
             </div>
-            <figure class="org-fig"><picture><source type="image/avif" srcset="img/fundadores-480.avif 480w, img/fundadores.avif 1200w" sizes="(min-width:768px) 560px, 92vw"><source type="image/webp" srcset="img/fundadores-480.webp 480w, img/fundadores.webp 1200w" sizes="(min-width:768px) 560px, 92vw"><img src="img/fundadores.jpg" alt="Los fundadores de Café Milenio en su cafetal de Jaltenango" width="800" height="600" loading="lazy" decoding="async" class="org-fimg" onerror="if(!picBad(this))this.closest('figure').style.display='none'"></picture><figcaption data-i18n="nos.fam">Familia fundadora · Jaltenango, Chiapas</figcaption></figure>
+            <figure class="org-fig"><img id="fundImg" src="img/Vfundadores.png" alt="Los fundadores de Café Milenio sosteniendo una revista de Chiapas en su tostadora de Jaltenango" width="800" height="600" loading="lazy" decoding="async" class="org-fimg" onerror="if(this.getAttribute('src')!=='img/fundadores.jpg'){this.src='img/fundadores.jpg'}else{this.closest('figure').style.display='none'}"><figcaption data-i18n="nos.fam">Familia fundadora · Jaltenango, Chiapas</figcaption></figure>
           </div>
         </div>
         <!-- Pantalla 2 · Desde el origen (video del proceso + historia del grano) -->
@@ -1907,7 +1921,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
       </div>
       <div>
         <h3 class="font-extrabold uppercase tracking-wider text-gold text-sm">Visítanos</h3>
-        <p class="mt-3 text-sm text-[#E6D6C6]">📍 Calle Primera Ote. Nte. #327<br>Jaltenango de la Paz, Chiapas, C.P.
+        <p id="ftDir" class="mt-3 text-sm text-[#E6D6C6]">📍 Calle Primera Ote. Nte. #327<br>Jaltenango de la Paz, Chiapas, C.P.
           30370<br><a class="underline text-gold" href="https://maps.app.goo.gl/XzFvWwX7WY4Km17h6" target="_blank"
             rel="noopener">Ver en el mapa</a></p>
         <p class="mt-3 text-sm text-[#E6D6C6]">📦 Envíos a todo México</p>
@@ -1917,7 +1931,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
           <a class="soc soc-ig" href="https://www.instagram.com/cafemileniooficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @cafemileniooficial"><svg class="soc-ic" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg><span>@cafemileniooficial</span></a>
           <a class="soc soc-fb" href="https://www.facebook.com/CafeMilenioOficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook Café Milenio"><svg class="soc-ic" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span>CAFÉ MILENIO</span></a>
           <a id="footWa" class="soc soc-wa" href="https://wa.me/529616037111?text=Hola%20Caf%C3%A9%20Milenio,%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +52 961 603 7111"><svg class="soc-ic" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>+52 961 603 7111</span></a>
-          <p class="text-sm text-[#E6D6C6] mt-2">📞 <a href="tel:+529921100559" class="underline">992 110 0559</a><br>
+          <p id="ftTel" class="text-sm text-[#E6D6C6] mt-2">📞 <a href="tel:+529921100559" class="underline">992 110 0559</a><br>
           ✉️ <a href="mailto:jaltenangomilenio@gmail.com" class="underline break-all">jaltenangomilenio@gmail.com</a></p>
         </div>
       </div>
@@ -1951,9 +1965,10 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     <aside class="pn" id="pn"></aside>
   </div>
   <script>
-    const WA = '529616037111', IG = 'https://www.instagram.com/cafemileniooficial';
+    const WA_DEF = '529616037111', IG = 'https://www.instagram.com/cafemileniooficial';
+    let WA = WA_DEF;
     // Número de pedidos: 52 + 10 dígitos. Si queda un marcador de posición, los botones de pedido NO abren WhatsApp y avisan.
-    const WA_OK = /^52\d{10}$/.test(WA) && !/(0000000|1234567|XXXX)/i.test(WA);
+    let WA_OK = /^52\d{10}$/.test(WA) && !/(0000000|1234567|XXXX)/i.test(WA);
     // Limpia el texto antes de codificarlo: quita selectores de variación (FE0F), caracteres de reemplazo (FFFD) y sustitutos sueltos, que WhatsApp muestra como ◆?
     const waClean = t => String(t).replace(/[\uFE0F\uFFFD]/g, '').replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '');
     // Texto en UTF-8 bien formado (NFC, sin selectores de variación ni sustitutos sueltos) y codificado con encodeURIComponent: evita los caracteres corruptos en WhatsApp.
@@ -1988,8 +2003,38 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     }
     const HERO_IMG = 'img/cafes-inicio.jpg';
     // Imágenes del sitio editables desde admin.html (Firestore sitio/imagenes). Vacío = se usan las imágenes por defecto.
-    const SITE = { hero: '', origen: [], proceso: [], sel: {} };
+    const SITE = { hero: '', origen: [], proceso: [], sel: {}, fund: '', seg: 5 };
+    // Foto de la familia fundadora (editable en admin.html → Imágenes del sitio) y segundos que dura cada medio de "Desde el origen" (editable en el mismo panel).
+    const FUND_DEF = 'img/Vfundadores.png', SEG_DEF = 5;
+    function renderFund() { const im = $('#fundImg'); if (!im) return; const u = SITE.fund || FUND_DEF; if (im.getAttribute('src') !== u) im.src = u; }
     // Imágenes de los selectores (Grano entero, Café molido y Costal). Se reemplazan por fotos reales desde admin.html (Imágenes del sitio).
+    // ===== Ajustes del sitio (admin.html → pestaña Ajustes · Firestore sitio/ajustes): aviso superior, contacto, horario y envío estimado =====
+    const TEL_DEF = '9921100559', MAIL_DEF = 'jaltenangomilenio@gmail.com';
+    let HR = { a: 7, c: 18 };
+    const CFG = { env: [], key: '' };
+    const h12 = (h, l) => { const x = h % 12 || 12, pm = h >= 12 && h < 24; return `${x}:00 ${l === 'en' ? (pm ? 'p.m.' : 'a.m.') : (pm ? 'p. m.' : 'a. m.')}`; };
+    const hrTxt = l => l === 'en' ? `Monday to Saturday: ${h12(HR.a, 'en')} – ${h12(HR.c, 'en')}` : `Lunes a Sábado: ${h12(HR.a, 'es')} – ${h12(HR.c, 'es')}`;
+    const normTxt = x => String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const envMatch = v => { const x = normTxt(v); if (x.length < 3) return null; return CFG.env.find(e => { const n = normTxt(e.n); return x.includes(n) || (x.length >= 4 && n.includes(x)); }) || null; };
+    const envEstTxt = v => { const m = envMatch(v); return m ? (LANG === 'en' ? `Estimated shipping to ${m.n}: $${m.c} MXN (confirmed by WhatsApp)` : `Envío estimado a ${m.n}: $${m.c} MXN (se confirma por WhatsApp)`) : ''; };
+    function applyCfg(d) {
+      d = d || {}; const c = d.contacto || {}, h = d.horario || {}, av = d.aviso || {}, ev = d.envio || {};
+      const wa = typeof c.whatsapp === 'string' && /^52\d{10}$/.test(c.whatsapp) ? c.whatsapp : WA_DEF;
+      const tel = typeof c.telefono === 'string' && /^\d{10}$/.test(c.telefono) ? c.telefono : TEL_DEF;
+      const mail = typeof c.correo === 'string' && c.correo.length <= 80 && /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(c.correo) ? c.correo : MAIL_DEF;
+      const dir = typeof c.direccion === 'string' && c.direccion.trim() && c.direccion.length <= 150 ? c.direccion.trim() : STORE_DEF;
+      const mapa = typeof c.mapa === 'string' && c.mapa.length <= 300 && /^https:\/\/[^\s"'<>]+$/.test(c.mapa) ? c.mapa : MAPS_DEF;
+      const hr = Number.isInteger(h.abre) && Number.isInteger(h.cierra) && h.abre >= 0 && h.abre < h.cierra && h.cierra <= 24 ? { a: h.abre, c: h.cierra } : { a: 7, c: 18 };
+      const avOn = av.activo === true && typeof av.texto === 'string' && av.texto.trim(), avTxt = avOn ? av.texto.trim().slice(0, 200) : '', avT = av.tipo === 'alerta' ? 'alerta' : 'info';
+      const env = Array.isArray(ev.destinos) ? ev.destinos.filter(x => x && typeof x.n === 'string' && x.n.trim() && typeof x.c === 'number' && x.c >= 0 && x.c <= 5000).slice(0, 30).map(x => ({ n: x.n.trim().slice(0, 40), c: Math.round(x.c) })) : [];
+      const key = JSON.stringify([wa, tel, mail, dir, mapa, hr, avTxt, avT, env]); if (key === CFG.key) return; CFG.key = key;
+      WA = wa; WA_OK = /^52\d{10}$/.test(WA) && !/(0000000|1234567|XXXX)/i.test(WA); STORE = dir; MAPS = mapa; HR = hr; CFG.env = env;
+      const box = $('#avisoTop'); if (box) { box.textContent = avTxt; box.dataset.t = avT; box.hidden = !avTxt; }
+      const fd = $('#ftDir'); if (fd) fd.innerHTML = `\u{1F4CD} ${esc(dir)}<br><a class="underline text-gold" href="${esc(mapa)}" target="_blank" rel="noopener">${esc(t('f.map'))}</a>`;
+      const ft = $('#ftTel'); if (ft) ft.innerHTML = `\u{1F4DE} <a href="tel:+52${tel}" class="underline">${tel.slice(0, 3)} ${tel.slice(3, 6)} ${tel.slice(6)}</a><br>\u2709\uFE0F <a href="mailto:${esc(mail)}" class="underline break-all">${esc(mail)}</a>`;
+      renderStatic(); const fw = $('#footWa'); if (fw) fw.setAttribute('aria-label', `WhatsApp +52 ${WA.slice(2, 5)} ${WA.slice(5, 8)} ${WA.slice(8)}`);
+      renderFaq(); rerender();
+    }
     const SEL_DEF = { grano: 'img/sel-grano.webp', molido: 'img/sel-molido.webp', costal: 'img/sel-costal.webp' }, SEL_FB = { grano: '\u{1F330}', molido: '\u2615', costal: '\u{1F4E6}' };
     const SEL_GR = { 'Molido fino': 'img/sel-molido-fino.webp', 'Molido medio': 'img/sel-molido.webp', 'Molido medio-grueso': 'img/sel-molido-mg.webp', 'Prensa francesa': 'img/sel-molido-grueso.webp' }; // molido por tipo (si no hay foto propia en el panel)
     const selEm = () => `<i class="sel-ic sel-em" aria-hidden="true"><em>\u2615</em></i>`; // tipo de molido: solo emoji de taza
@@ -2021,8 +2066,10 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     };
     const FREQ = { '15_dias': 'Cada 15 días', '30_dias': 'Cada mes' }, FREQ_DIAS = { '15_dias': 15, '30_dias': 30 }; // códigos que se guardan en Firestore: 'unica' | '15_dias' | '30_dias'
     let quiz = { m: '', t: '', p: '' };
-    const STORE = 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370';
-    const MAPS = 'https://maps.app.goo.gl/XzFvWwX7WY4Km17h6';
+    const STORE_DEF = 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370';
+    let STORE = STORE_DEF;
+    const MAPS_DEF = 'https://maps.app.goo.gl/XzFvWwX7WY4Km17h6';
+    let MAPS = MAPS_DEF;
     let pending = null;
     PRODS.forEach(p => ui[p.id] = { g: 'Grano entero', kg: 1, pr: 1 });
     const save = () => { try { localStorage.setItem('milenio-cart', JSON.stringify(cart)); } catch (e) { } };
@@ -2080,7 +2127,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         'sum.note': 'El costo de envío se confirma por WhatsApp. Enviar el pedido es una solicitud: no es un pago ni una confirmación definitiva hasta que Café Milenio te responda.',
         'f.data': 'Tus datos', 'f.name': 'Nombre *', 'f.tel': 'Teléfono / WhatsApp (10 dígitos) *', 'f.priv': 'Usaremos tus datos solo para atender tu pedido. Al enviarlo aceptas el <a href="aviso-privacidad.html" class="underline font-semibold" target="_blank" rel="noopener">Aviso de privacidad</a>.',
         'f.deliv': 'Método de entrega', 'f.ship': '🚚 Envío a domicilio', 'f.pick': '🏪 Recoger en tienda', 'f.dest': 'Municipio / Estado de destino *', 'f.destph': 'Ej. Tuxtla Gutiérrez, Chiapas', 'f.addr': 'Dirección de entrega *', 'f.addrph': 'Calle, número, colonia, C.P.',
-        'f.pickat': '🏪 Recoge en nuestra tienda', 'f.map': 'Ver en el mapa', 'f.hours': '🕒 Horario de atención', 'f.hours1': 'Lunes a Sábado: 7:00 a. m. – 6:00 p. m.', 'f.sun': 'Domingo: <b class="text-cherry">CERRADO</b>', 'f.date': 'Fecha y hora estimada de recolección *', 'f.who': '¿Quién recoge? (opcional)', 'f.whoph': 'Solo si es otra persona',
+        'f.pickat': '🏪 Recoge en nuestra tienda', 'f.map': 'Ver en el mapa', 'f.hours': '🕒 Horario de atención', 'f.hours1': () => hrTxt('es'), 'f.sun': 'Domingo: <b class="text-cherry">CERRADO</b>', 'f.date': 'Fecha y hora estimada de recolección *', 'f.who': '¿Quién recoge? (opcional)', 'f.whoph': 'Solo si es otra persona',
         'f.pay': 'Forma de pago estimada', 'f.cash': '💵 Efectivo', 'f.transfer': '🏦 Transf.', 'f.card': '💳 Tarjeta', 'f.reorder': 'Recompra (opcional)', 'f.freq': '¿Con qué frecuencia compras café?',
         'fq.unica': 'Compra única', 'fq.unica.d': 'Sin recordatorios', 'fq.15': 'Cada 15 días', 'fq.mes': 'Cada mes', 'fq.d': 'Te escribimos por WhatsApp para reordenar',
         'f.b1': '🧾 Revisas tu comprobante antes de enviar.', 'f.b2': '💬 Tu pedido se confirma por WhatsApp con Café Milenio.', 'f.b3': '💵 Al enviar el pedido no se cobra nada.', 'f.b4': n => `📦 Envíos a todo México. Mayoreo desde ${n} kg por calidad.`,
@@ -2090,7 +2137,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         'q.back1': 'Volver a la pregunta 1', 'q.back2': 'Volver a la pregunta 2',
         'qm.espresso': '☕ Espresso / Moka', 'qm.goteo': '💧 Cafetera de filtro / Goteo', 'qm.prensa': '🧊 Prensa Francesa / Cold Brew', 'qm.olla': '🍯 Café de olla / Tradicional', 'qm.molino': '⚙️ Tengo molino en casa',
         'qt.negro': '🖤 Negro / Solo', 'qt.leche': '🥛 Con leche o crema', 'qt.azucar': '🍬 Con azúcar o piloncillo',
-        'qp.elegante': '🍫 Elegante y Cautivador', 'qp.elegante.d': 'Cacao y nuez', 'qp.clasico': '🍞 Clásico e Intenso', 'qp.clasico.d': 'Chocolate amargo y pan tostado', 'qp.profundo': '🍂 Profundo y Robusto', 'qp.profundo.d': 'Tueste oscuro sin acidez',
+        'qp.elegante': '🍫 Elegante y Cautivador', 'qp.elegante.d': 'Cacao y nuez', 'qp.clasico': '🍞 Clásico e Intenso', 'qp.clasico.d': 'Chocolate amargo y pan tostado', 'qp.profundo': '🍂 Profundo y Robusto', 'qp.profundo.d': 'Tueste oscuro',
         'qtip.negro': 'Ideal para disfrutarlo solo y apreciar todas sus notas.', 'qtip.leche': 'Con leche o crema resalta su cuerpo y su dulzor.', 'qtip.azucar': 'Con azúcar o piloncillo se vuelve más redondo y dulce.',
         'q.ideal': n => `Tu café ideal es ${n}`, 'q.sug': 'Molido sugerido:', 'q.sold': 'Agotado por ahora.', 'q.see': 'Ver mi café', 'q.add1': 'Agregar 1 kg al carrito', 'q.change': 'Cambiar respuesta', 'q.retake': 'Repetir test'
       },
@@ -2125,7 +2172,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         'sum.note': 'Shipping cost is confirmed via WhatsApp. Sending the order is a request: it is not a payment or a final confirmation until Café Milenio replies. Prices are in Mexican pesos (MXN); US$ amounts are estimates.',
         'f.data': 'Your details', 'f.name': 'Name *', 'f.tel': 'Phone / WhatsApp (10 digits) *', 'f.priv': 'We use your details only to process your order. By sending it you accept the <a href="aviso-privacidad.html" class="underline font-semibold" target="_blank" rel="noopener">Privacy Notice</a> (in Spanish).',
         'f.deliv': 'Delivery method', 'f.ship': '🚚 Home delivery', 'f.pick': '🏪 Store pickup', 'f.dest': 'City / State of destination *', 'f.destph': 'e.g. Tuxtla Gutiérrez, Chiapas', 'f.addr': 'Delivery address *', 'f.addrph': 'Street, number, neighborhood, ZIP',
-        'f.pickat': '🏪 Pick up at our store', 'f.map': 'View on map', 'f.hours': '🕒 Opening hours', 'f.hours1': 'Monday to Saturday: 7:00 a.m. – 6:00 p.m.', 'f.sun': 'Sunday: <b class="text-cherry">CLOSED</b>', 'f.date': 'Estimated pickup date and time *', 'f.who': 'Who is picking up? (optional)', 'f.whoph': 'Only if it is someone else',
+        'f.pickat': '🏪 Pick up at our store', 'f.map': 'View on map', 'f.hours': '🕒 Opening hours', 'f.hours1': () => hrTxt('en'), 'f.sun': 'Sunday: <b class="text-cherry">CLOSED</b>', 'f.date': 'Estimated pickup date and time *', 'f.who': 'Who is picking up? (optional)', 'f.whoph': 'Only if it is someone else',
         'f.pay': 'Estimated payment method', 'f.cash': '💵 Cash', 'f.transfer': '🏦 Transfer', 'f.card': '💳 Card', 'f.reorder': 'Reorder (optional)', 'f.freq': 'How often do you buy coffee?',
         'fq.unica': 'One-time purchase', 'fq.unica.d': 'No reminders', 'fq.15': 'Every 15 days', 'fq.mes': 'Every month', 'fq.d': 'We message you on WhatsApp to reorder',
         'f.b1': '🧾 You review your receipt before sending.', 'f.b2': '💬 Your order is confirmed via WhatsApp with Café Milenio.', 'f.b3': '💵 Nothing is charged when you send the order.', 'f.b4': n => `📦 Shipping across Mexico. Wholesale from ${n} kg per grade.`,
@@ -2362,7 +2409,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     <p class="text-[11px] text-mute mt-2">${t('f.priv')}</p></section>
   <section class="cstep">${step(2, t('f.deliv'))}
     <div class="grid grid-cols-2 gap-2 mt-3">${opt([['envio', t('f.ship')], ['recoger', t('f.pick')]], 'ent', info.ent)}</div>
-    ${info.ent === 'envio' ? `<label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-destino">${t('f.dest')}</label><input id="i-destino" class="in" data-f="destino" placeholder="${t('f.destph')}" value="${esc(info.destino)}">
+    ${info.ent === 'envio' ? `<label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-destino">${t('f.dest')}</label><input id="i-destino" class="in" data-f="destino" list="dl-dest" placeholder="${t('f.destph')}" value="${esc(info.destino)}"><datalist id="dl-dest">${CFG.env.map(e => `<option value="${esc(e.n)}">`).join('')}</datalist><p id="envEst" class="env-est" aria-live="polite">${esc(envEstTxt(info.destino))}</p>
     <label class="block text-xs font-bold text-mute mt-3 mb-1" for="i-dir">${t('f.addr')}</label><input id="i-dir" class="in" data-f="dir" autocomplete="street-address" placeholder="${t('f.addrph')}" value="${esc(info.dir)}">`
           : `<div class="rounded-2xl border border-line bg-bg p-3 mt-3 text-sm"><p class="font-bold">${t('f.pickat')}</p><p class="text-mute">${STORE}</p><a class="underline text-goldt font-semibold inline-flex items-center min-h-[2.75rem]" href="${MAPS}" target="_blank" rel="noopener">${t('f.map')}</a>
       <div class="mt-3 pt-3 border-t border-line"><p class="font-bold">${t('f.hours')}</p><p class="text-mute">${t('f.hours1')}</p><p class="text-mute">${t('f.sun')}</p></div></div>
@@ -2467,7 +2514,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     setTimeout(() => { if (!pricesLive) setOff(true); }, 8000);
     window.addEventListener('offline', () => setOff(true));
     window.addEventListener('online', () => { if (!pricesLive) setTimeout(() => { if (!pricesLive) setOff(true); }, 6000); });
-    window.onCloudReady = c => { cloud = c; flushOrders(); if (c.listenSite) c.listenSite(applySite, () => { }); if (c.listenProducts) c.listenProducts(applyProducts, () => { pricesLive = false; setOff(true); }); c.listenReviews(list => { cloudRev = list; renderReviews(); }, () => { cloudRev = null; renderReviews(); }); };
+    window.onCloudReady = c => { cloud = c; flushOrders(); if (c.listenSite) c.listenSite(applySite, () => { }); if (c.listenCfg) c.listenCfg(applyCfg, () => { }); if (c.listenProducts) c.listenProducts(applyProducts, () => { pricesLive = false; setOff(true); }); c.listenReviews(list => { cloudRev = list; renderReviews(); }, () => { cloudRev = null; renderReviews(); }); };
     const starsH = n => `<span class="stars" role="img" aria-label="${n} de 5 estrellas">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
     const AV = [['#D9A23F', '#24100B'], ['#7A3E22', '#F6EBDD'], ['#3F7A2A', '#F6EBDD'], ['#B3262B', '#F6EBDD'], ['#24100B', '#D9A23F']];
     const avatar = n => { let h = 0; for (const ch of n) h = (h * 31 + ch.charCodeAt(0)) >>> 0; const [bg, fg] = AV[h % AV.length], ini = n.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase(); return `<span class="avt" style="background:${bg};color:${fg}" aria-hidden="true">${esc(ini)}</span>`; };
@@ -2676,7 +2723,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
       const ent = info.ent === 'envio';
       if (!Object.keys(cart).length) err = 'Agrega al menos un producto al carrito.'; else if (!info.nombre.trim()) err = 'Escribe tu nombre.'; else if (!/^\d{10}$/.test(info.tel)) err = 'Escribe tu teléfono / WhatsApp de 10 dígitos (solo números).'; else if (ent && !info.destino.trim()) err = 'Escribe el municipio y estado de destino.'; else if (ent && !info.dir.trim()) err = 'Escribe la dirección de entrega.'; else if (!ent && !info.fecha) err = 'Elige la fecha y hora estimada de recolección.';
       else if (!ent && (new Date(info.fecha).getDay() === 0)) err = 'Los domingos estamos cerrados. Elige de lunes a sábado.';
-      else if (!ent && (new Date(info.fecha).getHours() < 7 || new Date(info.fecha).getHours() >= 18)) err = 'Horario de recolección: 7:00 a. m. – 6:00 p. m.';
+      else if (!ent && (new Date(info.fecha).getHours() < HR.a || new Date(info.fecha).getHours() >= HR.c)) err = `Horario de recolección: ${h12(HR.a, 'es')} – ${h12(HR.c, 'es')}.`;
       else err = '';
       return !err;
     }
@@ -2761,7 +2808,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
       else if (a === 'close') { setCart(false); return; }
       rerender();
     });
-    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { if (f === 'tel') { const v = e.target.value.replace(/\D/g, '').slice(0, 10); if (v !== e.target.value) e.target.value = v; } info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); if (f === 'nombre' && $('#pconcept')) $('#pconcept').textContent = concepto(); } });
+    document.addEventListener('input', e => { const f = e.target.dataset.f; if (f) { if (f === 'tel') { const v = e.target.value.replace(/\D/g, '').slice(0, 10); if (v !== e.target.value) e.target.value = v; } info[f] = e.target.value; err = ''; $('#pn')?.querySelector('[role=alert]')?.remove(); if (f === 'nombre' && $('#pconcept')) $('#pconcept').textContent = concepto(); if (f === 'destino') { const ee = $('#envEst'); if (ee) ee.textContent = envEstTxt(e.target.value); } } });
     // Teclado móvil: centra el campo enfocado y suelta la barra fija mientras escribes
     (() => {
       const pn = $('#pn'); if (!pn) return; let t;
@@ -2927,7 +2974,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         ['¿Hacen envíos? ¿Cuánto cuestan?', 'Enviamos a todo México. Los precios no incluyen el costo de envío: se confirma por WhatsApp según tu destino.'],
         ['¿Qué formas de pago hay?', `Efectivo (al momento de la entrega o al recoger en tienda), transferencia SPEI y tarjeta. Eliges tu forma de pago estimada en el carrito y se confirma por WhatsApp.`],
         ['¿Cómo hago mi pedido?', 'Agrega tus productos al carrito, llena tus datos y toca “Revisar y enviar por WhatsApp”. Verás tu comprobante y se abrirá WhatsApp con el pedido. Enviarlo es una solicitud: el pedido queda confirmado hasta que Café Milenio te responda.'],
-        ['¿Puedo recoger en tienda?', `Sí: ${STORE}. Horario: lunes a sábado de 7:00 a. m. a 6:00 p. m.; domingo cerrado.`],
+        ['¿Puedo recoger en tienda?', `Sí: ${STORE}. Horario: lunes a sábado de ${h12(HR.a, 'es')} a ${h12(HR.c, 'es')}; domingo cerrado.`],
       ];
       el.innerHTML = F.map(([q, a]) => `<details class="faq"><summary>${q}</summary><div class="ans">${a}</div></details>`).join('');
     }
@@ -2959,7 +3006,7 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
     const omMedia = (u, i) => isVid(u)
       ? `<video class="om mi" src="${esc(u)}" ${i === 0 && MOTION_OK ? 'autoplay ' : ''}loop muted playsinline preload="${i === 0 || !MOTION_OK ? 'auto' : 'metadata'}" aria-label="${OM_ALT}"></video>`
       : pic(u, OM_ALT, { w: 1200, h: 900, eager: i === 0, sizes: '(min-width:768px) 560px, 92vw', cls: 'om mi' });
-    function omSched() { clearTimeout(omT); if (!omVis || !MOTION_OK || omSlides().length < 2) return; omT = setTimeout(() => omShow(omI + 1), 9000); }
+    function omSched() { clearTimeout(omT); if (!omVis || !MOTION_OK || omSlides().length < 2) return; omT = setTimeout(() => omShow(omI + 1), Math.max(2, SITE.seg || SEG_DEF) * 1000); }
     function omShow(i) {
       const sl = omSlides(); if (!sl.length) return; omI = (i + sl.length) % sl.length;
       sl.forEach((el, k) => { const on = k === omI; el.classList.toggle('on', on); el.setAttribute('aria-hidden', String(!on)); const v = el.querySelector('video'); if (v) { if (on) { v.muted = true; if (v.preload !== 'auto') v.preload = 'auto'; if (omVis && MOTION_OK) v.play().catch(() => { }); } else v.pause(); } });
@@ -2993,8 +3040,10 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
       SITE.origen = Array.isArray(d && d.origen) ? d.origen.slice(0, 3).map(ok) : [];
       SITE.sel = {}; ['grano', 'molido', 'costal'].forEach(k => { const u = ok(d && d.selectores && d.selectores[k]); if (u) SITE.sel[k] = u; });
       SITE.proceso = Array.isArray(d && d.proceso) ? d.proceso.slice(0, 4).map(ok) : [];
+      SITE.fund = ok(d && d.fundadores);
+      { const n = d && d.origenSeg; SITE.seg = typeof n === 'number' && n >= 2 && n <= 60 ? Math.round(n) : SEG_DEF; }
       if (JSON.stringify(SITE) === before) return;
-      renderHero(); renderOrigen(); renderNos(); rerender(); if ($('#lb')?.classList.contains('on')) renderLb();
+      renderHero(); renderFund(); renderOrigen(); renderNos(); rerender(); if ($('#lb')?.classList.contains('on')) renderLb();
     }
     // Galería: arrastrar con el puntero (mousedown/mousemove/mouseup/mouseleave) + flechas. En táctil funciona el desplazamiento nativo.
     $('#procesoDots')?.addEventListener('click', e => { const d = e.target.closest('.nd'); if (!d) return; $('#proceso-carrusel').children[+d.dataset.i]?.scrollIntoView({ behavior: MOTION_OK ? 'smooth' : 'auto', inline: 'center', block: 'nearest' }); });
@@ -3100,6 +3149,9 @@ footer .underline{min-height:2.75rem;display:inline-flex;align-items:center}
         return getDownloadURL(r);
       },
       async addReview(r) { await addDoc(collection(db, 'resenas'), { ...r, aprobada: false, fecha: serverTimestamp() }); }, // queda pendiente hasta que el administrador la apruebe
+      listenCfg(ok, fail) { // aviso superior, contacto, horario y envío estimado: se editan en admin.html → Ajustes
+        return onSnapshot(doc(db, 'sitio', 'ajustes'), snap => ok(snap.exists() ? snap.data() : null), fail);
+      },
       listenSite(ok, fail) { // imágenes del sitio (Hero, Desde el origen, carrusel): se editan en admin.html
         return onSnapshot(doc(db, 'sitio', 'imagenes'), snap => ok(snap.exists() ? snap.data() : null), fail);
       },

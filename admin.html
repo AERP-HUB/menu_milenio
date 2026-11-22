@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#150A07">
-  <link rel="icon" type="image/webp" href="img/milenio_admi.webp">
-  <link rel="apple-touch-icon" href="img/milenio_admi.webp">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="img/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <title>Panel · Café Milenio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +201,7 @@
   <!-- ============ Inicio de sesión ============ -->
   <main id="login" class="min-h-screen grid place-items-center px-4 py-10" hidden>
     <section class="card w-full max-w-sm p-6 sm:p-8" aria-labelledby="lt">
-      <img src="img/milenio_admi.webp" alt="Café Milenio" width="64" height="64" decoding="async" class="w-16 h-16 mx-auto object-contain">
+      <img src="img/cafe_mil-480.webp" alt="Café Milenio" width="64" height="64" decoding="async" class="w-16 h-16 mx-auto object-contain rounded-xl">
       <h1 id="lt" class="font-serif text-center text-3xl mt-2">Café Milenio</h1>
       <p class="text-center text-sm text-mute mt-1">Panel de administración</p>
       <form id="lf" class="mt-6 grid gap-3" novalidate>
@@ -221,7 +222,7 @@
   <div id="app" hidden>
     <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#160905]/70 border-b border-white/10">
       <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0"><img src="img/milenio_admi.webp" alt="Café Milenio" width="36" height="36" decoding="async" class="w-9 h-9 shrink-0 object-contain rounded-full"><div class="min-w-0"><p class="font-serif text-lg leading-none">Café Milenio</p><p class="text-[11px] text-mute truncate mt-1" id="who"></p></div></div>
+        <div class="flex items-center gap-3 min-w-0"><img src="img/cafe_mil-480.webp" alt="Café Milenio" width="36" height="36" decoding="async" class="w-9 h-9 shrink-0 object-contain rounded-lg"><div class="min-w-0"><p class="font-serif text-lg leading-none">Café Milenio</p><p class="text-[11px] text-mute truncate mt-1" id="who"></p></div></div>
         <div class="flex items-center gap-2 shrink-0">
           <button id="bell" class="btn btn-line bell" type="button" aria-pressed="false" aria-label="Pedidos pendientes: 0. Sonido activado"><span id="bellIc" aria-hidden="true">🔔</span><span id="bellN" class="bell-n" hidden>0</span></button>
           <a class="btn btn-line" href="index.html" target="_blank" rel="noopener">Ver tienda</a>
@@ -238,6 +239,7 @@
         <button class="tab" role="tab" id="t-productos" aria-controls="m-productos" aria-selected="false" tabindex="-1" data-tab="productos">Productos</button>
         <button class="tab" role="tab" id="t-resenas" aria-controls="m-resenas" aria-selected="false" tabindex="-1" data-tab="resenas">Reseñas <span id="c-res" class="pill border-line text-mute ml-1" hidden></span></button>
         <button class="tab" role="tab" id="t-imagenes" aria-controls="m-imagenes" aria-selected="false" tabindex="-1" data-tab="imagenes">Imágenes del sitio</button>
+        <button class="tab" role="tab" id="t-ajustes" aria-controls="m-ajustes" aria-selected="false" tabindex="-1" data-tab="ajustes">Ajustes</button>
       </div>
 
       <!-- a) Pedidos -->
@@ -286,9 +288,62 @@
       <!-- d) Gestión de Imágenes del Sitio -->
       <section id="m-imagenes" role="tabpanel" aria-labelledby="t-imagenes" class="mt-4" hidden>
         <h2 class="font-serif text-2xl">Gestión de Imágenes del Sitio</h2>
-        <p class="text-sm text-mute max-w-2xl mt-1">Sube un archivo o pega una URL para reemplazar cada imagen. Los cambios se publican en la tienda al instante. "Restaurar" vuelve a la imagen por defecto. En "Desde el origen" el medio principal acepta una imagen o un video en bucle silencioso (MP4/WebM, máx. 20 MB); si cargas el 2 y el 3, se alternan solos con fundido.</p>
+        <p class="text-sm text-mute max-w-2xl mt-1">Sube un archivo o pega una URL para reemplazar cada imagen. Los cambios se publican en la tienda al instante. "Restaurar" vuelve a la imagen por defecto. En "Desde el origen" el medio principal acepta una imagen o un video en bucle silencioso (MP4/WebM, máx. 20 MB); si cargas el 2 y el 3, se alternan solos con fundido (el tiempo se ajusta en la tarjeta de abajo).</p>
+        <section class="card p-4 sm:p-5 mt-4" aria-labelledby="repT">
+          <h3 id="repT" class="font-serif text-xl pb-3 border-b border-white/10">Tiempo de reproducción · «Desde el origen»</h3>
+          <p class="text-sm text-mute mt-3 max-w-2xl">Cada cuántos segundos cambia la imagen o el video cuando cargas 2 o 3 medios. Mínimo 2 s, máximo 30 s (por defecto 5 s). El cambio se aplica en la tienda al instante.</p>
+          <div class="mt-3 flex flex-wrap items-end gap-3">
+            <div><label class="block text-xs font-bold text-mute mb-1" for="seg-origen">Segundos por medio</label><input id="seg-origen" type="number" min="2" max="30" step="1" inputmode="numeric" class="in" style="width:7rem" placeholder="5"></div>
+            <button type="button" class="btn btn-gold" id="seg-save">Guardar</button>
+            <button type="button" class="btn btn-line" id="seg-reset">Volver a 5 s</button>
+          </div>
+          <p class="text-xs text-mute mt-2" id="seg-msg" role="status"></p>
+        </section>
         <p id="sitemsg" class="card border-cherry/60 p-3 mt-3 text-sm text-cherry" role="alert" hidden></p>
         <div id="slist" class="mt-4 grid grid-cols-[minmax(0,1fr)] gap-6"></div>
+      </section>
+
+      <!-- e) Ajustes del sitio -->
+      <section id="m-ajustes" role="tabpanel" aria-labelledby="t-ajustes" class="mt-4" hidden>
+        <h2 class="font-serif text-2xl">Ajustes de la tienda</h2>
+        <p class="text-sm text-mute max-w-2xl mt-1">Aviso, contacto, horario y envío estimado. Cada tarjeta se guarda por separado y se publica en la tienda al instante.</p>
+        <p id="cfgmsg" class="card border-cherry/60 p-3 mt-3 text-sm text-cherry" role="alert" hidden></p>
+
+        <section class="card p-4 sm:p-5 mt-4" aria-labelledby="avT">
+          <h3 id="avT" class="font-serif text-xl pb-3 border-b border-white/10">Aviso en la parte superior de la tienda</h3>
+          <p class="text-sm text-mute mt-3 max-w-2xl">Un letrero visible arriba de todo. Úsalo para «Cerrado por vacaciones» o «Pedidos antes del jueves salen el viernes».</p>
+          <div class="mt-3 grid gap-3 max-w-2xl" data-cfg="av">
+            <button type="button" class="sw" role="switch" aria-checked="false" id="av-on"><span>Mostrar aviso <span class="block text-xs font-normal text-mute">Se publica al pulsar «Guardar aviso»</span></span><i aria-hidden="true"></i></button>
+            <div><label class="block text-xs font-bold text-mute mb-1" for="av-tipo">Estilo</label><select id="av-tipo" class="in"><option value="info">Informativo (dorado)</option><option value="alerta">Importante (rojo)</option></select></div>
+            <div><label class="block text-xs font-bold text-mute mb-1" for="av-txt">Texto (máx. 200 caracteres)</label><input id="av-txt" class="in" maxlength="200" autocomplete="off" placeholder="Ej. Del 24 al 31 de diciembre no hay envíos."><p class="text-xs text-mute mt-1" id="av-cnt">0 / 200</p></div>
+            <div><p class="text-xs font-bold text-mute mb-1">Vista previa</p><div id="av-prev" class="rounded-xl text-center text-sm font-bold px-3 py-2" style="background:linear-gradient(90deg,#FFC857,#FF8A1F);color:#2A1200"></div></div>
+            <div class="flex flex-wrap items-center gap-3"><button type="button" class="btn btn-gold" id="av-save">Guardar aviso</button><p class="text-xs text-mute" id="av-msg" role="status"></p></div>
+          </div>
+        </section>
+
+        <section class="card p-4 sm:p-5 mt-4" aria-labelledby="ctT">
+          <h3 id="ctT" class="font-serif text-xl pb-3 border-b border-white/10">Contacto, ubicación y horario</h3>
+          <p class="text-sm text-mute mt-3 max-w-2xl">Se actualizan el pie de página, el botón de WhatsApp, los pedidos, las preguntas frecuentes y el horario de recolección. El texto que aparece en Google (datos estructurados) se cambia aparte, en <span class="mono">index.html</span>.</p>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2 max-w-3xl" data-cfg="ct">
+            <div><label class="block text-xs font-bold text-mute mb-1" for="ct-wa">WhatsApp de pedidos (10 dígitos)</label><input id="ct-wa" class="in" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="9616037111"></div>
+            <div><label class="block text-xs font-bold text-mute mb-1" for="ct-tel">Teléfono (10 dígitos)</label><input id="ct-tel" class="in" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="9921100559"></div>
+            <div class="sm:col-span-2"><label class="block text-xs font-bold text-mute mb-1" for="ct-mail">Correo</label><input id="ct-mail" class="in" type="email" maxlength="80" autocomplete="off" placeholder="correo@dominio.com"></div>
+            <div class="sm:col-span-2"><label class="block text-xs font-bold text-mute mb-1" for="ct-dir">Dirección de la tienda (máx. 150 caracteres)</label><input id="ct-dir" class="in" maxlength="150" autocomplete="off" placeholder="Calle, número, colonia, ciudad, estado, C.P."></div>
+            <div class="sm:col-span-2"><label class="block text-xs font-bold text-mute mb-1" for="ct-mapa">Enlace del mapa (https://…)</label><input id="ct-mapa" class="in" inputmode="url" maxlength="300" autocomplete="off" placeholder="https://maps.app.goo.gl/…"></div>
+            <div><label class="block text-xs font-bold text-mute mb-1" for="ct-abre">Abre (lunes a sábado)</label><select id="ct-abre" class="in"><option value="0">0:00</option><option value="1">1:00</option><option value="2">2:00</option><option value="3">3:00</option><option value="4">4:00</option><option value="5">5:00</option><option value="6">6:00</option><option value="7">7:00</option><option value="8">8:00</option><option value="9">9:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option></select></div>
+            <div><label class="block text-xs font-bold text-mute mb-1" for="ct-cierra">Cierra</label><select id="ct-cierra" class="in"><option value="1">1:00</option><option value="2">2:00</option><option value="3">3:00</option><option value="4">4:00</option><option value="5">5:00</option><option value="6">6:00</option><option value="7">7:00</option><option value="8">8:00</option><option value="9">9:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option><option value="24">24:00</option></select></div>
+            <div class="sm:col-span-2 flex flex-wrap items-center gap-3"><button type="button" class="btn btn-gold" id="ct-save">Guardar contacto y horario</button><button type="button" class="btn btn-line" id="ct-reset">Volver a los valores originales</button><p class="text-xs text-mute" id="ct-msg" role="status"></p></div>
+          </div>
+        </section>
+
+        <section class="card p-4 sm:p-5 mt-4" aria-labelledby="enT">
+          <h3 id="enT" class="font-serif text-xl pb-3 border-b border-white/10">Envío estimado por destino</h3>
+          <p class="text-sm text-mute mt-3 max-w-2xl">Cuando el cliente escribe su destino, la tienda le muestra «Envío estimado: $X (se confirma por WhatsApp)». Es solo informativo: <b>no cambia el total del pedido</b> y tú sigues confirmando el costo final. Máximo 30 destinos.</p>
+          <div class="mt-3 grid gap-3 max-w-2xl" data-cfg="en">
+            <div id="en-rows" class="grid gap-2"></div>
+            <div class="flex flex-wrap items-center gap-3"><button type="button" class="btn btn-line" id="en-add">+ Agregar destino</button><button type="button" class="btn btn-gold" id="en-save">Guardar envíos</button><p class="text-xs text-mute" id="en-msg" role="status"></p></div>
+          </div>
+        </section>
       </section>
     </div>
   </div>
@@ -408,14 +463,14 @@
     });
     function leave() {
       unsubs.forEach(u => { try { u(); } catch (e) { } }); unsubs = []; orders = []; reviews = []; prodDocs = {}; dirty = {}; gal = {}; galDirty = {}; built = false; ordersFirst = true; document.title = baseTitle;
-      $('#olist').innerHTML = ''; $('#rlist').innerHTML = ''; $('#plist').innerHTML = ''; $('#slist').innerHTML = ''; siteBuilt = false; siteDoc = null; siteErr = ''; // no dejar datos en pantalla tras cerrar sesión
+      $('#olist').innerHTML = ''; $('#rlist').innerHTML = ''; $('#plist').innerHTML = ''; $('#slist').innerHTML = ''; siteBuilt = false; siteDoc = null; siteErr = ''; cfgDoc = null; cfgErr = ''; cfgDirty = {}; // no dejar datos en pantalla tras cerrar sesión
       show($('#app'), false); show($('#login'), true); $('#verif').hidden = true; document.title = 'Panel · Café Milenio';
       $('#lp').value = ''; $('#lbtn').disabled = false; $('#lbtn').textContent = 'Entrar';
     }
     function enter(user) {
       show($('#login'), false); show($('#app'), true); $('#who').textContent = user.email || '';
       $('#perm').hidden = true; $('#verif').hidden = !!user.emailVerified; buildProducts(); buildSite(); startListeners();
-      const t = (location.hash || '').slice(1); selectTab(['pedidos', 'productos', 'resenas', 'imagenes'].includes(t) ? t : 'pedidos', false);
+      const t = (location.hash || '').slice(1); selectTab(['pedidos', 'productos', 'resenas', 'imagenes', 'ajustes'].includes(t) ? t : 'pedidos', false);
     }
     $('#vbtn').addEventListener('click', async e => {
       const b = e.currentTarget; b.disabled = true;
@@ -443,7 +498,7 @@
     /* ---------- pestañas ---------- */
     function selectTab(name, focus = true) {
       $$('#tabs [role=tab]').forEach(t => { const on = t.dataset.tab === name; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && focus) t.focus(); });
-      ['pedidos', 'productos', 'resenas', 'imagenes'].forEach(n => { $('#m-' + n).hidden = n !== name; });
+      ['pedidos', 'productos', 'resenas', 'imagenes', 'ajustes'].forEach(n => { $('#m-' + n).hidden = n !== name; });
       try { history.replaceState(null, '', '#' + name); } catch (e) { }
     }
     $('#tabs').addEventListener('click', e => { const t = e.target.closest('[role=tab]'); if (t) selectTab(t.dataset.tab, false); });
@@ -471,6 +526,7 @@
       unsubs.push(onSnapshot(collection(db, 'productos'), snap => {
         prodDocs = {}; snap.docs.forEach(d => { prodDocs[d.id] = d.data(); }); syncProducts(); syncSite();
       }, e => bannerErr('el catálogo', e)));
+      unsubs.push(onSnapshot(doc(db, 'sitio', 'ajustes'), snap => { cfgDoc = snap.exists() ? snap.data() : {}; cfgErr = ''; syncCfg(); }, e => { cfgErr = errMsg(e); syncCfg(); }));
       unsubs.push(onSnapshot(doc(db, 'sitio', 'imagenes'), snap => { siteDoc = snap.exists() ? snap.data() : {}; siteErr = ''; syncSite(); }, e => { siteErr = errMsg(e); syncSite(); }));
       unsubs.push(onSnapshot(query(collection(db, 'resenas'), orderBy('fecha', 'desc'), limit(200)), snap => {
         reviews = snap.docs.map(d => { const x = d.data({ serverTimestamps: 'estimate' }); return { ...x, id: d.id, _t: ms(x.fecha) }; }); renderReviews();
@@ -595,7 +651,7 @@
     const waUrl = (num, msg) => (IS_MOBILE ? `https://wa.me/${num}?text=` : `https://web.whatsapp.com/send?phone=${num}&text=`) + encodeURIComponent(waClean(msg));
     // Emoji dinámico por estado: [emoji, texto]. "preparacion" y "listo" quedan listos por si se agregan como estados; "enviado" en una entrega de recolección se muestra como "Listo para recolección".
     const WA_EST = {
-      pendiente: ['\u{1F4DD}', 'Recibido'], confirmado: ['⏳', 'Confirmado'], preparacion: ['☕', 'En preparación'],
+      pendiente: ['\u{1F4DD}', 'Recibido'], confirmado: ['\u{1F44D}', 'Confirmado'], preparacion: ['☕', 'En preparación'],
       enviado: ['\u{1F69A}', 'Enviado'], listo: ['\u{1F3EA}', 'Listo para recolección'], entregado: ['✅', 'Entregado'], cancelado: ['❌', 'Cancelado']
     };
     const waEstado = o => { const k = o.entrega !== 'envio' && o._e === 'enviado' ? 'listo' : o._e; return WA_EST[k] || ['\u{1F4DD}', estLabel(o._e)]; };
@@ -694,7 +750,7 @@
         <div class="bar mt-2" data-bar="${d.id}" hidden><i style="width:0"></i></div><p class="text-xs mt-1" data-imsg="${d.id}" role="status"></p></div>
       <button type="button" class="sw" role="switch" aria-checked="true" data-sw="${d.id}"><span>Disponible para la venta <span class="block text-xs font-normal text-mute">Apágalo cuando se agote; se guarda al instante</span></span><i aria-hidden="true"></i></button>
     </div>
-    <div class="grid gap-4 content-start min-w-0">  
+    <div class="grid gap-4 content-start min-w-0">
       <div class="grid gap-2"><p class="sec">Precio por presentación <span class="normal-case tracking-normal font-semibold text-mute">(MXN, bolsa completa)</span></p>
         <div class="ptable" role="group" aria-label="Precios por presentación">
           <span class="ch" aria-hidden="true"></span><span class="ch" aria-hidden="true">Precio 250g</span><span class="ch" aria-hidden="true">Precio 500g</span><span class="ch" aria-hidden="true">Precio 1kg</span>
@@ -853,12 +909,13 @@
     const PROC_DEF = ['img/cafe-cereza.jpg', 'img/cafe-secado.jpg', 'img/cafe-tostado.jpg', 'img/cafe-paquete.jpg'], PASOS = ['Paso 1 · Cosecha', 'Paso 2 · Secado', 'Paso 3 · Tostado', 'Paso 4 · Molido y empaque'];
     const SLOTS = [
       { id: 'hero', grp: 'Hero principal', label: 'Imagen del Hero', kind: 'image', def: 'img/cafes-inicio.jpg', max: 1600 },
+      { id: 'fundadores', grp: 'Sección "Sobre nosotros"', label: 'Foto de la familia fundadora', kind: 'image', def: 'img/Vfundadores.png', max: 1200 },
       ...[0, 1, 2].map(i => ({ id: 'origen' + i, grp: 'Sección "Desde el origen"', label: ['Medio principal (video o imagen)', 'Medio 2 (opcional, se alterna)', 'Medio 3 (opcional, se alterna)'][i], kind: 'media', def: i ? '' : 'img/cafe_planta.jpg', max: 1600 })),
       ...PASOS.map((l, i) => ({ id: 'proceso' + i, grp: 'Carrusel "Del cafetal a tu taza"', label: l, kind: 'image', def: PROC_DEF[i], max: 1200 })),
       ...[['grano', 'Grano entero (granos enteros brillantes)', 'img/sel-grano.webp'], ['molido', 'Café molido (todos los tipos)', 'img/sel-molido.webp'], ['costal', 'Costal de yute con sello "Café Milenio"', 'img/sel-costal.webp']].map(([k, l, d]) => ({ id: 'sel' + k, grp: 'Iconos de los selectores (tienda)', label: l, kind: 'image', def: d, max: 400 })),
       ...DEFAULTS.map(d => ({ id: d.id, grp: 'Fotos de empaque (por calidad)', label: d.name, kind: 'image', def: d.img, prod: true, max: 1200 }))
     ];
-    const slotStored = s => s.prod ? coverOf(prodDocs[s.id]) : s.id.startsWith('sel') ? siteUrl(((siteDoc || {}).selectores || {})[s.id.slice(3)]) : s.id === 'hero' ? siteUrl((siteDoc || {}).hero) : s.id.startsWith('origen') ? siteUrl(((siteDoc || {}).origen || [])[+s.id.slice(6)]) : siteUrl(((siteDoc || {}).proceso || [])[+s.id.slice(7)]);
+    const slotStored = s => s.prod ? coverOf(prodDocs[s.id]) : s.id.startsWith('sel') ? siteUrl(((siteDoc || {}).selectores || {})[s.id.slice(3)]) : s.id === 'hero' ? siteUrl((siteDoc || {}).hero) : s.id === 'fundadores' ? siteUrl((siteDoc || {}).fundadores) : s.id.startsWith('origen') ? siteUrl(((siteDoc || {}).origen || [])[+s.id.slice(6)]) : siteUrl(((siteDoc || {}).proceso || [])[+s.id.slice(7)]);
     const slotHtml = s => `<div class="grid gap-2 content-start min-w-0" data-slot="${s.id}">
       <div class="flex items-center justify-between gap-2"><p class="font-bold text-sm">${esc(s.label)}</p><span class="pill border-line text-mute" data-ssrc></span></div>
       <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white/[.04] border border-white/10 grid place-items-center" data-sprev></div>
@@ -876,6 +933,7 @@
     }
     function syncSite() {
       const note = $('#sitemsg'); if (note) { note.hidden = !siteErr; note.textContent = siteErr ? 'No se pudo leer la configuración del sitio (' + siteErr + '). Publica las reglas nuevas de "sitio" (ver el final de este archivo).' : ''; }
+      { const sg = $('#seg-origen'); if (sg && document.activeElement !== sg) { const n = +(siteDoc || {}).origenSeg; sg.value = n >= 2 && n <= 60 ? n : 5; } }
       if (!siteBuilt) return;
       SLOTS.forEach(s => {
         const box = document.querySelector(`[data-slot="${s.id}"]`); if (!box) return;
@@ -890,6 +948,7 @@
     async function writeSlot(s, url) { // url '' = restaurar el valor por defecto
       if (s.prod) { const d = DEFAULTS.find(x => x.id === s.id); await setDoc(doc(db, 'productos', s.id), { name: d.name, ...coverPayload(s.id, url || d.img), actualizado: serverTimestamp() }, { merge: true }); return; }
       const b = siteDoc || {}; let hero = siteUrl(b.hero); const origen = [0, 1, 2].map(i => siteUrl((b.origen || [])[i])), proceso = [0, 1, 2, 3].map(i => siteUrl((b.proceso || [])[i]));
+      if (s.id === 'fundadores') { await setDoc(doc(db, 'sitio', 'imagenes'), { fundadores: url, actualizado: serverTimestamp() }, { merge: true }); return; }
       if (s.id.startsWith('sel')) { const se = {}; ['grano', 'molido', 'costal'].forEach(k => { se[k] = siteUrl(((b.selectores || {})[k])); }); se[s.id.slice(3)] = url; await setDoc(doc(db, 'sitio', 'imagenes'), { selectores: se, actualizado: serverTimestamp() }, { merge: true }); return; }
       if (s.id === 'hero') hero = url; else if (s.id.startsWith('origen')) origen[+s.id.slice(6)] = url; else proceso[+s.id.slice(7)] = url;
       await setDoc(doc(db, 'sitio', 'imagenes'), { hero, origen, proceso, actualizado: serverTimestamp() }, { merge: true });
@@ -928,6 +987,77 @@
         }
       } catch (x) { smsg(box, 'No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
       finally { b.disabled = false; syncSite(); }
+    });
+
+    // Tiempo de reproducción de "Desde el origen" (campo origenSeg de sitio/imagenes)
+    const segMsg = (t, cls = 'text-mute') => { const m = $('#seg-msg'); if (m) { m.textContent = t; m.className = 'text-xs mt-2 ' + cls; } };
+    const segWrite = n => setDoc(doc(db, 'sitio', 'imagenes'), { origenSeg: n, actualizado: serverTimestamp() }, { merge: true });
+    $('#seg-save')?.addEventListener('click', async e => {
+      const b = e.currentTarget, n = Math.round(+$('#seg-origen').value);
+      if (!(n >= 2 && n <= 30)) { segMsg('Escribe un número entero entre 2 y 30.', 'text-cherry'); return; }
+      b.disabled = true;
+      try { await segWrite(n); segMsg(`Listo: la imagen o el video cambiará cada ${n} s.`, 'text-leaf'); toast(`Reproducción: ${n} s por medio`); }
+      catch (x) { segMsg('No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
+      finally { b.disabled = false; }
+    });
+    $('#seg-reset')?.addEventListener('click', async e => {
+      const b = e.currentTarget; b.disabled = true;
+      try { await segWrite(5); $('#seg-origen').value = 5; segMsg('Restaurado a 5 s.', 'text-leaf'); toast('Reproducción: 5 s por medio'); }
+      catch (x) { segMsg('No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
+      finally { b.disabled = false; }
+    });
+
+    /* ======================= e) AJUSTES DE LA TIENDA ======================= */
+    // Documento Firestore `sitio/ajustes`: { aviso:{activo,texto,tipo}, contacto:{whatsapp:'52'+10 dígitos,telefono,correo,direccion,mapa}, horario:{abre,cierra}, envio:{destinos:[{n,c}]} }
+    let cfgDoc = null, cfgErr = '', cfgDirty = {};
+    const CFG_DEF = { wa: '9616037111', tel: '9921100559', mail: 'jaltenangomilenio@gmail.com', dir: 'Calle Primera Ote. Nte. #327, Jaltenango de la Paz, Chiapas, C.P. 30370', mapa: 'https://maps.app.goo.gl/XzFvWwX7WY4Km17h6', abre: 7, cierra: 18 };
+    const cmsg = (id, t, cls = 'text-mute') => { const m = $('#' + id); if (m) { m.textContent = t; m.className = 'text-xs ' + cls; } };
+    const avPrev = () => { const p = $('#av-prev'); if (!p) return; const al = $('#av-tipo').value === 'alerta', tx = $('#av-txt').value.trim(); p.textContent = tx || 'Así se verá el aviso'; p.style.background = al ? '#B3262B' : 'linear-gradient(90deg,#FFC857,#FF8A1F)'; p.style.color = al ? '#fff' : '#2A1200'; p.style.opacity = tx ? '1' : '.5'; $('#av-cnt').textContent = $('#av-txt').value.length + ' / 200'; };
+    const enRow = (n = '', c = '') => `<div class="gap-2 items-center" style="display:grid;grid-template-columns:minmax(0,1fr) 6.5rem auto" data-enrow><input class="in" data-en-n maxlength="40" autocomplete="off" placeholder="Destino (ej. Tuxtla Gutiérrez)" aria-label="Destino" value="${esc(n)}"><input class="in" data-en-c type="number" min="0" max="5000" step="1" inputmode="numeric" placeholder="$ MXN" aria-label="Costo estimado en pesos" value="${esc(String(c))}"><button type="button" class="btn btn-line" data-en-del aria-label="Quitar destino">✕</button></div>`;
+    function syncCfg() {
+      const note = $('#cfgmsg'); if (note) { note.hidden = !cfgErr; note.textContent = cfgErr ? 'No se pudo leer los ajustes (' + cfgErr + '). Publica las reglas nuevas de "sitio" (ver el final de este archivo).' : ''; }
+      const d = cfgDoc || {}, av = d.aviso || {}, c = d.contacto || {}, h = d.horario || {}, ev = (d.envio && Array.isArray(d.envio.destinos)) ? d.envio.destinos : [];
+      if (!cfgDirty.av) { const sw = $('#av-on'); sw.setAttribute('aria-checked', String(av.activo === true)); $('#av-tipo').value = av.tipo === 'alerta' ? 'alerta' : 'info'; $('#av-txt').value = typeof av.texto === 'string' ? av.texto : ''; avPrev(); }
+      if (!cfgDirty.ct) { $('#ct-wa').value = typeof c.whatsapp === 'string' && /^52\d{10}$/.test(c.whatsapp) ? c.whatsapp.slice(2) : CFG_DEF.wa; $('#ct-tel').value = typeof c.telefono === 'string' ? c.telefono : CFG_DEF.tel; $('#ct-mail').value = typeof c.correo === 'string' && c.correo ? c.correo : CFG_DEF.mail; $('#ct-dir').value = typeof c.direccion === 'string' && c.direccion ? c.direccion : CFG_DEF.dir; $('#ct-mapa').value = typeof c.mapa === 'string' && c.mapa ? c.mapa : CFG_DEF.mapa; $('#ct-abre').value = Number.isInteger(h.abre) ? h.abre : CFG_DEF.abre; $('#ct-cierra').value = Number.isInteger(h.cierra) ? h.cierra : CFG_DEF.cierra; }
+      if (!cfgDirty.en) $('#en-rows').innerHTML = ev.length ? ev.map(x => enRow(x && x.n, x && typeof x.c === 'number' ? x.c : '')).join('') : '<p class="text-xs text-mute">Aún no hay destinos. Pulsa «Agregar destino».</p>';
+    }
+    const cfgWrite = (k, v) => setDoc(doc(db, 'sitio', 'ajustes'), { [k]: v, actualizado: serverTimestamp() }, { merge: true });
+    document.addEventListener('input', e => { const b = e.target.closest('[data-cfg]'); if (!b) return; cfgDirty[b.dataset.cfg] = true; if (b.dataset.cfg === 'av') avPrev(); });
+    $('#av-on')?.addEventListener('click', e => { const sw = e.currentTarget; sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true')); cfgDirty.av = true; });
+    $('#av-tipo')?.addEventListener('change', avPrev);
+    $('#av-save')?.addEventListener('click', async e => {
+      const b = e.currentTarget, on = $('#av-on').getAttribute('aria-checked') === 'true', tx = $('#av-txt').value.trim();
+      if (on && !tx) { cmsg('av-msg', 'Escribe el texto del aviso o apaga el interruptor.', 'text-cherry'); return; }
+      b.disabled = true;
+      try { await cfgWrite('aviso', { activo: on, texto: tx.slice(0, 200), tipo: $('#av-tipo').value === 'alerta' ? 'alerta' : 'info' }); cfgDirty.av = false; cmsg('av-msg', on ? 'Aviso publicado en la tienda.' : 'Aviso apagado.', 'text-leaf'); toast(on ? 'Aviso publicado' : 'Aviso apagado'); }
+      catch (x) { cmsg('av-msg', 'No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
+      finally { b.disabled = false; }
+    });
+    $('#ct-save')?.addEventListener('click', async e => {
+      const b = e.currentTarget, wa = $('#ct-wa').value.trim(), tel = $('#ct-tel').value.trim(), mail = $('#ct-mail').value.trim(), dir = $('#ct-dir').value.trim(), mapa = $('#ct-mapa').value.trim(), ab = +$('#ct-abre').value, ci = +$('#ct-cierra').value;
+      const bad = !/^\d{10}$/.test(wa) ? 'El WhatsApp debe tener 10 dígitos, sin espacios ni lada +52.' : !/^\d{10}$/.test(tel) ? 'El teléfono debe tener 10 dígitos.' : !/^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(mail) || mail.length > 80 ? 'Escribe un correo válido.' : !dir || dir.length > 150 ? 'La dirección es obligatoria (máx. 150 caracteres).' : !/^https:\/\/[^\s"'<>]+$/.test(mapa) || mapa.length > 300 ? 'El enlace del mapa debe empezar con https://' : !(ab >= 0 && ci <= 24 && ab < ci) ? 'La hora de apertura debe ser menor que la de cierre.' : '';
+      if (bad) { cmsg('ct-msg', bad, 'text-cherry'); return; }
+      b.disabled = true;
+      try { await setDoc(doc(db, 'sitio', 'ajustes'), { contacto: { whatsapp: '52' + wa, telefono: tel, correo: mail, direccion: dir, mapa }, horario: { abre: ab, cierra: ci }, actualizado: serverTimestamp() }, { merge: true }); cfgDirty.ct = false; cmsg('ct-msg', 'Publicado en la tienda.', 'text-leaf'); toast('Contacto y horario actualizados'); }
+      catch (x) { cmsg('ct-msg', 'No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
+      finally { b.disabled = false; }
+    });
+    $('#ct-reset')?.addEventListener('click', () => { if (!confirm('¿Volver a los datos de contacto y horario originales? (No se publica hasta pulsar «Guardar».)')) return; $('#ct-wa').value = CFG_DEF.wa; $('#ct-tel').value = CFG_DEF.tel; $('#ct-mail').value = CFG_DEF.mail; $('#ct-dir').value = CFG_DEF.dir; $('#ct-mapa').value = CFG_DEF.mapa; $('#ct-abre').value = CFG_DEF.abre; $('#ct-cierra').value = CFG_DEF.cierra; cfgDirty.ct = true; cmsg('ct-msg', 'Valores originales cargados. Pulsa «Guardar» para publicarlos.'); });
+    $('#en-add')?.addEventListener('click', () => { const box = $('#en-rows'); if (box.querySelectorAll('[data-enrow]').length >= 30) { cmsg('en-msg', 'Máximo 30 destinos.', 'text-cherry'); return; } if (!box.querySelector('[data-enrow]')) box.innerHTML = ''; box.insertAdjacentHTML('beforeend', enRow()); cfgDirty.en = true; box.lastElementChild.querySelector('[data-en-n]').focus(); });
+    $('#en-rows')?.addEventListener('click', e => { const x = e.target.closest('[data-en-del]'); if (!x) return; x.closest('[data-enrow]').remove(); cfgDirty.en = true; });
+    $('#en-save')?.addEventListener('click', async e => {
+      const b = e.currentTarget, rows = [...$$('#en-rows [data-enrow]')], out = [], seen = new Set();
+      for (const r of rows) {
+        const n = r.querySelector('[data-en-n]').value.trim(), raw = r.querySelector('[data-en-c]').value.trim();
+        if (!n && !raw) continue;
+        const c = Number(raw);
+        if (!n || raw === '' || !Number.isFinite(c) || c < 0 || c > 5000) { cmsg('en-msg', 'Cada fila necesita un destino y un costo entre 0 y 5000.', 'text-cherry'); return; }
+        const k = n.toLowerCase(); if (seen.has(k)) { cmsg('en-msg', `«${n}» está repetido.`, 'text-cherry'); return; } seen.add(k); out.push({ n: n.slice(0, 40), c: Math.round(c) });
+      }
+      b.disabled = true;
+      try { await cfgWrite('envio', { destinos: out }); cfgDirty.en = false; cmsg('en-msg', out.length ? `Publicados ${out.length} destino(s).` : 'Sin destinos: la tienda ya no muestra estimados.', 'text-leaf'); toast('Envíos estimados actualizados'); syncCfg(); }
+      catch (x) { cmsg('en-msg', 'No se pudo guardar: ' + errMsg(x), 'text-cherry'); }
+      finally { b.disabled = false; }
     });
 
     /* ======================= c) RESEÑAS ======================= */
@@ -1058,11 +1188,36 @@
      match /sitio/{id} {
        allow read: if true;
        allow create, update: if isAdmin() && id == 'imagenes'
-         && request.resource.data.keys().hasOnly(['hero','origen','proceso','selectores','actualizado'])
+         && request.resource.data.keys().hasOnly(['hero','origen','proceso','selectores','fundadores','origenSeg','actualizado'])
          && (!('hero' in request.resource.data) || (request.resource.data.hero is string && request.resource.data.hero.size() < 700))
          && (!('origen' in request.resource.data) || (request.resource.data.origen is list && request.resource.data.origen.size() <= 3))
          && (!('proceso' in request.resource.data) || (request.resource.data.proceso is list && request.resource.data.proceso.size() <= 4))
-         && (!('selectores' in request.resource.data) || request.resource.data.selectores is map);
+         && (!('selectores' in request.resource.data) || request.resource.data.selectores is map)
+         && (!('fundadores' in request.resource.data) || (request.resource.data.fundadores is string && request.resource.data.fundadores.size() < 700))
+         && (!('origenSeg' in request.resource.data) || (request.resource.data.origenSeg is number && request.resource.data.origenSeg >= 2 && request.resource.data.origenSeg <= 60));
+       // Ajustes del sitio (aviso superior, contacto, horario y envío estimado): los lee cualquiera, solo el administrador los escribe.
+       allow create, update: if isAdmin() && id == 'ajustes'
+         && request.resource.data.keys().hasOnly(['aviso','contacto','horario','envio','actualizado'])
+         && (!('aviso' in request.resource.data) || (request.resource.data.aviso is map
+             && request.resource.data.aviso.keys().hasOnly(['activo','texto','tipo'])
+             && request.resource.data.aviso.activo is bool
+             && request.resource.data.aviso.texto is string && request.resource.data.aviso.texto.size() <= 200
+             && request.resource.data.aviso.tipo in ['info','alerta']))
+         && (!('contacto' in request.resource.data) || (request.resource.data.contacto is map
+             && request.resource.data.contacto.keys().hasOnly(['whatsapp','telefono','correo','direccion','mapa'])
+             && request.resource.data.contacto.whatsapp is string && request.resource.data.contacto.whatsapp.matches('^52[0-9]{10}$')
+             && request.resource.data.contacto.telefono is string && request.resource.data.contacto.telefono.matches('^[0-9]{10}$')
+             && request.resource.data.contacto.correo is string && request.resource.data.contacto.correo.size() <= 80
+             && request.resource.data.contacto.direccion is string && request.resource.data.contacto.direccion.size() <= 150
+             && request.resource.data.contacto.mapa is string && request.resource.data.contacto.mapa.size() <= 300))
+         && (!('horario' in request.resource.data) || (request.resource.data.horario is map
+             && request.resource.data.horario.keys().hasOnly(['abre','cierra'])
+             && request.resource.data.horario.abre is int && request.resource.data.horario.cierra is int
+             && request.resource.data.horario.abre >= 0 && request.resource.data.horario.cierra <= 24
+             && request.resource.data.horario.abre < request.resource.data.horario.cierra))
+         && (!('envio' in request.resource.data) || (request.resource.data.envio is map
+             && request.resource.data.envio.keys().hasOnly(['destinos'])
+             && request.resource.data.envio.destinos is list && request.resource.data.envio.destinos.size() <= 30));
        allow delete: if false;
      }
 
@@ -1153,11 +1308,11 @@
      }
 
      // Imágenes y videos del sitio: los ve cualquiera; solo el administrador los sube o borra.
-     // Imágenes WebP/JPG de máx. 3 MB; videos MP4/WebM de máx. 25 MB. Nombres que genera el panel: hero | origen0-2 | proceso0-3 + marca de tiempo.
+     // Imágenes WebP/JPG de máx. 3 MB; videos MP4/WebM de máx. 25 MB. Nombres que genera el panel: hero | fundadores | origen0-2 | proceso0-3 + marca de tiempo.
      match /sitio/{file} {
        allow read: if true;
        allow create, update: if isAdmin()
-         && file.matches('(hero|origen[0-2]|proceso[0-3]|selgrano|selmolido|selcostal)_[0-9]+[.](webp|jpg|mp4|webm)')
+         && file.matches('(hero|fundadores|origen[0-2]|proceso[0-3]|selgrano|selmolido|selcostal)_[0-9]+[.](webp|jpg|mp4|webm)')
          && request.resource.contentType in ['image/webp', 'image/jpeg', 'video/mp4', 'video/webm']
          && request.resource.size < 25 * 1024 * 1024
          && (request.resource.contentType.matches('video/.*') || request.resource.size < 3 * 1024 * 1024);
